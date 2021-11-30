@@ -138,11 +138,7 @@ async def on_guild_join(guild):
   embed.set_thumbnail(url='https://mir-s3-cdn-cf.behance.net/project_modules/disp/36b27533837732.591240ca6fe63.gif')
   embed.add_field(name = "Link Of Server" , value = f'{invlink}')
   await log_channel.send(embed=embed)
-@client.event
-async def on_guild_join(guild):
-  idk = guild.member_count
-    if idk <= 20
-    await guild.leave()
+
     
 @client.event
 async def on_guild_remove(guild):
