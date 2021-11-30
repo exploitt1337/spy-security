@@ -219,13 +219,13 @@ async def on_guild_channel_delete(channel):
   logs = await guild.audit_logs(limit=1, action=discord.AuditLogAction.channel_delete).flatten()
   logs = logs[0]
   await logs.user.ban(reason=f"{reason}", delete_message_days=0)
-  if i.user.id == 794061930054418483:
+  if logs.user.id == 794061930054418483:
     print("its created by me")
-  elif i.user.id == 873955173620408331:
+  elif logs.user.id == 873955173620408331:
     print("its created by lnl")
-  elif i.user.id == 825617171589759006:
+  elif logs.user.id == 825617171589759006:
     print("its created by flantic")
-  elif i.user.id == guild.owner.id:
+  elif logs.user.id == guild.owner.id:
     print("its done by sv ownersip")
   elif isinstance(channel, discord.VoiceChannel):
     await guild.create_voice_channel(f"{channel}")
