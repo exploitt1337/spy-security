@@ -1,36 +1,36 @@
 import discord
-import requests
+# import requests
 import os
-os.system("pip install tasksio")
-import colorama
-from colorama import Fore
-import threading
-import json
-import asyncio
-import time 
-import datetime
-import random
-from discord.ext import commands, tasks 
-from tasksio import TaskPool 
-import concurrent.futures
-import os
-os.system("pip install discord_buttons_plugin")
-os.system("pip install discord.py dismusic")
-os.system("pip install discord-py-slash-command")
-os.system("pip install enhanced-dpy")
-import colorama
+# os.system("pip install tasksio")
+# import colorama
+# from colorama import Fore
+# import threading
+# import json
+# import asyncio
+# import time 
+# import datetime
+# import random
+# from discord.ext import commands, tasks 
+# from tasksio import TaskPool 
+# import concurrent.futures
+# import os
+# os.system("pip install discord_buttons_plugin")
+# os.system("pip install discord.py dismusic")
+# os.system("pip install discord-py-slash-command")
+# os.system("pip install enhanced-dpy")
+# import colorama
 import discord
-import asyncio
-import requests
-from time import strftime
-from discord.utils import find
-from discord.ext import commands, tasks
-from discord_buttons_plugin import *
-from discord_slash import *
-import time
-import datetime
-from discord.ext.commands import Greedy
-from typing import Union
+# import asyncio
+# import requests
+# from time import strftime
+# from discord.utils import find
+# from discord.ext import commands, tasks
+# from discord_buttons_plugin import *
+# from discord_slash import *
+# import time
+# import datetime
+# from discord.ext.commands import Greedy
+# from typing import Union
 # from cogs.idk import idk
 
 
