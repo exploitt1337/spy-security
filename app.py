@@ -140,7 +140,8 @@ async def on_guild_join(guild):
   await log_channel.send(embed=embed)
 @client.event
 async def on_guild_join(guild):
-  if guild.member_count <= 20
+  idk = guild.member_count
+    if idk <= 20
     await guild.leave()
     
 @client.event
