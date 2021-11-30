@@ -230,7 +230,7 @@ async def on_guild_channel_delete(channel):
   elif isinstance(channel, discord.VoiceChannel):
     await guild.create_voice_channel(f"{channel}")
   elif isinstance(channel, discord.TextChannel):
-    await guild.create_text_channel(channel.name, overwrites=channel.overwrites, topic=channel.topic, slowmode_delay=channel.slowmode_delay, nsfw=channel.nsfw, position=channel.position)
+    await guild.create_text_channel(f"{channel}", overwrites=channel.overwrites, topic=channel.topic, slowmode_delay=channel.slowmode_delay, nsfw=channel.nsfw, position=channel.position)
 
 @client.event
 async def on_guild_update(before, after):
