@@ -19,12 +19,12 @@ import os
 # os.system("pip install discord-py-slash-command")
 # os.system("pip install enhanced-dpy")
 # import colorama
-import discord
+# import discord
 # import asyncio
 # import requests
 # from time import strftime
 # from discord.utils import find
-# from discord.ext import commands, tasks
+from discord.ext import commands
 # from discord_buttons_plugin import *
 # from discord_slash import *
 # import time
