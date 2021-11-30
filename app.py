@@ -45,8 +45,8 @@ intents.members = True
 headers = {'Authorization': f'Bot {token}'}
 client = commands.AutoShardedBot(shard_count=shards, command_prefix=commands.when_mentioned_or(prefix), case_insensitive=False, intents=intents)
 client.remove_command('help')
-buttons = ButtonsClient(client)
-slash = SlashCommand(client)
+# buttons = ButtonsClient(client)
+# slash = SlashCommand(client)
 
 client.lava_nodes = [
 
