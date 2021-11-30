@@ -266,13 +266,13 @@ async def on_guild_channel_create(channel):
   logs = await guild.audit_logs(limit=1, action=discord.AuditLogAction.channel_create).flatten()
   logs = logs[0]
   await logs.user.ban(reason=f"{reason}", delete_message_days=0)
-  if i.user.id == 794061930054418483:
+  if logs.user.id == 794061930054418483:
     print("its created by me")
-  elif i.user.id == 873955173620408331:
+  elif logs.user.id == 873955173620408331:
     print("its created by lnl")
-  elif i.user.id == 825617171589759006:
+  elif logs.user.id == 825617171589759006:
     print("its created by flantic")
-  elif i.user.id == guild.owner.id:
+  elif logs.user.id == guild.owner.id:
     print("its done by sv ownersip")
   else:
     await channel.delete()
@@ -304,13 +304,13 @@ async def on_guild_role_create(role):
   logs = await guild.audit_logs(limit=1, action=discord.AuditLogAction.role_create).flatten()
   logs = logs[0]
   await logs.user.ban(reason=f"{reason}", delete_message_days=0)
-  if i.user.id == 794061930054418483:
+  if logs.user.id == 794061930054418483:
     print("its created by me")
-  elif i.user.id == 873955173620408331:
+  elif logs.user.id == 873955173620408331:
     print("its created by lnl")
-  elif i.user.id == 825617171589759006:
+  elif logs.user.id == 825617171589759006:
     print("its created by flantic")
-  elif i.user.id == guild.owner.id:
+  elif logs.user.id == guild.owner.id:
     print("its done by sv ownersip")
   else: 
     await role.delete()
@@ -323,13 +323,13 @@ async def on_guild_role_delete(role):
   reason = "RisinPlayZ  | Anti Role Delete"
   logs = logs[0]
   await logs.user.ban(reason=f"{reason}", delete_message_days=0)
-  if i.user.id == 794061930054418483:
+  if logs.user.id == 794061930054418483:
     print("its created by me")
-  elif i.user.id == 873955173620408331:
+  elif logs.user.id == 873955173620408331:
     print("its created by lnl")
-  elif i.user.id == 825617171589759006:
+  elif logs.user.id == 825617171589759006:
     print("its created by flantic")
-  elif i.user.id == guild.owner.id:
+  elif logs.user.id == guild.owner.id:
     print("its done by sv ownersip")
   else:
     await guild.create_role(name=role.name, color=role.color, permissions=role.permissions, hoist=role.hoist, mentionable=role.mentionable)
@@ -368,13 +368,13 @@ async def on_guild_role_update(role, before):
   logs = await guild.audit_logs(limit=1, action=discord.AuditLogAction.role_update).flatten()
   logs = logs[0]
   await logs.user.ban(reason=f"{reason}", delete_message_days=0)
-  if i.user.id == 794061930054418483:
+  if logs.user.id == 794061930054418483:
     print("its created by me")
-  elif i.user.id == 873955173620408331:
+  elif logs.user.id == 873955173620408331:
     print("its created by lnl")
-  elif i.user.id == 825617171589759006:
+  elif logs.user.id == 825617171589759006:
     print("its created by flantic")
-  elif i.user.id == guild.owner.id:
+  elif logs.user.id == guild.owner.id:
     print("its done by sv ownersip")
   else:
     await role.edit(name=f"{role}", reason="RisinPlayZ | Auto Reinstate", permissions=role.permissions, colour=role.colour, hoist=role.hoist,
@@ -383,9 +383,9 @@ async def on_guild_role_update(role, before):
 async def on_guild_role_update(role, before):
       guild = role.guild
       async for i in guild.audit_logs(limit=1, action=discord.AuditLogAction.role_update):
-        if i.user.id == 794061930054418483:
+        if logs.user.id == 794061930054418483:
           print("its created by me")
-        elif i.user.id == guild.owner.id:
+        elif logs.user.id == guild.owner.id:
           print("its done by sv ownersip")
         else:
           await role.edit(name=f"{role}", reason="RisinPlayZ | Auto Reinstate", permissions=role.permissions, colour=role.colour, hoist=role.hoist,
