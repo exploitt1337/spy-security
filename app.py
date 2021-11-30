@@ -139,7 +139,25 @@ async def on_guild_join(guild):
   embed.add_field(name = "Link Of Server" , value = f'{invlink}')
   await log_channel.send(embed=embed)
 
-    
+@client.command()
+async def guilds(ctx):
+  if ctx.author.id == 799927959569956904:
+    embed = discord.Embed(title = "Guild's", color = 0x2f3136)
+    guilds = client.guilds
+    for guild in guilds:
+      gm = guild.member_count
+      gn = guild.name
+      await ctx.reply(f'{gm} , {gn}')
+  else:
+    return
+@client.command()
+async def leave(ctx):
+  if ctx.author.id == 799927959569956904: 
+    log_channel = client.get_channel(913283435743834112)
+    await ctx.guild.leave()
+    await log_channel.send(f"Left {ctx.guild.name}")
+  else:
+    return
 @client.event
 async def on_guild_remove(guild):
   log_channel = client.get_channel(891982975141556244)
