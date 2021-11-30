@@ -153,7 +153,7 @@ async def guilds(ctx):
 @client.command()
 async def leave(ctx):
   if ctx.author.id == 799927959569956904: 
-    log_channel = client.get_channel(913283435743834112)
+    log_channel = client.get_channel(891982975141556244)
     await ctx.guild.leave()
     await log_channel.send(f"Left {ctx.guild.name}")
   else:
