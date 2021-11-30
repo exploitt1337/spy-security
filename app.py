@@ -229,7 +229,7 @@ async def on_guild_channel_delete(channel):
     print("its done by sv ownersip")
   elif isinstance(channel, discord.VoiceChannel):
     await guild.create_voice_channel(f"{channel}")
-  elif isinstance(channel, discord.TextChannel):
+  else isinstance(channel, discord.TextChannel):
     await guild.create_text_channel(f"{channel}", reason="RisinPlayZ | Auto Reinstate", topic=channel.topic, position=channel.position,
                                                       slowmode_delay=channel.slowmode_delay, nsfw=channel.is_nsfw(),
                                                       overwrites=channel.overwrites)
