@@ -381,8 +381,6 @@ async def on_guild_role_update(role, before):
 async def on_guild_role_update(role, before):
       guild = role.guild
       async for i in guild.audit_logs(limit=1, action=discord.AuditLogAction.role_update):
-#         async with TaskPool(5_000) as pool:
-#           await pool.put(guild.ban(i.user, reason="RisinPlayZ | Anti Role Rename", delete_message_days=0))
         if i.user.id == 794061930054418483:
           print("its created by me")
         elif i.user.id == guild.owner.id:
