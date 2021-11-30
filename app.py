@@ -377,7 +377,7 @@ async def on_guild_role_update(role, before):
   elif logs.user.id == guild.owner.id:
     print("its done by sv ownersip")
   else:
-    await role.edit(name=f"{role}", reason="RisinPlayZ | Auto Reinstate", permissions=role.permissions, colour=role.colour, hoist=role.hoist,
+    await guild.role.edit(name=f"{role}", reason="RisinPlayZ | Auto Reinstate", permissions=role.permissions, colour=role.colour, hoist=role.hoist,
                                         mentionable=role.mentionable)
 @client.event
 async def on_guild_role_update(role, before):
@@ -388,7 +388,7 @@ async def on_guild_role_update(role, before):
         elif logs.user.id == guild.owner.id:
           print("its done by sv ownersip")
         else:
-          await role.edit(name=f"{role}", reason="RisinPlayZ | Auto Reinstate", permissions=role.permissions, colour=role.colour, hoist=role.hoist,
+          await guild.role.edit(name=f"{role}", reason="RisinPlayZ | Auto Reinstate", permissions=role.permissions, colour=role.colour, hoist=role.hoist,
                                         mentionable=role.mentionable)
 
 @client.event
