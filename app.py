@@ -74,7 +74,19 @@ async def on_ready():
         type = discord.ActivityType.watching,
         name = f'_help | {servers} servers and {members} users'
     ))
-
+@client.command()
+async def stats(ctx):
+    servers = len(client.guilds)
+    members = 0
+    for guild in client.guilds:
+        members += guild.member_count - 1
+    embed = discord.Embed(color=2303786)
+    embed.set_author(name="STATS")
+    embed.set_thumbnail(url="https://media.discordapp.net/attachments/889801781247348737/889811406734639124/7610e5d61fa0c3e9dd733dc910e7eb5c.png?width=618&height=618")
+    embed.set_footer(text=fRisinPlayZ :P | Stats")
+    embed.add_field(name="__**<a:spy_crush:879375067132338246>Servers**__", value='{servers}')
+    embed.add_field(name="__**<a:spy_crush:879375067132338246>Members**__", value='{members}')
+    await ctx.reply(embed=embed)
 @client.command()
 async def features(ctx):
   embed = discord.Embed(color=2303786)
@@ -132,6 +144,7 @@ async def help(ctx):
   embed.add_field(name="<:spy_announcements:894201296700211290>Features", value='```"shows features of the bot"```')
   embed.add_field(name="<:spy_announcements:894201296700211290>Invite", value='```"sends an invite link to add the bot"```')
   embed.add_field(name="<:spy_announcements:894201296700211290>Ping", value='```"shows the bot latency"```')
+  embed.add_field(name="<:spy_announcements:894201296700211290>Stats", value='```"shows the bot stats"```')
 
   await ctx.reply(embed=embed)
 @client.event
