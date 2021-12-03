@@ -417,7 +417,7 @@ async def on_message(message):
     else:
       # await message.delete()
       await member.ban(reason="RisinPlayZ | Anti Everyone/here")
-  elif "https://" in message.content:
+  elif "https://" or "http://" in message.content:
     print("not sb")
   elif message.embeds:   
       if member.bot:
