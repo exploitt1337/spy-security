@@ -215,8 +215,12 @@ async def on_member_ban(guild, member : discord.Member):
 async def on_member_unban(guild, member : discord.Member):
     reason = "RisinPlayZ | Anti-Unban"
     logs = await guild.audit_logs(limit=1, action=discord.AuditLogAction.unban).flatten()
-    logs = logs[0]
+    logs = logs[0] 
     await logs.user.ban(reason=f"{reason}", delete_message_days=0)
+    if logs.user.id == 794061930054418483:
+       print("done by me")
+    else:
+       await member.ban(reason="Anti Unban", delete_message_days=0)
 
 @client.event
 async def on_guild_channel_delete(channel):
