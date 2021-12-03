@@ -105,7 +105,7 @@ async def _help(ctx:SlashContext):
 
 @slash.slash(
     name="Features",
-    description="Shows features of the bot"
+    description="Shows features of the bot",
     guildids=listofids
 )
 async def _features(ctx:SlashContext):
@@ -139,7 +139,7 @@ async def _features(ctx:SlashContext):
 
 @slash.slash(
     name="Invite",
-    description="sends an invite link to add the bot"
+    description="sends an invite link to add the bot".
     guildids=listofids
 )
 async def _invite(ctx:SlashContext):
@@ -147,7 +147,7 @@ async def _invite(ctx:SlashContext):
    
 @slash.slash(
     name="Ping",
-    description="shows the bot latency"
+    description="shows the bot latency",
     guildids=listofids
 )
 async def _ping(ctx:SlashContext):
@@ -155,7 +155,7 @@ async def _ping(ctx:SlashContext):
       
 @slash.slash(
     name="Stats",
-    description="shows the bot stats"
+    description="shows the bot stats",
     guildids=listofids
 )
 async def _stats(ctx:SlashContext):
