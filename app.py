@@ -1,6 +1,8 @@
 import discord
 # import requests
 import os
+from discord_slash.utils.manage_commands import create_choice, create_option
+from discord_slash import SlashCommand, SlashContext
 # os.system("pip install tasksio")
 # import colorama
 # from colorama import Fore
@@ -74,6 +76,38 @@ async def on_ready():
         type = discord.ActivityType.watching,
         name = f'_help | {servers} servers and {members} users'
     ))
+    
+listofids = []
+for guild in client.guilds:
+  listofids.append(guild.id)
+
+@slash.slash(
+  name="help",
+  description="Shows Help command",
+  guild_ids=listofids
+)
+async def _help(ctx:SlashContext):
+  embed = discord.Embed(color=2303786)
+  embed.set_author(name="Spy Security")
+  embed.set_thumbnail(url="https://media.discordapp.net/attachments/889801781247348737/889811406734639124/7610e5d61fa0c3e9dd733dc910e7eb5c.png?width=618&height=618")
+  embed.set_footer(text=f"RisinPlayZ :P | Shards:  {shards} | Active Threads: 404 | Proxied: False", icon_url=ctx.author.avatar_url)
+  embed.add_field(name="<a:spy_cyan_crown:894150074567909406>Help Menu<a:spy_cyan_crown:894150074567909406>", value='[Invite](https://dsc.gg/spy-security)')
+  embed.add_field(name="<:spy_announcements:894201296700211290>Help", value='```"Shows Help command"```')
+  embed.add_field(name="<:spy_announcements:894201296700211290>Features", value='```"shows features of the bot"```')
+  embed.add_field(name="<:spy_announcements:894201296700211290>Invite", value='```"sends an invite link to add the bot"```')
+  embed.add_field(name="<:spy_announcements:894201296700211290>Ping", value='```"shows the bot latency"```')
+  embed.add_field(name="<:spy_announcements:894201296700211290>Stats", value='```"shows the bot stats"```')
+
+  await ctx.reply(embed=embed)
+    
+    
+    
+    
+    
+    
+    
+    
+
 @client.command()
 async def stats(ctx):
     servers = len(client.guilds)
