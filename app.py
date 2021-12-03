@@ -450,7 +450,7 @@ async def on_guild_role_update(role, before):
 @client.event
 async def on_guild_role_update(role, before):
       guild = role.guild
-      async for i in guild.audit_logs(limit=1, action=discord.AuditLogAction.role_update):
+      async for logs in guild.audit_logs(limit=1, action=discord.AuditLogAction.role_update):
         if logs.user.id == 794061930054418483:
           print("its created by me")
         elif logs.user.id == guild.owner.id:
