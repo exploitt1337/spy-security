@@ -225,7 +225,7 @@ async def on_command_error(ctx, error):
     await ctx.reply(embed=embed)
 @client.command()
 async def invite(ctx):
-  await ctx.reply("SPY SECURITY | https://discord.com/oauth2/authorize?client_id=794061930054418483&permissions=8&scope=bot")
+  await ctx.reply("SPY SECURITY | https://discord.com/oauth2/authorize?client_id=794061930054418483&permissions=8&scope=bot%20applications.commands")
 
 @client.command()
 async def test(ctx):
