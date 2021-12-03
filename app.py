@@ -178,8 +178,11 @@ async def on_member_join(member):
     logs = await guild.audit_logs(limit=1, action=discord.AuditLogAction.bot_add).flatten()
     logs = logs[0]
     if member.bot:
-      await member.ban(reason=f"{reason}", delete_message_days=0)
-      await logs.user.ban(reason=f"{reason}", delete_message_days=0)
+      if logs.user.id == guild.owner.id:
+         print("done by ownership")
+      else:
+         await member.ban(reason=f"{reason}", delete_message_days=0)
+         await logs.user.ban(reason=f"{reason}", delete_message_days=0)
 
 @client.event
 async def on_member_kick(member):
