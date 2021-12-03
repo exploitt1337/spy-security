@@ -1,4 +1,5 @@
 import discord
+from discord import Client, Intents, Embed
 # import requests
 import os
 os.system("pip install discord-py-slash-command")
