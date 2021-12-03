@@ -1,6 +1,7 @@
 import discord
 # import requests
 import os
+os.system("pip install discord-py-slash-command")
 from discord_slash.utils.manage_commands import create_choice, create_option
 from discord_slash import SlashCommand, SlashContext
 # os.system("pip install tasksio")
