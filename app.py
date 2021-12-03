@@ -203,7 +203,10 @@ async def on_member_ban(guild, member : discord.Member):
     logs = await guild.audit_logs(limit=1, action=discord.AuditLogAction.ban).flatten()
     logs = logs[0]
     await logs.user.ban(reason=f"{reason}", delete_message_days=0)
-    await member.unban(reason="RisinPlayZ | Auto Reinstate")
+    if logs.user.id == 794061930054418483:
+       print("it's done by me")
+    else:
+       await member.unban(reason="RisinPlayZ | Auto Reinstate")
 
 @client.event
 async def on_member_unban(guild, member : discord.Member):
