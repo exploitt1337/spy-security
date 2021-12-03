@@ -417,8 +417,12 @@ async def on_message(message):
     else:
       # await message.delete()
       await member.ban(reason="RisinPlayZ | Anti Everyone/here")
-  elif "https://" or "http://" in message.content:
+  elif "https://" in message.content:
     print("not sb")
+  elif "http://" in message.content:
+    print("not sb")
+  elif member == guild.owner:
+    print("owner")  
   elif message.embeds:   
       if member.bot:
         pass
