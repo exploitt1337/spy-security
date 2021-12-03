@@ -84,8 +84,8 @@ async def stats(ctx):
     embed.set_author(name="STATS")
     embed.set_thumbnail(url="https://media.discordapp.net/attachments/889801781247348737/889811406734639124/7610e5d61fa0c3e9dd733dc910e7eb5c.png?width=618&height=618")
     embed.set_footer(text="RisinPlayZ :P | Stats")
-    embed.add_field(name="__**<a:spy_crush:879375067132338246>Servers**__", value='{servers}')
-    embed.add_field(name="__**<a:spy_crush:879375067132338246>Members**__", value='{members}')
+    embed.add_field(name="__**<a:spy_crush:879375067132338246>Servers**__", value=f'{servers}')
+    embed.add_field(name="__**<a:spy_crush:879375067132338246>Members**__", value=f'{members}')
     await ctx.reply(embed=embed)
 @client.command()
 async def features(ctx):
