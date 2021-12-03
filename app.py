@@ -106,7 +106,7 @@ async def _help(ctx:SlashContext):
 @slash.slash(
     name="Features",
     description="Shows features of the bot",
-    guildids=listofids
+    guild_ids=listofids
 )
 async def _features(ctx:SlashContext):
   embed = discord.Embed(color=2303786)
@@ -140,7 +140,7 @@ async def _features(ctx:SlashContext):
 @slash.slash(
     name="Invite",
     description="sends an invite link to add the bot",
-    guildids=listofids
+    guild_ids=listofids
 )
 async def _invite(ctx:SlashContext):
     await ctx.reply("SPY SECURITY | https://discord.com/oauth2/authorize?client_id=794061930054418483&permissions=8&scope=bot%20applications.commands")
@@ -148,7 +148,7 @@ async def _invite(ctx:SlashContext):
 @slash.slash(
     name="Ping",
     description="shows the bot latency",
-    guildids=listofids
+    guild_ids=listofids
 )
 async def _ping(ctx:SlashContext):
       await ctx.reply(f"**Latency is `{int(client.latency * 1000)}` ms**")
@@ -156,7 +156,7 @@ async def _ping(ctx:SlashContext):
 @slash.slash(
     name="Stats",
     description="shows the bot stats",
-    guildids=listofids
+    guild_ids=listofids
 )
 async def _stats(ctx:SlashContext):
     servers = len(client.guilds)
