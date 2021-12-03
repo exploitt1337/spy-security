@@ -407,6 +407,30 @@ async def on_guild_channel_create(channel):
     await channel.delete()
 
 @client.event
+async def on_message_edit(before, after):
+  await client.process_commands(before)
+  member = before.author
+  guild = before.guild
+  if after.mention_everyone:
+    if member == guild.owner:
+      pass
+    else:
+      # await message.delete()
+      await member.ban(reason="RisinPlayZ | Anti Everyone/here")
+  elif "https://" in after.content:
+    print("not sb")
+  elif "http://" in after.content:
+    print("not sb")
+  elif member == guild.owner:
+    print("owner")  
+  elif after.embeds:   
+      if member.bot:
+        pass
+      else:
+        await after.delete()
+        await before.channel.send(f"{before.author.mention} Selfbots aren't allowed.")
+        
+@client.event
 async def on_message(message):
   await client.process_commands(message)
   member = message.author
