@@ -139,7 +139,7 @@ async def _features(ctx:SlashContext):
 
 @slash.slash(
     name="Invite",
-    description="sends an invite link to add the bot".
+    description="sends an invite link to add the bot",
     guildids=listofids
 )
 async def _invite(ctx:SlashContext):
