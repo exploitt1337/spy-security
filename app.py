@@ -85,7 +85,7 @@ for guild in client.guilds:
   listofids.append(guild.id)
 
 @slash.slash(
-  name="help",
+  name="Help",
   description="Shows Help command",
   guild_ids=listofids
 )
@@ -102,13 +102,74 @@ async def _help(ctx:SlashContext):
   embed.add_field(name="<:spy_announcements:894201296700211290>Stats", value='```"shows the bot stats"```')
 
   await ctx.reply(embed=embed)
-    
-    
-    
-    
-    
-    
-    
+
+@slash.slash(
+    name="Features",
+    description="Shows features of the bot"
+    guildids=listofids
+)
+async def _features(ctx:SlashContext):
+  embed = discord.Embed(color=2303786)
+  embed.set_author(name="Features")
+  embed.set_thumbnail(url="https://media.discordapp.net/attachments/889801781247348737/889811406734639124/7610e5d61fa0c3e9dd733dc910e7eb5c.png?width=618&height=618")
+  embed.set_footer(text=f"RisinPlayZ :P | Shards:  {shards} | Active Threads: 404 | Proxied: False", icon_url=ctx.author.avatar_url)
+
+  embed.add_field(name="__**<:spy_bug_hunter_black:915206652502872095>Offense Threshold**__", value='1')
+  embed.add_field(name="__**<:spy_staff:915205782461624390>Punishment Type**__", value='Ban-Persist')
+  embed.add_field(name="__**<:spy_sec_op:889811467002576906>Security Status**__", value='Enabled')
+  embed.add_field(name="__**<a:spy_load:915206162629161000>Auto recovery**__", value='Enabled')
+  embed.add_field(name="<:spy_rules:894150396094865418>Features", value='''```
+1; Anti Prune
+2; Anti Bot Auth
+3; Anti Server Update
+4; Anti Member Roles Update
+5; Anti Member Removal
+6; Anti Unban
+7; Anti Channel Create/Delete/Update
+8; Anti Role Create/Delete/Update
+9; Anti Emoji Delete
+10; Anti Sticker Delete
+11; Anti Webhook Create
+12; Anti Integration
+13; Anti Selfbot
+14; Anti Everyone / Here```''')
+  embed.add_field(name="__**<a:spy_verified_black:915207311683907615>Whitelisted**__", value='Server Owner')
+  
+  await ctx.reply(embed=embed)
+
+@slash.slash(
+    name="Invite",
+    description="sends an invite link to add the bot"
+    guildids=listofids
+)
+async def _invite(ctx:SlashContext):
+    await ctx.reply("SPY SECURITY | https://discord.com/oauth2/authorize?client_id=794061930054418483&permissions=8&scope=bot%20applications.commands")
+   
+@slash.slash(
+    name="Ping",
+    description="shows the bot latency"
+    guildids=listofids
+)
+async def _ping(ctx:SlashContext):
+      await ctx.reply(f"**Latency is `{int(client.latency * 1000)}` ms**")
+      
+@slash.slash(
+    name="Stats",
+    description="shows the bot stats"
+    guildids=listofids
+)
+async def _stats(ctx:SlashContext):
+    servers = len(client.guilds)
+    members = 0
+    for guild in client.guilds:
+        members += guild.member_count - 1
+    embed = discord.Embed(color=2303786)
+    embed.set_author(name="STATS")
+    embed.set_thumbnail(url="https://media.discordapp.net/attachments/889801781247348737/889811406734639124/7610e5d61fa0c3e9dd733dc910e7eb5c.png?width=618&height=618")
+    embed.set_footer(text="RisinPlayZ :P | Stats")
+    embed.add_field(name="__**<a:spy_crush:879375067132338246>Servers**__", value=f'{servers}')
+    embed.add_field(name="__**<a:spy_crush:879375067132338246>Members**__", value=f'{members}')
+    await ctx.reply(embed=embed)
     
 
 @client.command()
