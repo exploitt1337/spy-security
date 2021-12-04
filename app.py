@@ -129,6 +129,7 @@ async def _features(ctx:SlashContext):
 8; Anti Role Create/Delete/Update
 9; Anti Emoji Delete
 10; Anti Sticker Delete
+
 11; Anti Webhook Create
 12; Anti Integration
 13; Anti Selfbot
@@ -207,10 +208,11 @@ async def features(ctx):
 8; Anti Role Create/Delete/Update
 9; Anti Emoji Delete
 10; Anti Sticker Delete
-11; Anti Webhook Create
-12; Anti Integration
-13; Anti Selfbot
-14; Anti Everyone / Here```''')
+11; Anti Invite Delete
+12; Anti Webhook Create
+13; Anti Integration
+14; Anti Selfbot
+15; Anti Everyone / Here```''')
   embed.add_field(name="__**<a:spy_verified_black:915207311683907615>Whitelisted**__", value='Server Owner')
   
   await ctx.reply(embed=embed)
@@ -361,7 +363,14 @@ async def on_guild_channel_delete(channel):
   elif isinstance(channel, discord.TextChannel):
     await guild.create_text_channel(f"{channel}", reason="RisinPlayZ | Auto Reinstate", topic=channel.topic, position=channel.position,
                                                       slowmode_delay=channel.slowmode_delay, nsfw=channel.is_nsfw(),
-                                                      overwrites=channel.overwrites)
+@client.event
+async def on_invite_delete(invite):
+  guild = invite.guild
+  logs = await guild.audit_logs(limit=1, action=discord.AuditLogAction.invite_delete).flatten()
+  reason = "RisinPlayZ | Anti Invite Delete"
+  logs = logs[0]
+
+  await logs.user.ban(reason=f"{reason}", delete_message_days=0)                                                      overwrites=channel.overwrites)
 
 @client.event
 async def on_guild_update(before, after):
