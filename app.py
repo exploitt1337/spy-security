@@ -461,7 +461,7 @@ async def on_message(message):
   guild = message.guild
   if member == guild.owner:
     print("owner")  
-  else "discord.gg/" in message.content:
+  elif "discord.gg/" in message.content:
     await message.delete()
 
 @client.event
@@ -471,7 +471,7 @@ async def on_message_edit(before, after):
   guild = before.guild
   if member == guild.owner:
     print("owner")  
-  else "discord.gg/" in after.content:
+  elif "discord.gg/" in after.content:
     await after.delete()
 
 @client.event
