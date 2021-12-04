@@ -129,11 +129,11 @@ async def _features(ctx:SlashContext):
 8; Anti Role Create/Delete/Update
 9; Anti Emoji Delete
 10; Anti Sticker Delete
-
-11; Anti Webhook Create
-12; Anti Integration
-13; Anti Selfbot
-14; Anti Everyone / Here```''')
+11; Anti Invite Delete
+12; Anti Webhook Create
+13; Anti Integration
+14; Anti Selfbot
+15; Anti Everyone / Here```''')
   embed.add_field(name="__**<a:spy_verified_black:915207311683907615>Whitelisted**__", value='Server Owner')
   
   await ctx.reply(embed=embed)
