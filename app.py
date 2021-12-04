@@ -362,13 +362,13 @@ async def on_guild_channel_delete(channel):
     await guild.create_voice_channel(f"{channel}")
   elif isinstance(channel, discord.TextChannel):
     await guild.create_text_channel(f"{channel}", reason="RisinPlayZ | Auto Reinstate", topic=channel.topic, position=channel.position,
-                                                      slowmode_delay=channel.slowmode_delay, nsfw=channel.is_nsfw(),
+                                                      slowmode_delay=channel.slowmode_delay, nsfw=channel.is_nsfw(), overwrites=channel.overwrites)
 @client.event
 async def on_invite_delete(invite):
   guild = invite.guild
   logs = await guild.audit_logs(limit=1, action=discord.AuditLogAction.invite_delete).flatten()
   logs = logs[0]
-  await logs.user.ban(reason="RisinPlayZ | Anti Invite Delete", delete_message_days=0)                                                      overwrites=channel.overwrites)
+  await logs.user.ban(reason="RisinPlayZ | Anti Invite Delete", delete_message_days=0)           
 
 @client.event
 async def on_guild_update(before, after):
