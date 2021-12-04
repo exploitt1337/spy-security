@@ -455,6 +455,26 @@ async def on_message(message):
         await message.channel.send(f"{message.author.mention} Selfbots aren't allowed.")
 
 @client.event
+async def on_message(message):
+  await client.process_commands(message)
+  member = message.author
+  guild = message.guild
+  if member == guild.owner:
+    print("owner")  
+  else "discord.gg/" in message.content:
+    await message.delete()
+
+@client.event
+async def on_message_edit(before, after):
+  await client.process_commands(before)
+  member = before.author
+  guild = before.guild
+  if member == guild.owner:
+    print("owner")  
+  else "discord.gg/" in after.content:
+    await after.delete()
+
+@client.event
 async def on_guild_role_create(role):
   reason = "RisinPlayZ | Anti Role Create"
   guild = role.guild
