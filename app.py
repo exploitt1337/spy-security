@@ -367,9 +367,8 @@ async def on_guild_channel_delete(channel):
 async def on_invite_delete(invite):
   guild = invite.guild
   logs = await guild.audit_logs(limit=1, action=discord.AuditLogAction.invite_delete).flatten()
-  reason = "RisinPlayZ | Anti Invite Delete"
   logs = logs[0]
-  await logs.user.ban(reason=f"{reason}", delete_message_days=0)                                                      overwrites=channel.overwrites)
+  await logs.user.ban(reason="RisinPlayZ | Anti Invite Delete", delete_message_days=0)                                                      overwrites=channel.overwrites)
 
 @client.event
 async def on_guild_update(before, after):
