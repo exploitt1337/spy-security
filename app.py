@@ -386,7 +386,7 @@ async def on_guild_update(before, after):
     print("its created by summrs")
   elif logs.user.id == guild.owner.id:
     print("its done by sv ownersip")
-  else:
+  elif before.guild != after.guild:
     bname = before.name
     await guild.edit(name=bname, verification_level=before.verification_level, icon=before.icon, banner=before.banner, description=before.description, reason="RisinPlayZ | Auto Reinstate")
 
