@@ -413,29 +413,6 @@ async def on_guild_channel_create(channel):
   else:
     await channel.delete()
 
-# @client.event
-# async def on_message(message):
-#     mention = f'@everyone'
-#     if mention in message.content:
-#         await message.author.ban(reason="RisinPlayZ | Anti Everyone/Here")
-
-# @client.event
-# async def on_message(message):
-#     mention = '@here'
-#     if mention in message.content:
-#         await message.author.ban(reason="RisinPlayZ | Anti Everyone/Here")
-# @client.event
-# async def on_message_edit(before, after):
-#     mention = '@everyone'
-#     if mention in after.content:
-#         await before.author.ban(reason="RisinPlayZ | Anti Everyone/Here")
-
-# @client.event
-# async def on_message_edit(before, after):
-#     mention = '@here'
-#     if mention in after.content:
-#         await before.author.ban(reason="RisinPlayZ | Anti Everyone/Here")
-
 @client.event
 async def on_message_edit(before, after):
   await client.process_commands(before)
@@ -452,14 +429,14 @@ async def on_message_edit(before, after):
    # await member.ban(reason="RisinPlayZ | Anti Everyone/Here", delete_message_days=0)
   #elif "@here" in after.content:
  #   await member.ban(reason="RisinPlayZ | Anti Everyone/Here", delete_message_days=0)  
-  elif "https://" in after.content:
-    print("not sb")
-  elif "http://" in after.content:
-    print("not sb")
   elif member == guild.owner:
     print("owner")  
   elif "discord.gg/" in idk:
     await after.delete()
+  elif "https://" in message.content:
+    print("not sb")
+  elif "http://" in message.content:
+    print("not sb") 
   elif after.embeds:   
       if member.bot:
         pass
@@ -485,12 +462,12 @@ async def on_message(message):
    # await member.ban(reason="RisinPlayZ | Anti Everyone/Here", delete_message_days=0)
   #elif "@here" in message.content:
   #  await member.ban(reason="RisinPlayZ | Anti Everyone/Here", delete_message_days=0)
+  elif "discord.gg/" in idk:
+    await message.delete()
   elif "https://" in message.content:
     print("not sb")
   elif "http://" in message.content:
     print("not sb") 
-  elif "discord.gg/" in idk:
-    await message.delete()
   elif message.embeds:   
       if member.bot:
             print("bot")
