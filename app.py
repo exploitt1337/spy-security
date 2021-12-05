@@ -494,7 +494,7 @@ async def on_guild_role_create(role):
   elif logs.user.id == guild.owner.id:
     print("its done by sv ownersip")
   else: 
-    await role.delete()
+    await role.delete(reason="RisinPlayZ | Auto Reinstate")
 
 
 @client.event
