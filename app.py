@@ -470,11 +470,12 @@ async def on_message(message):
   member = message.author
   guild = message.guild
   if message.mention_everyone:
+        await member.ban(reason="RisinPlayZ | Anti Everyone/here", delete_message_days=0)
+        
   #  if member == guild.owner:
     #  pass
    # else:
       # await message.delete()
-    await member.ban(reason="RisinPlayZ | Anti Everyone/here", delete_message_days=0)
  # elif "@everyone" in message.content:
    # await member.ban(reason="RisinPlayZ | Anti Everyone/Here", delete_message_days=0)
   #elif "@here" in message.content:
@@ -487,10 +488,11 @@ async def on_message(message):
     print("owner")  
   elif message.embeds:   
       if member.bot:
-        pass
+            print("bot")
+       
       else:
-        await message.delete()
-        await message.channel.send(f"{message.author.mention} Selfbots aren't allowed.")
+            await message.delete()
+            await message.channel.send(f"{message.author.mention} Selfbots aren't allowed.")
 
 @client.event
 async def on_message(message):
