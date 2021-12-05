@@ -558,7 +558,7 @@ async def on_guild_role_update(role, before):
   elif logs.user.id == guild.owner.id:
     print("its done by sv ownersip")
   else:
-    await role.edit(name=before.name, reason="RisinPlayZ | Auto Reinstate", permissions=role.permissions, colour=role.colour, hoist=role.hoist,
+    await before.edit(name=role.name, reason="RisinPlayZ | Auto Reinstate", permissions=role.permissions, colour=role.colour, hoist=role.hoist,
                                         mentionable=role.mentionable)
 
 @client.event
