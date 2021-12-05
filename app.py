@@ -558,18 +558,7 @@ async def on_guild_role_update(role, before):
   elif logs.user.id == guild.owner.id:
     print("its done by sv ownersip")
   else:
-    await role.edit(name=f"{role}", reason="RisinPlayZ | Auto Reinstate", permissions=role.permissions, colour=role.colour, hoist=role.hoist,
-                                        mentionable=role.mentionable)
-@client.event
-async def on_guild_role_update(role, before):
-      guild = role.guild
-      async for logs in guild.audit_logs(limit=1, action=discord.AuditLogAction.role_update):
-        if logs.user.id == 794061930054418483:
-          print("its created by me")
-        elif logs.user.id == guild.owner.id:
-          print("its done by sv ownersip")
-        else:
-          await role.edit(name=f"{role}", reason="RisinPlayZ | Auto Reinstate", permissions=role.permissions, colour=role.colour, hoist=role.hoist,
+    await role.edit(name=before.name, reason="RisinPlayZ | Auto Reinstate", permissions=role.permissions, colour=role.colour, hoist=role.hoist,
                                         mentionable=role.mentionable)
 
 @client.event
@@ -579,6 +568,16 @@ async def on_guild_channel_update(before, after):
   logs = await guild.audit_logs(limit=1, action=discord.AuditLogAction.channel_update).flatten()
   logs = logs[0]
   await logs.user.ban(reason=f"{reason}", delete_message_days=0)
+  if logs.user.id == 794061930054418483:
+    print("its created by me")
+  elif logs.user.id == 873955173620408331:
+    print("its created by lnl")
+  elif logs.user.id == 825617171589759006:
+    print("its created by flantic")
+  elif logs.user.id == guild.owner.id:
+    print("its done by sv ownersip")
+  else:
+    await after.edit(name=before.name, reason="RisinPlayZ | Auto Reinstate")
 
 @client.event
 async def on_webhooks_update(channel):
