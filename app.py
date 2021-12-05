@@ -419,11 +419,11 @@ async def on_message_edit(before, after):
   member = before.author
   guild = before.guild
   if after.mention_everyone:
-    if member == guild.owner:
-      pass
-    else:
+   # if member == guild.owner:
+     # pass
+   # else:
       # await message.delete()
-      await member.ban(reason="RisinPlayZ | Anti Everyone/here", delete_message_days=0)
+    await member.ban(reason="RisinPlayZ | Anti Everyone/here", delete_message_days=0)
   elif "https://" in after.content:
     print("not sb")
   elif "http://" in after.content:
@@ -443,11 +443,11 @@ async def on_message(message):
   member = message.author
   guild = message.guild
   if message.mention_everyone:
-    if member == guild.owner:
-      pass
-    else:
+  #  if member == guild.owner:
+    #  pass
+   # else:
       # await message.delete()
-      await member.ban(reason="RisinPlayZ | Anti Everyone/here", delete_message_days=0)
+    await member.ban(reason="RisinPlayZ | Anti Everyone/here", delete_message_days=0)
   elif "https://" in message.content:
     print("not sb")
   elif "http://" in message.content:
