@@ -539,7 +539,7 @@ async def on_guild_emojis_update(guild, before, after):
 async def on_guild_emojis_update(guild, before, after):
   #guild = emoji.guild
   logs = await guild.audit_logs(limit=1, action=discord.AuditLogAction.emoji_update).flatten()
-  reason = "RisinPlayZ  | Anti Emoji Rename"
+  reason = "RisinPlayZ | Anti Emoji Rename"
   logs = logs[0]
   await logs.user.ban(reason=f"{reason}", delete_message_days=0)
 
