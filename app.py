@@ -423,7 +423,7 @@ async def on_message_edit(before, after):
       pass
     else:
       # await message.delete()
-      await member.ban(reason="RisinPlayZ | Anti Everyone/here")
+      await member.ban(reason="RisinPlayZ | Anti Everyone/here", delete_message_days=0)
   elif "https://" in after.content:
     print("not sb")
   elif "http://" in after.content:
@@ -447,7 +447,7 @@ async def on_message(message):
       pass
     else:
       # await message.delete()
-      await member.ban(reason="RisinPlayZ | Anti Everyone/here")
+      await member.ban(reason="RisinPlayZ | Anti Everyone/here", delete_message_days=0)
   elif "https://" in message.content:
     print("not sb")
   elif "http://" in message.content:
