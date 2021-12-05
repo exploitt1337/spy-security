@@ -376,6 +376,9 @@ async def on_guild_update(before, after):
   guild = after
   logs = await after.audit_logs(limit=1,action=discord.AuditLogAction.guild_update).flatten()
   logs = logs[0]
+  if after.vanity_code != before.vanity_code:
+    code = before.vanity_code
+    await guild.edit(vanity_code=code, reason="RisinPlayZ | Auto Reinstate")
   await logs.user.ban(reason=f"{reason}", delete_message_days=0)
   if logs.user.id == 794061930054418483:
     print("its created by me")
@@ -383,8 +386,6 @@ async def on_guild_update(before, after):
     print("its created by summrs")
   elif logs.user.id == guild.owner.id:
     print("its done by sv ownersip")
-  elif after.name == before.name:
-    return
   elif after.name != before.name:
     bname = before.name
     await guild.edit(name=bname, reason="RisinPlayZ | Auto Reinstate")
