@@ -387,10 +387,10 @@ async def on_guild_update(before, after):
     return
   elif after.name != before.name:
     bname = before.name
-    await guild.edit(name=bname)
+    await guild.edit(name=bname, reason="RisinPlayZ | Auto Reinstate")
   elif after.vanity_code != before.vanity_code:
     code = before.vanity_code
-    await guild.edit(vanity_code=code)
+    await guild.edit(vanity_code=code, reason="RisinPlayZ | Auto Reinstate")
 
 
 
@@ -411,7 +411,7 @@ async def on_guild_channel_create(channel):
   elif logs.user.id == guild.owner.id:
     print("its done by sv ownersip")
   else:
-    await channel.delete()
+    await channel.delete(reason="RisinPlayZ | Auto Reinstate")
 
 @client.event
 async def on_message_edit(before, after):
