@@ -415,7 +415,7 @@ async def on_guild_channel_create(channel):
 
 @client.event
 async def on_message(message):
-    mention = '@everyone'
+    mention = f'@everyone'
     if mention in message.content:
         await message.author.ban(reason="RisinPlayZ | Anti Everyone/Here")
 
