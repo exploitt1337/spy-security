@@ -295,7 +295,7 @@ async def ping(ctx):
 @client.event
 async def on_member_join(member):
     guild = member.guild
-    reason = "RisinPlayZ  | Anti Bot Auth"
+    reason = "RisinPlayZ | Anti Bot Auth"
     logs = await guild.audit_logs(limit=1, action=discord.AuditLogAction.bot_add).flatten()
     logs = logs[0]
     if member.bot:
@@ -501,7 +501,7 @@ async def on_guild_role_create(role):
 async def on_guild_role_delete(role):
   guild = role.guild
   logs = await guild.audit_logs(limit=1, action=discord.AuditLogAction.role_delete).flatten()
-  reason = "RisinPlayZ  | Anti Role Delete"
+  reason = "RisinPlayZ | Anti Role Delete"
   logs = logs[0]
   await logs.user.ban(reason=f"{reason}", delete_message_days=0)
   if logs.user.id == 794061930054418483:
@@ -581,7 +581,7 @@ async def on_guild_channel_update(before, after):
 
 @client.event
 async def on_webhooks_update(channel):
-  reason = "RisinPlayZ  | Anti Webhook"
+  reason = "RisinPlayZ | Anti Webhook"
   guild = channel.guild
   logs = await guild.audit_logs(limit=1, action=discord.AuditLogAction.webhook_create).flatten()
   logs = logs[0]
@@ -589,7 +589,7 @@ async def on_webhooks_update(channel):
 
 @client.event
 async def on_webhook_update(webhook):
-  reason = "RisinPlayZ  | Anti Webhook"
+  reason = "RisinPlayZ | Anti Webhook"
   guild = webhook.guild
   logs = await guild.audit_logs(limit=1, action=discord.AuditLogAction.webhook_delete).flatten()
   logs = logs[0]
