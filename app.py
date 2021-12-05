@@ -392,7 +392,9 @@ async def on_guild_update(before, after):
   elif after.icon != before.icon:
     bicon = before.icon
     await guild.edit(icon=bicon)
-
+  elif after.verification_level != before.verification_level:
+    bv = before.verification_level
+    await guild.edit(verification_level=bv)
 
 
 @client.event
