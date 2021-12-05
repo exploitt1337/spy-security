@@ -441,6 +441,7 @@ async def on_message_edit(before, after):
   await client.process_commands(before)
   member = before.author
   guild = before.guild
+  idk = message.content.lower()
   if after.mention_everyone:
    # if member == guild.owner:
      # pass
@@ -457,6 +458,8 @@ async def on_message_edit(before, after):
     print("not sb")
   elif member == guild.owner:
     print("owner")  
+  elif "discord.gg/" in idk:
+    await after.delete()
   elif after.embeds:   
       if member.bot:
         pass
@@ -469,6 +472,7 @@ async def on_message(message):
   await client.process_commands(message)
   member = message.author
   guild = message.guild
+  idk = message.content.lower()
   if message.mention_everyone:
         await member.ban(reason="RisinPlayZ | Anti Everyone/here", delete_message_days=0)
   elif member == guild.owner:
@@ -485,7 +489,7 @@ async def on_message(message):
     print("not sb")
   elif "http://" in message.content:
     print("not sb") 
-  elif "discord.gg/" in message.content:
+  elif "discord.gg/" in idk:
     await message.delete()
   elif message.embeds:   
       if member.bot:
