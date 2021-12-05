@@ -471,7 +471,8 @@ async def on_message(message):
   guild = message.guild
   if message.mention_everyone:
         await member.ban(reason="RisinPlayZ | Anti Everyone/here", delete_message_days=0)
-        
+  elif member == guild.owner:
+    print("owner")     
   #  if member == guild.owner:
     #  pass
    # else:
@@ -483,9 +484,9 @@ async def on_message(message):
   elif "https://" in message.content:
     print("not sb")
   elif "http://" in message.content:
-    print("not sb")
-  elif member == guild.owner:
-    print("owner")  
+    print("not sb") 
+  elif "discord.gg/" in message.content:
+    await message.delete()
   elif message.embeds:   
       if member.bot:
             print("bot")
@@ -494,25 +495,7 @@ async def on_message(message):
             await message.delete()
             await message.channel.send(f"{message.author.mention} Selfbots aren't allowed.")
 
-@client.event
-async def on_message(message):
-  await client.process_commands(message)
-  member = message.author
-  guild = message.guild
-  if member == guild.owner:
-    print("owner")  
-  elif "discord.gg/" in message.content:
-    await message.delete()
 
-@client.event
-async def on_message_edit(before, after):
-  await client.process_commands(before)
-  member = before.author
-  guild = before.guild
-  if member == guild.owner:
-    print("owner")  
-  elif "discord.gg/" in after.content:
-    await after.delete()
 
 @client.event
 async def on_guild_role_create(role):
