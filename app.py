@@ -413,28 +413,28 @@ async def on_guild_channel_create(channel):
   else:
     await channel.delete()
 
-@client.event
-async def on_message(message):
-    mention = f'@everyone'
-    if mention in message.content:
-        await message.author.ban(reason="RisinPlayZ | Anti Everyone/Here")
+# @client.event
+# async def on_message(message):
+#     mention = f'@everyone'
+#     if mention in message.content:
+#         await message.author.ban(reason="RisinPlayZ | Anti Everyone/Here")
 
-@client.event
-async def on_message(message):
-    mention = '@here'
-    if mention in message.content:
-        await message.author.ban(reason="RisinPlayZ | Anti Everyone/Here")
-@client.event
-async def on_message_edit(before, after):
-    mention = '@everyone'
-    if mention in after.content:
-        await before.author.ban(reason="RisinPlayZ | Anti Everyone/Here")
+# @client.event
+# async def on_message(message):
+#     mention = '@here'
+#     if mention in message.content:
+#         await message.author.ban(reason="RisinPlayZ | Anti Everyone/Here")
+# @client.event
+# async def on_message_edit(before, after):
+#     mention = '@everyone'
+#     if mention in after.content:
+#         await before.author.ban(reason="RisinPlayZ | Anti Everyone/Here")
 
-@client.event
-async def on_message_edit(before, after):
-    mention = '@here'
-    if mention in after.content:
-        await before.author.ban(reason="RisinPlayZ | Anti Everyone/Here")
+# @client.event
+# async def on_message_edit(before, after):
+#     mention = '@here'
+#     if mention in after.content:
+#         await before.author.ban(reason="RisinPlayZ | Anti Everyone/Here")
 
 @client.event
 async def on_message_edit(before, after):
