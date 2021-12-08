@@ -426,7 +426,7 @@ async def on_message_edit(before, after):
   await client.process_commands(before)
   member = before.author
   guild = before.guild
-  idk = message.content.lower()
+  idk = after.content.lower()
   if after.mention_everyone:
    # if member == guild.owner:
      # pass
@@ -441,9 +441,9 @@ async def on_message_edit(before, after):
     print("owner")  
   elif "discord.gg/" in idk:
     await after.delete()
-  elif "https://" in message.content:
+  elif "https://" in after.content:
     print("not sb")
-  elif "http://" in message.content:
+  elif "http://" in after.content:
     print("not sb") 
   elif after.embeds:   
       if member.bot:
