@@ -293,6 +293,7 @@ async def on_guild_remove(guild):
   embed.set_thumbnail(url='https://mir-s3-cdn-cf.behance.net/project_modules/disp/36b27533837732.591240ca6fe63.gif')
   await log_channel.send(embed=embed)
 @client.command(pass_context=True)
+@commands.cooldown(1, 30, commands.BucketType.user)
 async def ping(ctx):
   await ctx.reply(f"**Latency is `{int(client.latency * 1000)}` ms**")
 
