@@ -174,6 +174,7 @@ async def _stats(ctx:SlashContext):
     
 
 @client.command()
+@commands.cooldown(1, 30, commands.BucketType.user)
 async def stats(ctx):
     servers = len(client.guilds)
     members = 0
@@ -187,6 +188,7 @@ async def stats(ctx):
     embed.add_field(name="__**<a:spy_crush:879375067132338246>Members**__", value=f'{members}')
     await ctx.reply(embed=embed)
 @client.command()
+@commands.cooldown(1, 30, commands.BucketType.user)
 async def features(ctx):
   embed = discord.Embed(color=2303786)
   embed.set_author(name="Features")
@@ -226,6 +228,7 @@ async def on_command_error(ctx, error):
     embed.add_field(name="<a:spy_error:916265786195206194>Error", value=f'```"{error}"```')
     await ctx.reply(embed=embed)
 @client.command()
+@commands.cooldown(1, 30, commands.BucketType.user)
 async def invite(ctx):
   await ctx.reply("SPY SECURITY | https://discord.com/oauth2/authorize?client_id=794061930054418483&permissions=8&scope=bot%20applications.commands")
 
@@ -234,6 +237,7 @@ async def test(ctx):
   await ctx.send("working")
 
 @client.command()
+@commands.cooldown(1, 30, commands.BucketType.user)
 async def help(ctx):
   embed = discord.Embed(color=2303786)
   embed.set_author(name="Spy Security")
