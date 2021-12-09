@@ -144,7 +144,7 @@ async def _features(ctx:SlashContext):
     guild_ids=listofids
 )
 async def _invite(ctx:SlashContext):
-    await ctx.reply("SPY SECURITY | https://discord.com/oauth2/authorize?client_id=794061930054418483&permissions=8&scope=bot%20applications.commands || https://discord.gg/XDzUVexw4d")
+    await ctx.reply("SPY SECURITY | https://discord.com/oauth2/authorize?client_id=794061930054418483&permissions=8&scope=bot%20applications.commands")
    
 @slash.slash(
     name="Ping",
@@ -230,7 +230,7 @@ async def on_command_error(ctx, error):
 @client.command()
 @commands.cooldown(1, 30, commands.BucketType.user)
 async def invite(ctx):
-  await ctx.reply("SPY SECURITY | https://discord.com/oauth2/authorize?client_id=794061930054418483&permissions=8&scope=bot%20applications.commands || https://discord.gg/XDzUVexw4d")
+  await ctx.reply("SPY SECURITY | https://discord.com/oauth2/authorize?client_id=794061930054418483&permissions=8&scope=bot%20applications.commands")
 
 @client.command()
 async def test(ctx):
