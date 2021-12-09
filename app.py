@@ -335,7 +335,7 @@ async def on_member_ban(guild, member : discord.Member):
     await logs.user.ban(reason=f"{reason}", delete_message_days=0)
     if logs.user.id == 794061930054418483:
        print("it's done by me")
-    else:
+    elif logs.user.id != 794061930054418483:
        await member.unban(reason="RisinPlayZ | Auto Reinstate")
 
 @client.event
@@ -346,7 +346,7 @@ async def on_member_unban(guild, member : discord.Member):
     await logs.user.ban(reason=f"{reason}", delete_message_days=0)
     if logs.user.id == 794061930054418483:
        print("done by me")
-    else:
+    elif logs.user.id != 794061930054418483:
        await member.ban(reason="Anti Unban", delete_message_days=0)
 
 @client.event
