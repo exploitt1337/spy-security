@@ -44,8 +44,9 @@ prefix = "_"
 shards = 1
 
 
-intents = discord.Intents.all()
-intents.members = True 
+intents = discord.Intents.default()
+intents.members = True
+intents.messages = True
 headers = {'Authorization': f'Bot {token}'}
 client = commands.AutoShardedBot(shard_count=shards, command_prefix=commands.when_mentioned_or(prefix), case_insensitive=False, intents=intents)
 client.remove_command('help')
