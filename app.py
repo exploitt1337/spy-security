@@ -439,6 +439,8 @@ async def on_message_edit(before, after):
  #   await member.ban(reason="RisinPlayZ | Anti Everyone/Here", delete_message_days=0)  
   elif member == guild.owner:
     print("owner")  
+  elif member.id == 794061930054418483:
+    print("it's me")
   elif "discord.gg/" in idk:
     await after.delete()
   elif "https://" in after.content:
@@ -461,7 +463,9 @@ async def on_message(message):
   if message.mention_everyone:
         await member.ban(reason="RisinPlayZ | Anti Everyone/here", delete_message_days=0)
   elif member == guild.owner:
-    print("owner")     
+    print("owner")  
+  elif member.id == 794061930054418483:
+    print("it's me")   
   #  if member == guild.owner:
     #  pass
    # else:
