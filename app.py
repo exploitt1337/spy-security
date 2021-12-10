@@ -150,6 +150,7 @@ async def _features(ctx:SlashContext):
 )
 async def _invite(ctx:SlashContext):
     embed = discord.Embed(color=2303786, description="\n[+] [Invite Spy Security](https://discord.com/oauth2/authorize?client_id=794061930054418483&permissions=8&scope=bot%20applications.commands)\n[+] [Join support server](https://discord.gg/XDzUVexw4d)\n[+] [Vote the bot on top.gg](https://top.gg/bot/794061930054418483/vote)")
+    await ctx.reply(embed=embed)
     await buttons.send(
         content = None,
         embed = embed,
