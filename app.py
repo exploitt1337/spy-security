@@ -264,7 +264,19 @@ async def on_guild_join(guild):
   embed.set_thumbnail(url='https://mir-s3-cdn-cf.behance.net/project_modules/disp/36b27533837732.591240ca6fe63.gif')
   embed.add_field(name = "Link Of Server" , value = f'{invlink}')
   await log_channel.send(embed=embed)
+  servers = len(client.guilds)
+  members = 0
+  for guild in client.guilds:
+      members += guild.member_count - 1
 
+  await client.change_presence(activity = discord.Activity(
+      type = discord.ActivityType.watching,
+      name = f'_help | {servers} servers and {members} users'
+  ))
+    
+listofids = []
+for guild in client.guilds:
+  listofids.append(guild.id)
 @client.command()
 async def guilds(ctx):
   if ctx.author.id == 799927959569956904:
