@@ -338,7 +338,7 @@ async def on_guild_remove(guild):
   embed.add_field(name='Server Owner', value=f'**`{guild.owner}`**')
   embed.add_field(name='Server Members', value=f'**`{len(guild.members)}`**')
   embed.add_field(name="Server ID", value=f"**`{guild.id}`**")
-  embed.set_thumbnail(url='https://mir-s3-cdn-cf.behance.net/project_modules/disp/36b27533837732.591240ca6fe63.gif')
+  embed.set_thumbnail(url='https://cdn.discordapp.com/attachments/889801781247348737/889811406734639124/7610e5d61fa0c3e9dd733dc910e7eb5c.png')
   await log_channel.send(embed=embed)
 
 @client.command(pass_context=True)
