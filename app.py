@@ -565,6 +565,13 @@ async def on_guild_emojis_update(guild, before, after):
   logs = logs[0]
   await logs.user.ban(reason=f"{reason}", delete_message_days=0)
 
+@client.event
+async def on_guild_emojis_update(guild, before, after):
+  reason = "RisinPlayZ | Anti Emoji Delete"
+ # guild = after.guild
+  logs = await guild.audit_logs(limit=1,action=discord.AuditLogAction.emoji_delete).flatten()
+  logs = logs[0]
+  await logs.user.ban(reason=f"{reason}")
 
 @client.event
 async def on_guild_role_update(role, before):
