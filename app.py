@@ -2,6 +2,8 @@ import discord
 from discord import Client, Intents, Embed
 # import requests
 import os
+os.system("pip install discord-buttons-plugin")
+from discord_buttons_plugin import  *
 os.system("pip install discord-py-slash-command")
 from discord_slash.utils.manage_commands import create_choice, create_option
 from discord_slash import SlashCommand, SlashContext
@@ -67,6 +69,7 @@ client.lava_nodes = [
 
 ]
 # client.add_cog(idk(client))
+buttons = ButtonsClient(client)
 @client.event
 async def on_ready():
     print('SPy security is ready :P')
@@ -145,8 +148,21 @@ async def _features(ctx:SlashContext):
     guild_ids=listofids
 )
 async def _invite(ctx:SlashContext):
-    await ctx.reply("SPY SECURITY | https://discord.com/oauth2/authorize?client_id=794061930054418483&permissions=8&scope=bot%20applications.commands")
-   
+    embed = discord.Embed(color=2303786, description="\n[+] [Invite Spy Security](https://discord.com/oauth2/authorize?client_id=794061930054418483&permissions=8&scope=bot%20applications.commands)\n[+] [Join support server](https://discord.gg/XDzUVexw4d)\n[+] [Vote the bot on top.gg](https://top.gg/bot/794061930054418483)")
+    await buttons.send(
+        content = None,
+        embed = embed,
+        channel = ctx.channel.id,
+        components = [
+            ActionRow([
+                Button(
+                    style = ButtonType().Link,
+                    label = "Invite",
+                    url = f"https://discord.com/api/oauth2/authorize?client_id={client.user.id}&permissions=8&scope=bot%20applications.commands"
+                )
+            ])                                  
+        ]
+    )
 @slash.slash(
     name="Ping",
     description="shows the bot latency",
@@ -231,8 +247,21 @@ async def on_command_error(ctx, error):
 @client.command()
 @commands.cooldown(1, 30, commands.BucketType.user)
 async def invite(ctx):
-  await ctx.reply("SPY SECURITY | https://discord.com/oauth2/authorize?client_id=794061930054418483&permissions=8&scope=bot%20applications.commands")
-
+    embed = discord.Embed(color=2303786, description="\n[+] [Invite Spy Security](https://discord.com/oauth2/authorize?client_id=794061930054418483&permissions=8&scope=bot%20applications.commands)\n[+] [Join support server](https://discord.gg/XDzUVexw4d)\n[+] [Vote the bot on top.gg](https://top.gg/bot/794061930054418483)")
+    await buttons.send(
+        content = None,
+        embed = embed,
+        channel = ctx.channel.id,
+        components = [
+            ActionRow([
+                Button(
+                    style = ButtonType().Link,
+                    label = "Invite",
+                    url = f"https://discord.com/api/oauth2/authorize?client_id={client.user.id}&permissions=8&scope=bot%20applications.commands"
+                )
+            ])                                  
+        ]
+    )
 @client.command()
 async def test(ctx):
   await ctx.send("working")
