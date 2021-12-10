@@ -149,7 +149,7 @@ async def _features(ctx:SlashContext):
     guild_ids=listofids
 )
 async def _invite(ctx:SlashContext):
-    embed = discord.Embed(color=2303786, description="\n[+] [Invite Spy Security](https://discord.com/oauth2/authorize?client_id=794061930054418483&permissions=8&scope=bot%20applications.commands)\n[+] [Join support server](https://discord.gg/XDzUVexw4d)\n[+] [Vote the bot on top.gg](https://top.gg/bot/794061930054418483)")
+    embed = discord.Embed(color=2303786, description="\n[+] [Invite Spy Security](https://discord.com/oauth2/authorize?client_id=794061930054418483&permissions=8&scope=bot%20applications.commands)\n[+] [Join support server](https://discord.gg/XDzUVexw4d)\n[+] [Vote the bot on top.gg](https://top.gg/bot/794061930054418483/vote)")
     await buttons.send(
         content = None,
         embed = embed,
@@ -248,7 +248,7 @@ async def on_command_error(ctx, error):
 @client.command()
 @commands.cooldown(1, 30, commands.BucketType.user)
 async def invite(ctx):
-    embed = discord.Embed(color=2303786, description="\n[+] [Invite Spy Security](https://discord.com/oauth2/authorize?client_id=794061930054418483&permissions=8&scope=bot%20applications.commands)\n[+] [Join support server](https://discord.gg/XDzUVexw4d)\n[+] [Vote the bot on top.gg](https://top.gg/bot/794061930054418483)")
+    embed = discord.Embed(color=2303786, description="\n[+] [Invite Spy Security](https://discord.com/oauth2/authorize?client_id=794061930054418483&permissions=8&scope=bot%20applications.commands)\n[+] [Join support server](https://discord.gg/XDzUVexw4d)\n[+] [Vote the bot on top.gg](https://top.gg/bot/794061930054418483/vote)")
     await buttons.send(
         content = None,
         embed = embed,
@@ -280,8 +280,8 @@ async def help(ctx):
   embed.add_field(name="<:spy_announcements:894201296700211290>Invite", value='```"sends an invite link to add the bot"```')
   embed.add_field(name="<:spy_announcements:894201296700211290>Ping", value='```"shows the bot latency"```')
   embed.add_field(name="<:spy_announcements:894201296700211290>Stats", value='```"shows the bot stats"```')
-
   await ctx.reply(embed=embed)
+
 @client.event
 async def on_guild_join(guild):
   log_channel = client.get_channel(891982975141556244)
@@ -307,6 +307,7 @@ async def on_guild_join(guild):
 listofids = []
 for guild in client.guilds:
   listofids.append(guild.id)
+
 @client.command()
 async def guilds(ctx):
   if ctx.author.id == 799927959569956904:
@@ -335,6 +336,7 @@ async def on_guild_remove(guild):
   embed.add_field(name='Server Members', value=f'**`{len(guild.members)}`**')
   embed.set_thumbnail(url='https://mir-s3-cdn-cf.behance.net/project_modules/disp/36b27533837732.591240ca6fe63.gif')
   await log_channel.send(embed=embed)
+
 @client.command(pass_context=True)
 @commands.cooldown(1, 30, commands.BucketType.user)
 async def ping(ctx):
