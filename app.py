@@ -244,7 +244,7 @@ async def on_command_error(ctx, error):
     embed.set_author(name="Spy Security")
     embed.set_thumbnail(url="https://media.discordapp.net/attachments/889801781247348737/889811406734639124/7610e5d61fa0c3e9dd733dc910e7eb5c.png?width=618&height=618")
     embed.set_footer(text="RisinPlayZ :P | Error")
-    embed.add_field(name="<a:spy_error:916265786195206194>Error", value=f'```"{error}"```')
+    embed.add_field(name="<a:spy_error:916265786195206194>FAILED", value=f'```"{error}"```')
     await ctx.reply(embed=embed)
 
 @client.command()
