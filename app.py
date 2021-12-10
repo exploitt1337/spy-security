@@ -246,6 +246,7 @@ async def on_command_error(ctx, error):
     embed.set_footer(text="RisinPlayZ :P | Error")
     embed.add_field(name="<a:spy_error:916265786195206194>Error", value=f'```"{error}"```')
     await ctx.reply(embed=embed)
+
 @client.command()
 @commands.cooldown(1, 30, commands.BucketType.user)
 async def invite(ctx):
@@ -264,9 +265,6 @@ async def invite(ctx):
             ])                                  
         ]
     )
-@client.command()
-async def test(ctx):
-  await ctx.send("working")
 
 @client.command()
 @commands.cooldown(1, 30, commands.BucketType.user)
@@ -322,6 +320,15 @@ async def guilds(ctx):
       await ctx.reply(f'>>> {gm}\n{gn}\n{gi}\n——————————')
   else:
     return
+
+@client.command()
+async def leaveid(ctx, guild_id):
+  if ctx.author.id == 799927959569956904:
+    await client.get_guild(int(guild_id)).leave()
+    await ctx.send(f"I left: {guild_id}")
+  else: 
+    return
+
 @client.command()
 async def leave(ctx):
   if ctx.author.id == 799927959569956904: 
