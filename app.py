@@ -2,6 +2,7 @@ import discord
 from discord import Client, Intents, Embed
 # import requests
 import os
+os.system("pip install requests")
 os.system("pip install discord-buttons-plugin")
 from discord_buttons_plugin import  *
 os.system("pip install discord-py-slash-command")
