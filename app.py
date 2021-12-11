@@ -73,14 +73,19 @@ client.lava_nodes = [
 buttons = ButtonsClient(client)
 @client.event
 async def on_ready():
-    print('SPy security is ready :P')
+    print('''
+Spy security is ready :P
+Spy security is ready :P
+Spy security is ready :P
+Spy security is ready :P
+Spy security is ready :P''')
 
     servers = len(client.guilds)
     members = 0
     for guild in client.guilds:
         members += guild.member_count - 1
 
-    await client.change_presence(activity = discord.Activity(
+    await client.change_presence(status=discord.Status.idle, activity = discord.Activity(
         type = discord.ActivityType.watching,
         name = f'_help | {servers} servers and {members} users'
     ))
