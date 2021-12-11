@@ -473,6 +473,8 @@ async def on_guild_channel_create(channel):
     print("its created by flantic")
   elif logs.user.id == guild.owner.id:
     print("its done by sv ownersip")
+  elif logs.user.id == 557628352828014614:
+    print("ticket tool ")
   else:
     await channel.delete(reason="RisinPlayZ | Auto Reinstate")
  
