@@ -329,12 +329,12 @@ async def unbanall(ctx):
   guild = ctx.guild
   if ctx.author == guild.owner:
     banlist = await guild.bans()
-    idk = 'Unbanning {} members....'.format(len(banlist)
+#    idk = 'Unbanning {} members....'.format(len(banlist),
     embed = discord.Embed(color=2303786)
     embed.set_author(name="Spy Security")
     embed.set_thumbnail(url="https://media.discordapp.net/attachments/889801781247348737/889811406734639124/7610e5d61fa0c3e9dd733dc910e7eb5c.png?width=618&height=618")
     embed.set_footer(text="RisinPlayZ :P | MAssunban")
-    embed.add_field(name="<a:spy_success:919998568041971782>SUCESS", value=```f"{idk}"```')
+    embed.add_field(name="<a:spy_success:919998568041971782>SUCESS", value=```"Unbanning all banned members."```')
     await ctx.reply(embed=embed)
     for users in banlist:
             await ctx.guild.unban(user=users.user, reason="Spy Security | Action Issued by Server Owner")
