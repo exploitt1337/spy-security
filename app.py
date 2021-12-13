@@ -334,6 +334,7 @@ async def unbanall(ctx):
     embed.set_footer(text="RisinPlayZ :P | Mass unban")
     embed.add_field(name="<a:spy_success:919998568041971782>SUCESS", value='```"Unbanning all banned users."```')
     await ctx.reply(embed=embed)
+    banlist = await guild.bans()
     for users in banlist:
             await ctx.guild.unban(user=users.user, reason="Spy Security | Action Issued by Server Owner")
   else:
