@@ -294,7 +294,7 @@ async def lolucantseeidkok(ctx):
   embed = discord.Embed(title="Spy Security | <:slash:920014228197359656> Commands: 3", color=2303786)
   embed.set_author(name="Spy Security")
   embed.set_thumbnail(url="https://media.discordapp.net/attachments/889801781247348737/889811406734639124/7610e5d61fa0c3e9dd733dc910e7eb5c.png?width=618&height=618")
-  embed.set_footer(text=f"Note: The commands are server owner only. | Commands", icon_url=ctx.author.avatar_url)
+  embed.set_footer(text=f"Note: The commands are server owner only.", icon_url=ctx.author.avatar_url)
  # embed.add_field(name="<a:spy_cyan_crown:894150074567909406>Help Menu<a:spy_cyan_crown:894150074567909406>", value='[Invite](https://dsc.gg/spy-sec)\n[Support](https://discord.gg/XDzUVexw4d)')
   embed.add_field(name="<:spy_staff:915205782461624390> Massunban", value='```"Unbans all banned users, aliases - unbanall"```')
   embed.add_field(name="<:spy_staff:915205782461624390> Lockserver", value='```"Revokes dangerous perms from all roles, aliases - lockroles"```')
