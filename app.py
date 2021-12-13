@@ -308,7 +308,7 @@ async def lockserver(ctx):
     embed.add_field(name="<a:spy_error:916265786195206194>FAILED", value=f'```"You must be guild owner to use this command."```')
     await ctx.reply(embed=embed)
     
-@client.command(aliases=["massunban","unbanall"])
+@client.command(aliases=["massunban"])
 async def unbanall(ctx):
   if ctx.author.id == guild.owner.id:
     guild = ctx.guild
