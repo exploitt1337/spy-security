@@ -326,7 +326,7 @@ async def lockserver(ctx):
     
 @client.command(aliases=["massunban"])
 @commands.cooldown(1, 60, commands.BucketType.user)
-async def unbanall(ctx, channeltodelete):
+async def unbanall(ctx):
   guild = ctx.guild
   if ctx.author == guild.owner:
     embed = discord.Embed(color=2303786)
