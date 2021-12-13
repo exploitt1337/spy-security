@@ -323,28 +323,6 @@ async def lockserver(ctx):
     embed.add_field(name="<a:spy_error:916265786195206194>FAILED", value=f'```"You must be guild owner to use this command."```')
     await ctx.reply(embed=embed)
  
-@client.command(aliases=["lockroles"])
-@commands.cooldown(1, 60, commands.BucketType.user)
-async def lockserver(ctx):
-  guild = ctx.guild
-  if ctx.author == guild.owner:
-    embed = discord.Embed(color=2303786)
-    embed.set_author(name="Spy Security")
-    embed.set_thumbnail(url="https://media.discordapp.net/attachments/889801781247348737/889811406734639124/7610e5d61fa0c3e9dd733dc910e7eb5c.png?width=618&height=618")
-    embed.set_footer(text="RisinPlayZ :P")
-    embed.add_field(name="<a:spy_success:919998568041971782>SUCCESS", value=f'```"Revoking Perms from every role..."```')
-    await ctx.reply(embed=embed)
-    for role in ctx.guild.roles:
-        perms = discord.Permissions()
-        perms.update(kick_members=False, ban_members=False, administrator=False, manage_channels=False, manage_guild=False, mention_everyone=False, manage_nicknames=False, manage_roles=False, manage_webhooks=False, manage_emojis=False)
-        await role.edit(permissions=perms, reason="Spy Security | Action Issued by Server Owner")
-  else:
-    embed = discord.Embed(color=2303786)
-    embed.set_author(name="Spy Security")
-    embed.set_thumbnail(url="https://media.discordapp.net/attachments/889801781247348737/889811406734639124/7610e5d61fa0c3e9dd733dc910e7eb5c.png?width=618&height=618")
-    embed.set_footer(text="RisinPlayZ :P | Error")
-    embed.add_field(name="<a:spy_error:916265786195206194>FAILED", value=f'```"You must be guild owner to use this command."```')
-    await ctx.reply(embed=embed)
     
 @client.command(aliases=["massunban"])
 @commands.cooldown(1, 60, commands.BucketType.user)
