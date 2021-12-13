@@ -286,8 +286,20 @@ async def help(ctx):
   embed.add_field(name="<:spy_announcements:894201296700211290>Ping", value='```"shows the bot latency"```')
   embed.add_field(name="<:spy_announcements:894201296700211290>Stats", value='```"shows the bot stats"```')
   await ctx.reply(embed=embed)
-
+@client.command()
+@commands.cooldown(1, 30, commands.BucketType.user)
+async def help(ctx):
+  embed = discord.Embed(color=2303786)
+  embed.set_author(name="Spy Security")
+  embed.set_thumbnail(url="https://media.discordapp.net/attachments/889801781247348737/889811406734639124/7610e5d61fa0c3e9dd733dc910e7eb5c.png?width=618&height=618")
+  embed.set_footer(text=f"Note: The commands are server owner only. | Commands", icon_url=ctx.author.avatar_url)
+ # embed.add_field(name="<a:spy_cyan_crown:894150074567909406>Help Menu<a:spy_cyan_crown:894150074567909406>", value='[Invite](https://dsc.gg/spy-sec)\n[Support](https://discord.gg/XDzUVexw4d)')
+  embed.add_field(name="<:spy_slash:920006773858009158>Massunban", value='```"Unbans all banned users, aliases - unbanall"```')
+  embed.add_field(name="<:spy_slash:920006773858009158>Lockserver", value='```"Revokes dangerous perms from each role, aliases - lockroles"```')
+  embed.add_field(name="<:spy_slash:920006773858009158>Cleanchannels", value='```"Deletes channel with similar names, aliases - cc"```') 
+  await ctx.reply(embed=embed)
 @client.command(aliases=["lockroles"])
+@commands.cooldown(1, 60, commands.BucketType.user)
 async def lockserver(ctx):
   if ctx.author.id == guild.owner.id:
     embed = discord.Embed(color=2303786)
@@ -309,6 +321,7 @@ async def lockserver(ctx):
     await ctx.reply(embed=embed)
     
 @client.command(aliases=["massunban"])
+@commands.cooldown(1, 60, commands.BucketType.user)
 async def unbanall(ctx):
   if ctx.author.id == guild.owner.id:
     guild = ctx.guild
@@ -331,6 +344,7 @@ async def unbanall(ctx):
     await ctx.reply(embed=embed)
     
 @client.command(aliases=["cc"])
+@commands.cooldown(1, 60, commands.BucketType.user)
 async def channelclean(ctx, channeltodelete):
   if ctx.author.id == guild.owner.id:
     embed = discord.Embed(color=2303786)
