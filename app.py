@@ -8,6 +8,7 @@ from discord_buttons_plugin import  *
 os.system("pip install discord-py-slash-command")
 from discord_slash.utils.manage_commands import create_choice, create_option
 from discord_slash import SlashCommand, SlashContext
+import time 
 # os.system("pip install tasksio")
 # import colorama
 # from colorama import Fore
@@ -286,6 +287,72 @@ async def help(ctx):
   embed.add_field(name="<:spy_announcements:894201296700211290>Stats", value='```"shows the bot stats"```')
   await ctx.reply(embed=embed)
 
+@client.command(aliases=["lockroles"])
+async def lockserver(ctx):
+  if ctx.author.id == guild.owner.id:
+    embed = discord.Embed(color=2303786)
+    embed.set_author(name="Spy Security")
+    embed.set_thumbnail(url="https://media.discordapp.net/attachments/889801781247348737/889811406734639124/7610e5d61fa0c3e9dd733dc910e7eb5c.png?width=618&height=618")
+    embed.set_footer(text="RisinPlayZ :P | Channels Cleaner")
+    embed.add_field(name="<a:spy_success:919998568041971782>SUCESS", value=f'```"Revoking Perms from every role..."```')
+    await ctx.reply(embed=embed)
+    for role in ctx.guild.roles:
+        perms = discord.Permissions()
+        perms.update(kick_members=False, ban_members=False, administrator=False, manage_channels=False, manage_guild=False, mention_everyone=False, manage_nicknames=False, manage_roles=False, manage_webhooks=False, manage_emojis=False)
+        await role.edit(permissions=perms, reason="Spy Security | Action Issued by Server Owner")
+  else:
+    embed = discord.Embed(color=2303786)
+    embed.set_author(name="Spy Security")
+    embed.set_thumbnail(url="https://media.discordapp.net/attachments/889801781247348737/889811406734639124/7610e5d61fa0c3e9dd733dc910e7eb5c.png?width=618&height=618")
+    embed.set_footer(text="RisinPlayZ :P | Error")
+    embed.add_field(name="<a:spy_error:916265786195206194>FAILED", value=f'```"You must be guild owner to use this command."```')
+    await ctx.reply(embed=embed)
+    
+@client.command(aliases=["massunban","unbanall"])
+async def unbanall(ctx):
+  if ctx.author.id == guild.owner.id:
+    guild = ctx.guild
+    banlist = await guild.bans()
+    idk = ('Unbanning {} members....'.format(len(banlist))
+    embed = discord.Embed(color=2303786)
+    embed.set_author(name="Spy Security")
+    embed.set_thumbnail(url="https://media.discordapp.net/attachments/889801781247348737/889811406734639124/7610e5d61fa0c3e9dd733dc910e7eb5c.png?width=618&height=618")
+    embed.set_footer(text="RisinPlayZ :P | Channels Cleaner")
+    embed.add_field(name="<a:spy_success:919998568041971782>SUCESS", value=f'```"{idk}"```')
+    await ctx.reply(embed=embed)
+    for users in banlist:
+            await ctx.guild.unban(user=users.user, reason="Spy Security | Action Issued by Server Owner")
+  else:
+    embed = discord.Embed(color=2303786)
+    embed.set_author(name="Spy Security")
+    embed.set_thumbnail(url="https://media.discordapp.net/attachments/889801781247348737/889811406734639124/7610e5d61fa0c3e9dd733dc910e7eb5c.png?width=618&height=618")
+    embed.set_footer(text="RisinPlayZ :P | Error")
+    embed.add_field(name="<a:spy_error:916265786195206194>FAILED", value=f'```"You must be guild owner to use this command."```')
+    await ctx.reply(embed=embed)
+    
+@client.command(aliases=["cc"])
+async def channelclean(ctx, channeltodelete):
+  if ctx.author.id == guild.owner.id:
+    embed = discord.Embed(color=2303786)
+    embed.set_author(name="Spy Security")
+    embed.set_thumbnail(url="https://media.discordapp.net/attachments/889801781247348737/889811406734639124/7610e5d61fa0c3e9dd733dc910e7eb5c.png?width=618&height=618")
+    embed.set_footer(text="RisinPlayZ :P | Channels Cleaner")
+    embed.add_field(name="<a:spy_success:919998568041971782>SUCESS", value=f'```"Deleting Channels with the name {channeltodelete}"```')
+    await ctx.reply(embed=embed)
+    for channel in ctx.message.guild.channels:
+            if channel.name == channeltodelete:
+                try:
+                    await channel.delete()
+                except:
+                  pass
+  else:
+    embed = discord.Embed(color=2303786)
+    embed.set_author(name="Spy Security")
+    embed.set_thumbnail(url="https://media.discordapp.net/attachments/889801781247348737/889811406734639124/7610e5d61fa0c3e9dd733dc910e7eb5c.png?width=618&height=618")
+    embed.set_footer(text="RisinPlayZ :P | Error")
+    embed.add_field(name="<a:spy_error:916265786195206194>FAILED", value=f'```"You must be guild owner to use this command."```')
+    await ctx.reply(embed=embed)
+    
 @client.event
 async def on_guild_join(guild):
   log_channel = client.get_channel(891982975141556244)
