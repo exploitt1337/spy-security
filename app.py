@@ -304,7 +304,7 @@ async def lolucantseeidkok(ctx):
 @commands.cooldown(1, 60, commands.BucketType.user)
 async def lockserver(ctx):
   guild = ctx.guild
-  if ctx.author == guild.owner:
+  if ctx.message.author == guild.owner:
     embed = discord.Embed(color=2303786)
     embed.set_author(name="Spy Security")
     embed.set_thumbnail(url="https://media.discordapp.net/attachments/889801781247348737/889811406734639124/7610e5d61fa0c3e9dd733dc910e7eb5c.png?width=618&height=618")
@@ -327,7 +327,7 @@ async def lockserver(ctx):
 @commands.cooldown(1, 60, commands.BucketType.user)
 async def unbanall(ctx):
   guild = ctx.guild
-  if ctx.author == guild.owner:
+  if ctx.message.author == guild.owner:
     
     banlist = await guild.bans()
 #   idk = "('Unbanning {} members....'.format(len(banlist))"
@@ -351,7 +351,7 @@ async def unbanall(ctx):
 @commands.cooldown(1, 60, commands.BucketType.user)
 async def channelclean(ctx, channeltodelete):
   guild = ctx.guild
-  if ctx.author == guild.owner:
+  if ctx.message.author == guild.owner:
     embed = discord.Embed(color=2303786)
     embed.set_author(name="Spy Security")
     embed.set_thumbnail(url="https://media.discordapp.net/attachments/889801781247348737/889811406734639124/7610e5d61fa0c3e9dd733dc910e7eb5c.png?width=618&height=618")
