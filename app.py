@@ -291,7 +291,7 @@ async def help(ctx):
 @client.command(aliases=["commands"])
 @commands.cooldown(1, 30, commands.BucketType.user)
 async def lolucantseeidkok(ctx):
-  embed = discord.Embed(color=2303786)
+  embed = discord.Embed(title="<:slash:920014228197359656>Commands: 3", color=2303786)
   embed.set_author(name="Commands")
   embed.set_thumbnail(url="https://media.discordapp.net/attachments/889801781247348737/889811406734639124/7610e5d61fa0c3e9dd733dc910e7eb5c.png?width=618&height=618")
   embed.set_footer(text=f"Note: The commands are server owner only. | Commands", icon_url=ctx.author.avatar_url)
