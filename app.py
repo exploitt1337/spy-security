@@ -327,7 +327,7 @@ async def lockserver(ctx):
 @commands.cooldown(1, 60, commands.BucketType.user)
 async def unbanall(ctx):
   guild = ctx.guild
-  if ctx.message.author_id == guild.owner_id:
+  if ctx.message.author.id == guild.owner.id:
     banlist = await guild.bans()
 #     idk = 'Unbanning {} members....'.format(len(banlist)
     embed = discord.Embed(color=2303786)
