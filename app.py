@@ -322,12 +322,13 @@ async def lockserver(ctx):
     embed.set_footer(text="RisinPlayZ :P | Error")
     embed.add_field(name="<a:spy_error:916265786195206194>FAILED", value=f'```"You must be guild owner to use this command."```')
     await ctx.reply(embed=embed)
-    
+ 
 @client.command(aliases=["massunban"])
 @commands.cooldown(1, 60, commands.BucketType.user)
 async def unbanall(ctx):
+  member = ctx.author
   guild = ctx.guild
-  if ctx.message.author.id == guild.owner.id:
+  if member == guild.owner:
     banlist = await guild.bans()
 #     idk = 'Unbanning {} members....'.format(len(banlist)
     embed = discord.Embed(color=2303786)
