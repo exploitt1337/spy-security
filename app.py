@@ -288,9 +288,9 @@ async def help(ctx):
   embed.add_field(name="<:spy_announcements:894201296700211290>Ping", value='```"shows the bot latency"```')
   embed.add_field(name="<:spy_announcements:894201296700211290>Stats", value='```"shows the bot stats"```')
   await ctx.reply(embed=embed)
-@client.command()
+@client.command(aliases=["commands"])
 @commands.cooldown(1, 30, commands.BucketType.user)
-async def commands(ctx):
+async def lolucantseeidkok(ctx):
   embed = discord.Embed(color=2303786)
   embed.set_author(name="Commands")
   embed.set_thumbnail(url="https://media.discordapp.net/attachments/889801781247348737/889811406734639124/7610e5d61fa0c3e9dd733dc910e7eb5c.png?width=618&height=618")
