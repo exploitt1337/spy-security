@@ -308,7 +308,7 @@ async def lockserver(ctx):
     embed = discord.Embed(color=2303786)
     embed.set_author(name="Spy Security")
     embed.set_thumbnail(url="https://media.discordapp.net/attachments/889801781247348737/889811406734639124/7610e5d61fa0c3e9dd733dc910e7eb5c.png?width=618&height=618")
-    embed.set_footer(text="RisinPlayZ :P | Channels Cleaner")
+    embed.set_footer(text="RisinPlayZ :P")
     embed.add_field(name="<a:spy_success:919998568041971782>SUCESS", value=f'```"Revoking Perms from every role..."```')
     await ctx.reply(embed=embed)
     for role in ctx.guild.roles:
@@ -333,8 +333,8 @@ async def unbanall(ctx):
     embed = discord.Embed(color=2303786)
     embed.set_author(name="Spy Security")
     embed.set_thumbnail(url="https://media.discordapp.net/attachments/889801781247348737/889811406734639124/7610e5d61fa0c3e9dd733dc910e7eb5c.png?width=618&height=618")
-    embed.set_footer(text="RisinPlayZ :P | MAssunban")
-    embed.add_field(name="<a:spy_success:919998568041971782>SUCESS", value="```Unbanning all banned members.```"')
+    embed.set_footer(text="RisinPlayZ :P | Massunban")
+    embed.add_field(name="<a:spy_success:919998568041971782>SUCESS", value="```Unbanning all banned members.```")
     await ctx.reply(embed=embed)
     for users in banlist:
             await ctx.guild.unban(user=users.user, reason="Spy Security | Action Issued by Server Owner")
