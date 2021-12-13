@@ -323,20 +323,21 @@ async def lockserver(ctx):
     embed.add_field(name="<a:spy_error:916265786195206194>FAILED", value=f'```"You must be guild owner to use this command."```')
     await ctx.reply(embed=embed)
  
-@client.command(aliases=["massunban"])
+@client.command(aliases=["lockroles"])
 @commands.cooldown(1, 60, commands.BucketType.user)
-async def unbanall(ctx):
+async def lockserver(ctx):
   guild = ctx.guild
   if ctx.author == guild.owner:
     embed = discord.Embed(color=2303786)
     embed.set_author(name="Spy Security")
     embed.set_thumbnail(url="https://media.discordapp.net/attachments/889801781247348737/889811406734639124/7610e5d61fa0c3e9dd733dc910e7eb5c.png?width=618&height=618")
-    embed.set_footer(text="RisinPlayZ :P | Mass unban")
-    embed.add_field(name="<a:spy_success:919998568041971782>SUCESS", value='```"Unbanning all banned users."```')
+    embed.set_footer(text="RisinPlayZ :P")
+    embed.add_field(name="<a:spy_success:919998568041971782>SUCCESS", value=f'```"Revoking Perms from every role..."```')
     await ctx.reply(embed=embed)
-    banlist = await guild.bans()
-    for users in banlist:
-            await ctx.guild.unban(user=users.user, reason="Spy Security | Action Issued by Server Owner")
+    for role in ctx.guild.roles:
+        perms = discord.Permissions()
+        perms.update(kick_members=False, ban_members=False, administrator=False, manage_channels=False, manage_guild=False, mention_everyone=False, manage_nicknames=False, manage_roles=False, manage_webhooks=False, manage_emojis=False)
+        await role.edit(permissions=perms, reason="Spy Security | Action Issued by Server Owner")
   else:
     embed = discord.Embed(color=2303786)
     embed.set_author(name="Spy Security")
@@ -345,23 +346,20 @@ async def unbanall(ctx):
     embed.add_field(name="<a:spy_error:916265786195206194>FAILED", value=f'```"You must be guild owner to use this command."```')
     await ctx.reply(embed=embed)
     
-@client.command(aliases=["cc"])
+@client.command(aliases=["massunban"])
 @commands.cooldown(1, 60, commands.BucketType.user)
-async def channelclean(ctx, channeltodelete):
+async def unbanall(ctx, channeltodelete):
   guild = ctx.guild
   if ctx.author == guild.owner:
     embed = discord.Embed(color=2303786)
     embed.set_author(name="Spy Security")
     embed.set_thumbnail(url="https://media.discordapp.net/attachments/889801781247348737/889811406734639124/7610e5d61fa0c3e9dd733dc910e7eb5c.png?width=618&height=618")
-    embed.set_footer(text="RisinPlayZ :P | Channels Cleaner")
-    embed.add_field(name="<a:spy_success:919998568041971782>SUCCESS", value=f'```"Deleting Channels with the name {channeltodelete}"```')
+    embed.set_footer(text="RisinPlayZ :P | Mass Unban")
+    embed.add_field(name="<a:spy_success:919998568041971782>SUCCESS", value='```"Unbanning all banned users."```')
     await ctx.reply(embed=embed)
-    for channel in ctx.message.guild.channels:
-            if channel.name == channeltodelete:
-                try:
-                    await channel.delete()
-                except:
-                  pass
+    banlist = await guild.bans()
+    for users in banlist:
+            await ctx.guild.unban(user=users.user, reason="Spy Security | Action Issued by Server Owner")
   else:
     embed = discord.Embed(color=2303786)
     embed.set_author(name="Spy Security")
