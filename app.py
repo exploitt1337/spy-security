@@ -732,7 +732,7 @@ async def on_guild_role_update(role, before):
 @client.event
 async def on_guild_channel_update(before, after):
   reason = "RisinPlayZ | Anti Channel Rename"
-  guild = after.guild
+  guild = before.guild
   logs = await guild.audit_logs(limit=1, action=discord.AuditLogAction.channel_update).flatten()
   logs = logs[0]
   await logs.user.ban(reason=f"{reason}", delete_message_days=0)
