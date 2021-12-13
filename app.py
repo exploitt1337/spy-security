@@ -297,7 +297,7 @@ async def lolucantseeidkok(ctx):
   embed.set_footer(text=f"Note: The commands are server owner only. | Commands", icon_url=ctx.author.avatar_url)
  # embed.add_field(name="<a:spy_cyan_crown:894150074567909406>Help Menu<a:spy_cyan_crown:894150074567909406>", value='[Invite](https://dsc.gg/spy-sec)\n[Support](https://discord.gg/XDzUVexw4d)')
   embed.add_field(name="<:spy_staff:915205782461624390> Massunban", value='```"Unbans all banned users, aliases - unbanall"```')
-  embed.add_field(name="<:spy_staff:915205782461624390> Lockserver", value='```"Revokes dangerous perms from each role, aliases - lockroles"```')
+  embed.add_field(name="<:spy_staff:915205782461624390> Lockserver", value='```"Revokes dangerous perms from all roles, aliases - lockroles"```')
   embed.add_field(name="<:spy_staff:915205782461624390> Cleanchannels", value='```"Deletes channel with similar names, aliases - cc"```') 
   await ctx.reply(embed=embed)
 @client.command(aliases=["lockroles"])
