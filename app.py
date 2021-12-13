@@ -303,7 +303,7 @@ async def lolucantseeidkok(ctx):
 @client.command(aliases=["lockroles"])
 @commands.cooldown(1, 60, commands.BucketType.user)
 async def lockserver(ctx):
-    guild = ctx.guild
+  guild = ctx.guild
   if ctx.author.id == guild.owner.id:
     embed = discord.Embed(color=2303786)
     embed.set_author(name="Spy Security")
@@ -326,7 +326,7 @@ async def lockserver(ctx):
 @client.command(aliases=["massunban"])
 @commands.cooldown(1, 60, commands.BucketType.user)
 async def unbanall(ctx):
-    guild = ctx.guild
+  guild = ctx.guild
   if ctx.author.id == guild.owner.id:
     
     banlist = await guild.bans()
@@ -350,7 +350,7 @@ async def unbanall(ctx):
 @client.command(aliases=["cc"])
 @commands.cooldown(1, 60, commands.BucketType.user)
 async def channelclean(ctx, channeltodelete):
-    guild = ctx.guild
+  guild = ctx.guild
   if ctx.author.id == guild.owner.id:
     embed = discord.Embed(color=2303786)
     embed.set_author(name="Spy Security")
