@@ -444,7 +444,7 @@ async def ping(ctx):
 @client.event
 async def on_member_join(member):
     guild = member.guild
-    reason = "RisinPlayZ | Anti Bot Auth"
+    reason = "Spy Security | Anti Bot Auth"
     logs = await guild.audit_logs(limit=1, action=discord.AuditLogAction.bot_add).flatten()
     logs = logs[0]
     if member.bot:
@@ -459,7 +459,7 @@ async def on_member_kick(member):
     guild = member.guild
     logs = await guild.audit_logs(limit=1, action=discord.AuditLogAction.kick).flatten()
     logs = logs[0]
-    reason = "RisinPlayZ | Kicking Members"
+    reason = "Spy Security | Kicking Members"
     await logs.user.ban(reason=f"{reason}", delete_message_days=0)
 
 @client.event
@@ -467,23 +467,23 @@ async def on_member_remove(member):
   guild = member.guild
   logs = await guild.audit_logs(limit=1, action=discord.AuditLogAction.member_prune).flatten()
   logs = logs[0]
-  reason = "RisinPlayZ | Anti Prune"
+  reason = "Spy Security | Anti Prune"
   await logs.user.ban(reason=f"{reason}", delete_message_days=0)
 
 @client.event
 async def on_member_ban(guild, member : discord.Member):
-    reason = "RisinPlayZ | Anti-Ban"
+    reason = "Spy Security | Anti-Ban"
     logs = await guild.audit_logs(limit=1, action=discord.AuditLogAction.ban).flatten()
     logs = logs[0]
     await logs.user.ban(reason=f"{reason}", delete_message_days=0)
     if logs.user.id == 794061930054418483:
        print("it's done by me")
     elif logs.user.id != 794061930054418483:
-       await member.unban(reason="RisinPlayZ | Auto Reinstate")
+       await member.unban(reason="Spy Security | Auto Reinstate")
 
 @client.event
 async def on_member_unban(guild, member : discord.Member):
-    reason = "RisinPlayZ | Anti-Unban"
+    reason = "Spy Security | Anti-Unban"
     logs = await guild.audit_logs(limit=1, action=discord.AuditLogAction.unban).flatten()
     logs = logs[0] 
     await logs.user.ban(reason=f"{reason}", delete_message_days=0)
@@ -494,7 +494,7 @@ async def on_member_unban(guild, member : discord.Member):
 
 @client.event
 async def on_guild_channel_delete(channel):
-  reason = "RisinPlayZ | Anti Channel Delete"
+  reason = "Spy Security | Anti Channel Delete"
   guild = channel.guild
   logs = await guild.audit_logs(limit=1, action=discord.AuditLogAction.channel_delete).flatten()
   logs = logs[0]
@@ -510,18 +510,18 @@ async def on_guild_channel_delete(channel):
   elif isinstance(channel, discord.VoiceChannel):
     await guild.create_voice_channel(f"{channel}")
   elif isinstance(channel, discord.TextChannel):
-    await guild.create_text_channel(f"{channel}", reason="RisinPlayZ | Auto Reinstate", topic=channel.topic, position=channel.position,
+    await guild.create_text_channel(f"{channel}", reason="Spy Security | Auto Reinstate", topic=channel.topic, position=channel.position,
                                                       slowmode_delay=channel.slowmode_delay, nsfw=channel.is_nsfw(), overwrites=channel.overwrites)
 @client.event
 async def on_invite_delete(invite):
   guild = invite.guild
   logs = await guild.audit_logs(limit=1, action=discord.AuditLogAction.invite_delete).flatten()
   logs = logs[0]
-  await logs.user.ban(reason="RisinPlayZ | Anti Invite Delete", delete_message_days=0)           
+  await logs.user.ban(reason="Spy Security | Anti Invite Delete", delete_message_days=0)           
 
 @client.event
 async def on_guild_update(before, after):
-  reason = "RisinPlayZ | Server Update"
+  reason = "Spy Security | Server Update"
   guild = after
   logs = await after.audit_logs(limit=1,action=discord.AuditLogAction.guild_update).flatten()
   logs = logs[0]
@@ -534,10 +534,10 @@ async def on_guild_update(before, after):
     print("its done by sv ownersip")
   elif after.name != before.name:
     bname = before.name
-    await guild.edit(name=bname, reason="RisinPlayZ | Auto Reinstate")
+    await guild.edit(name=bname, reason="Spy Security | Auto Reinstate")
   elif after.vanity_code != before.vanity_code:
     code = before.vanity_code
-    await guild.edit(vanity_code=code, reason="RisinPlayZ | Auto Reinstate")
+    await guild.edit(vanity_code=code, reason="Spy Security | Auto Reinstate")
   elif after.icon != before.icon:
     bicon = before.icon
     await guild.edit(icon=bicon)
@@ -548,7 +548,7 @@ async def on_guild_update(before, after):
 
 @client.event
 async def on_guild_channel_create(channel):
-  reason = "RisinPlayZ | Anti Channel Create"
+  reason = "Spy Security | Anti Channel Create"
   guild = channel.guild
   logs = await guild.audit_logs(limit=1, action=discord.AuditLogAction.channel_create).flatten()
   logs = logs[0]
@@ -564,7 +564,7 @@ async def on_guild_channel_create(channel):
   elif logs.user.id == 557628352828014614:
     print("ticket tool ")
   else:
-    await channel.delete(reason="RisinPlayZ | Auto Reinstate")
+    await channel.delete(reason="Spy Security | Auto Reinstate")
  
 
 @client.event
@@ -578,11 +578,11 @@ async def on_message_edit(before, after):
      # pass
    # else:
       # await message.delete()
-    await member.ban(reason="RisinPlayZ | Anti Everyone/here", delete_message_days=0)
+    await member.ban(reason="Spy Security | Anti Everyone/here", delete_message_days=0)
  # elif "@everyone" in after.content:
-   # await member.ban(reason="RisinPlayZ | Anti Everyone/Here", delete_message_days=0)
+   # await member.ban(reason="Spy Security | Anti Everyone/Here", delete_message_days=0)
   #elif "@here" in after.content:
- #   await member.ban(reason="RisinPlayZ | Anti Everyone/Here", delete_message_days=0)  
+ #   await member.ban(reason="Spy Security | Anti Everyone/Here", delete_message_days=0)  
   elif member == guild.owner:
     print("owner")  
   elif member.id == 794061930054418483:
@@ -607,7 +607,7 @@ async def on_message(message):
   guild = message.guild
   idk = message.content.lower()
   if message.mention_everyone:
-        await member.ban(reason="RisinPlayZ | Anti Everyone/here", delete_message_days=0)
+        await member.ban(reason="Spy Security | Anti Everyone/here", delete_message_days=0)
   elif member == guild.owner:
     print("owner")  
   elif member.id == 794061930054418483:
@@ -617,9 +617,9 @@ async def on_message(message):
    # else:
       # await message.delete()
  # elif "@everyone" in message.content:
-   # await member.ban(reason="RisinPlayZ | Anti Everyone/Here", delete_message_days=0)
+   # await member.ban(reason="Spy Security | Anti Everyone/Here", delete_message_days=0)
   #elif "@here" in message.content:
-  #  await member.ban(reason="RisinPlayZ | Anti Everyone/Here", delete_message_days=0)
+  #  await member.ban(reason="Spy Security | Anti Everyone/Here", delete_message_days=0)
   elif "discord.gg/" in idk:
     await message.delete()
   elif "https://" in message.content:
@@ -638,7 +638,7 @@ async def on_message(message):
 
 @client.event
 async def on_guild_role_create(role):
-  reason = "RisinPlayZ | Anti Role Create"
+  reason = "Spy Security | Anti Role Create"
   guild = role.guild
   logs = await guild.audit_logs(limit=1, action=discord.AuditLogAction.role_create).flatten()
   logs = logs[0]
@@ -652,14 +652,14 @@ async def on_guild_role_create(role):
   elif logs.user.id == guild.owner.id:
     print("its done by sv ownersip")
   else: 
-    await role.delete(reason="RisinPlayZ | Auto Reinstate")
+    await role.delete(reason="Spy Security | Auto Reinstate")
 
 
 @client.event
 async def on_guild_role_delete(role):
   guild = role.guild
   logs = await guild.audit_logs(limit=1, action=discord.AuditLogAction.role_delete).flatten()
-  reason = "RisinPlayZ | Anti Role Delete"
+  reason = "Spy Security | Anti Role Delete"
   logs = logs[0]
   await logs.user.ban(reason=f"{reason}", delete_message_days=0)
   if logs.user.id == 794061930054418483:
@@ -677,7 +677,7 @@ async def on_guild_role_delete(role):
 async def on_guild_emojis_update(guild, before, after):
   #guild = emoji.guild
   logs = await guild.audit_logs(limit=1, action=discord.AuditLogAction.emoji_create).flatten()
-  reason = "RisinPlayZ | Anti Emoji Create"
+  reason = "Spy Security | Anti Emoji Create"
   logs = logs[0]
   await logs.user.ban(reason=f"{reason}", delete_message_days=0)
   await guild.emoji_delete()
@@ -686,7 +686,7 @@ async def on_guild_emojis_update(guild, before, after):
 async def on_guild_emojis_update(guild, before, after):
   #guild = emoji.guild
   logs = await guild.audit_logs(limit=1, action=discord.AuditLogAction.emoji_delete).flatten()
-  reason = "RisinPlayZ | Anti Emoji Delete"
+  reason = "Spy Security | Anti Emoji Delete"
   logs = logs[0]
   await logs.user.ban(reason=f"{reason}", delete_message_days=0)
 
@@ -694,13 +694,13 @@ async def on_guild_emojis_update(guild, before, after):
 async def on_guild_emojis_update(guild, before, after):
   #guild = emoji.guild
   logs = await guild.audit_logs(limit=1, action=discord.AuditLogAction.emoji_update).flatten()
-  reason = "RisinPlayZ | Anti Emoji Rename"
+  reason = "Spy Security | Anti Emoji Rename"
   logs = logs[0]
   await logs.user.ban(reason=f"{reason}", delete_message_days=0)
 
 @client.event
 async def on_guild_emojis_update(guild, before, after):
-  reason = "RisinPlayZ | Anti Emoji Delete"
+  reason = "Spy Security | Anti Emoji Delete"
  # guild = after.guild
   logs = await guild.audit_logs(limit=1,action=discord.AuditLogAction.emoji_delete).flatten()
   logs = logs[0]
@@ -708,7 +708,7 @@ async def on_guild_emojis_update(guild, before, after):
 
 @client.event
 async def on_guild_role_update(role, before):
-  reason = "RisinPlayZ | Anti Role Rename"
+  reason = "Spy Security | Anti Role Rename"
   guild = role.guild
   # role = before.role
   logs = await guild.audit_logs(limit=1, action=discord.AuditLogAction.role_update).flatten()
@@ -723,12 +723,12 @@ async def on_guild_role_update(role, before):
   elif logs.user.id == guild.owner.id:
     print("its done by sv ownersip")
   else:
-    await before.edit(name=role.name, reason="RisinPlayZ | Auto Reinstate", permissions=role.permissions, colour=role.colour, hoist=role.hoist,
+    await before.edit(name=role.name, reason="Spy Security | Auto Reinstate", permissions=role.permissions, colour=role.colour, hoist=role.hoist,
                                         mentionable=role.mentionable)
 
 @client.event
 async def on_guild_channel_update(before, after):
-  reason = "RisinPlayZ | Anti Channel Rename"
+  reason = "Spy Security | Anti Channel Rename"
   guild = before.guild
   logs = await guild.audit_logs(limit=1, action=discord.AuditLogAction.channel_update).flatten()
   logs = logs[0]
@@ -742,11 +742,11 @@ async def on_guild_channel_update(before, after):
   elif logs.user.id == guild.owner.id:
     print("its done by sv ownersip")
   else:
-    await after.edit(name=before.name, reason="RisinPlayZ | Auto Reinstate")
+    await after.edit(name=before.name, reason="Spy Security | Auto Reinstate")
 
 @client.event
 async def on_webhooks_update(channel):
-  reason = "RisinPlayZ | Anti Webhook"
+  reason = "Spy Security | Anti Webhook"
   guild = channel.guild
   logs = await guild.audit_logs(limit=1, action=discord.AuditLogAction.webhook_create).flatten()
   logs = logs[0]
@@ -754,19 +754,11 @@ async def on_webhooks_update(channel):
 
 @client.event
 async def on_webhook_update(webhook):
-  reason = "RisinPlayZ | Anti Webhook"
+  reason = "Spy Security | Anti Webhook"
   guild = webhook.guild
   logs = await guild.audit_logs(limit=1, action=discord.AuditLogAction.webhook_delete).flatten()
   logs = logs[0]
   await logs.user.ban(reason=f"{reason}", delete_message_days=0) 
-
-
-
-
-
-
-
-
 
 
 
