@@ -221,10 +221,10 @@ async def features(ctx):
   embed.set_thumbnail(url="https://media.discordapp.net/attachments/889801781247348737/889811406734639124/7610e5d61fa0c3e9dd733dc910e7eb5c.png?width=618&height=618")
   embed.set_footer(text=f"RisinPlayZ :P | Shards:  {shards} | Active Threads: 404 | Proxied: False", icon_url=ctx.author.avatar_url)
 
-  embed.add_field(name="__**<:spy_bug_hunter_black:915206652502872095>Offense Threshold**__", value='1')
-  embed.add_field(name="__**<:spy_staff:915205782461624390>Punishment Type**__", value='Ban-Persist')
-  embed.add_field(name="__**<:spy_sec_op:889811467002576906>Security Status**__", value='Enabled')
-  embed.add_field(name="__**<a:spy_load:915206162629161000>Auto recovery**__", value='Enabled')
+  embed.add_field(name="__**<:spy_bug_hunter_black:915206652502872095>Offense Threshold**__", value='1', inline=False)
+  embed.add_field(name="__**<:spy_staff:915205782461624390>Punishment Type**__", value='Ban-Persist', inline=False)
+  embed.add_field(name="__**<:spy_sec_op:889811467002576906>Security Status**__", value='Enabled', inline=False)
+  embed.add_field(name="__**<a:spy_load:915206162629161000>Auto recovery**__", value='Enabled', inline=False)
   embed.add_field(name="<:spy_rules:894150396094865418>Features", value='''```
 1; Anti Prune
 2; Anti Bot Auth
@@ -240,7 +240,7 @@ async def features(ctx):
 12; Anti Webhook Create
 13; Anti Integration
 14; Anti Selfbot
-15; Anti Everyone / Here```''')
+15; Anti Everyone / Here```''', inline=False)
   embed.add_field(name="__**<a:spy_verified_black:915207311683907615>Whitelisted**__", value='Server Owner')
   
   await ctx.reply(embed=embed)
@@ -281,12 +281,12 @@ async def help(ctx):
   embed.set_thumbnail(url="https://media.discordapp.net/attachments/889801781247348737/889811406734639124/7610e5d61fa0c3e9dd733dc910e7eb5c.png?width=618&height=618")
   embed.set_footer(text=f"RisinPlayZ :P | Shards:  {shards} | Active Threads: 404 | Proxied: False", icon_url=ctx.author.avatar_url)
   embed.add_field(name="<a:spy_cyan_crown:894150074567909406>Help Menu<a:spy_cyan_crown:894150074567909406>", value='[Invite](https://dsc.gg/spy-sec)\n[Support](https://discord.gg/XDzUVexw4d)')
-  embed.add_field(name="<:spy_announcements:894201296700211290>Help", value='```"Shows Help command"```')
-  embed.add_field(name="<:spy_announcements:894201296700211290>Features", value='```"shows features of the bot"```')
-  embed.add_field(name="<:spy_announcements:894201296700211290>Invite", value='```"sends an invite link to add the bot"```')
-  embed.add_field(name="<:spy_announcements:894201296700211290>Commands", value='```"shows the list of executable commands."```')
-  embed.add_field(name="<:spy_announcements:894201296700211290>Ping", value='```"shows the bot latency"```')
-  embed.add_field(name="<:spy_announcements:894201296700211290>Stats", value='```"shows the bot stats"```')
+  embed.add_field(name="<:spy_announcements:894201296700211290>Help", value='```"Shows Help command"```', inline=False)
+  embed.add_field(name="<:spy_announcements:894201296700211290>Features", value='```"shows features of the bot"```', inline=False)
+  embed.add_field(name="<:spy_announcements:894201296700211290>Invite", value='```"sends an invite link to add the bot"```', inline=False)
+  embed.add_field(name="<:spy_announcements:894201296700211290>Commands", value='```"shows the list of executable commands."```', inline=False)
+  embed.add_field(name="<:spy_announcements:894201296700211290>Ping", value='```"shows the bot latency"```', inline=False)
+  embed.add_field(name="<:spy_announcements:894201296700211290>Stats", value='```"shows the bot stats"```', inline=False)
   await ctx.reply(embed=embed)
 @client.command(aliases=["commands"])
 @commands.cooldown(1, 30, commands.BucketType.user)
@@ -296,9 +296,9 @@ async def lolucantseeidkok(ctx):
   embed.set_thumbnail(url="https://media.discordapp.net/attachments/889801781247348737/889811406734639124/7610e5d61fa0c3e9dd733dc910e7eb5c.png?width=618&height=618")
   embed.set_footer(text=f"Note: The commands are server owner only.", icon_url=ctx.author.avatar_url)
  # embed.add_field(name="<a:spy_cyan_crown:894150074567909406>Help Menu<a:spy_cyan_crown:894150074567909406>", value='[Invite](https://dsc.gg/spy-sec)\n[Support](https://discord.gg/XDzUVexw4d)')
-  embed.add_field(name="<:spy_staff:915205782461624390> Massunban", value='```"Unbans all banned users, aliases - unbanall"```')
-  embed.add_field(name="<:spy_staff:915205782461624390> Lockserver", value='```"Revokes dangerous perms from all roles, aliases - lockroles"```')
-  embed.add_field(name="<:spy_staff:915205782461624390> Cleanchannels", value='```"Deletes channel with similar names, aliases - cc"```') 
+  embed.add_field(name="<:spy_staff:915205782461624390> Massunban", value='```"Unbans all banned users, aliases - unbanall"```', inline=False)
+  embed.add_field(name="<:spy_staff:915205782461624390> Lockserver", value='```"Revokes dangerous perms from all roles, aliases - lockroles"```', inline=False)
+  embed.add_field(name="<:spy_staff:915205782461624390> Cleanchannels", value='```"Deletes channel with similar names, aliases - cc"```', inline=False) 
   await ctx.reply(embed=embed)
 @client.command(aliases=["lockroles"])
 @commands.cooldown(1, 60, commands.BucketType.user)
