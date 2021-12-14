@@ -355,7 +355,7 @@ async def channelclean(ctx, channeltodelete):
     embed.set_author(name="Spy Security")
     embed.set_thumbnail(url="https://media.discordapp.net/attachments/889801781247348737/889811406734639124/7610e5d61fa0c3e9dd733dc910e7eb5c.png?width=618&height=618")
     embed.set_footer(text="RisinPlayZ :P | Mass Unban")
-    embed.add_field(name="<a:spy_success:919998568041971782>SUCCESS", value='```"Unbanning all banned users."```')
+    embed.add_field(name="<a:spy_success:919998568041971782>SUCCESS", value='```f"Successfully Deleted channel with the name {channeltodelete}"```')
     await ctx.reply(embed=embed)
     for channel in ctx.message.guild.channels:
             if channel.name == channeltodelete:
