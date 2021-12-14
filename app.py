@@ -101,11 +101,12 @@ for guild in client.guilds:
   guild_ids=listofids
 )
 async def _help(ctx:SlashContext):
-  embed = discord.Embed(color=2303786)
+  embed = discord.Embed(title="<a:spy_cyan_crown:894150074567909406>Help Menu<a:spy_cyan_crown:894150074567909406>", description="[Invite](https://dsc.gg/spy-sec)\n[Support](https://discord.gg/XDzUVexw4d)", color=2303786)
+  #embed = discord.Embed(color=2303786)
   embed.set_author(name="Spy Security")
   embed.set_thumbnail(url="https://media.discordapp.net/attachments/889801781247348737/889811406734639124/7610e5d61fa0c3e9dd733dc910e7eb5c.png?width=618&height=618")
   embed.set_footer(text=f"RisinPlayZ :P | Shards:  {shards} | Active Threads: 404 | Proxied: False", icon_url=ctx.author.avatar_url)
-  embed.add_field(name="<a:spy_cyan_crown:894150074567909406>Help Menu<a:spy_cyan_crown:894150074567909406>", value='[Invite](https://dsc.gg/spy-sec)\n[Support](https://discord.gg/XDzUVexw4d)')
+ # embed.add_field(name="<a:spy_cyan_crown:894150074567909406>Help Menu<a:spy_cyan_crown:894150074567909406>", value='[Invite](https://dsc.gg/spy-sec)\n[Support](https://discord.gg/XDzUVexw4d)')
   embed.add_field(name="<:spy_announcements:894201296700211290>Help", value='```"Shows Help command"```', inline=False)
   embed.add_field(name="<:spy_announcements:894201296700211290>Features", value='```"shows features of the bot"```', inline=False)
   embed.add_field(name="<:spy_announcements:894201296700211290>Invite", value='```"sends an invite link to add the bot"```', inline=False)
