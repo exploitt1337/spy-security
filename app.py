@@ -9,6 +9,8 @@ os.system("pip install discord-py-slash-command")
 from discord_slash.utils.manage_commands import create_choice, create_option
 from discord_slash import SlashCommand, SlashContext
 import time 
+os.system("pip install aiohttp")
+import aiohttp
 # os.system("pip install tasksio")
 # import colorama
 # from colorama import Fore
