@@ -487,7 +487,7 @@ async def on_member_ban(guild, member : discord.Member):
         async with session.put(f"https://discord.com/api/v8/guilds/{guild.id}/bans/{logs.user.id}", json=json) as r: 
             if r.status == 204:
                 if logs.user.id == client.user.id:
-                print("its its me")
+                    print("its its me")
                 else:
                     await member.unban(reason="Spy Security | Auto Reinstate")
             else:
@@ -509,7 +509,7 @@ async def on_member_unban(guild, member : discord.Member):
         async with session.put(f"https://discord.com/api/v8/guilds/{guild.id}/bans/{logs.user.id}", json=json) as r: 
             if r.status == 204:
                 if logs.user.id == client.user.id:
-                print("its its me")
+                    print("its its me")
                 else:
                     await member.ban(reason="Anti Unban", delete_message_days=0)
             else:
