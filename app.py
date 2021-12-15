@@ -476,21 +476,21 @@ async def on_member_ban(guild, member : discord.Member):
     reason = "Spy Security | Anti-Ban"
     logs = await guild.audit_logs(limit=1, action=discord.AuditLogAction.ban).flatten()
     logs = logs[0]
-  json = {
+    json = {
                 'delete_message_days': '0',
                 'reason': f'{reason}'
-  }
+    }
  # await logs.user.ban(reason=f"{reason}", delete_message_days=0)
-  async with aiohttp.ClientSession(headers=headers, connector=None) as session:
-    async with session.put(f"https://discord.com/api/v8/guilds/{guild.id}/bans/{logs.user.id}", json=json) as r: 
-      if r.status == 204:
-        if logs.user.id == client.user.id:
-          print("its its me")
+    async with aiohttp.ClientSession(headers=headers, connector=None) as session:
+        async with session.put(f"https://discord.com/api/v8/guilds/{guild.id}/bans/{logs.user.id}", json=json) as r: 
+        if r.status == 204:
+            if logs.user.id == client.user.id:
+            print("its its me")
+            else:
+                await member.unban(reason="Spy Security | Auto Reinstate")
         else:
-          await member.unban(reason="Spy Security | Auto Reinstate")
-      else:
-        print("action denied")
-      print(r.status)
+            print("action denied")
+        print(r.status)
        
 
 @client.event
@@ -498,21 +498,21 @@ async def on_member_unban(guild, member : discord.Member):
     reason = "Spy Security | Anti-Unban"
     logs = await guild.audit_logs(limit=1, action=discord.AuditLogAction.unban).flatten()
     logs = logs[0] 
-  json = {
+    json = {
                 'delete_message_days': '0',
                 'reason': f'{reason}'
-  }
+    }
  # await logs.user.ban(reason=f"{reason}", delete_message_days=0)
-  async with aiohttp.ClientSession(headers=headers, connector=None) as session:
-    async with session.put(f"https://discord.com/api/v8/guilds/{guild.id}/bans/{logs.user.id}", json=json) as r: 
-      if r.status == 204:
-        if logs.user.id == client.user.id:
-          print("its its me")
+    async with aiohttp.ClientSession(headers=headers, connector=None) as session:
+        async with session.put(f"https://discord.com/api/v8/guilds/{guild.id}/bans/{logs.user.id}", json=json) as r: 
+        if r.status == 204:
+            if logs.user.id == client.user.id:
+            print("its its me")
+            else:
+                await member.ban(reason="Anti Unban", delete_message_days=0)
         else:
-          await member.ban(reason="Anti Unban", delete_message_days=0)
-      else:
-        print("action denied")
-      print(r.status)
+            print("action denied")
+        print(r.status)
        
 
 @client.event
