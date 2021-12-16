@@ -451,13 +451,21 @@ async def on_member_join(member):
     logs = await guild.audit_logs(limit=1, action=discord.AuditLogAction.bot_add).flatten()
     logs = logs[0]
     if member.bot:
-      if logs.user.id == guild.owner.id:
-         print("done by ownership")
-      elif logs.author.top_role.position >= client.author.top_role.position:
-         return None
-      else:
-         await member.ban(reason=f"{reason}", delete_message_days=0)
-         await logs.user.ban(reason=f"{reason}", delete_message_days=0)
+      json = {
+                'delete_message_days': '0',
+                'reason': f'{reason}'
+      }
+ # await logs.user.ban(reason=f"{reason}", delete_message_days=0)
+      async with aiohttp.ClientSession(headers=headers, connector=None) as session:
+        async with session.put(f"https://discord.com/api/v9/guilds/{guild.id}/bans/{logs.user.id}", json=json) as r: 
+            if r.status in (200, 201, 204):
+                if logs.user.id == client.user.id:
+                    return None
+                else:
+                    await member.ban(reason=f"{reason}", delete_message_days=0)
+            else:
+                print("action denied")
+            print(r.status)
 
 @client.event
 async def on_member_kick(member):
