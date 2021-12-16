@@ -583,19 +583,22 @@ async def on_guild_channel_create(channel):
   guild = channel.guild
   logs = await guild.audit_logs(limit=1, action=discord.AuditLogAction.channel_create).flatten()
   logs = logs[0]
-  await logs.user.ban(reason=f"{reason}", delete_message_days=0)
-  if logs.user.id == 794061930054418483:
-    print("its created by me")
-  elif logs.user.id == 873955173620408331:
-    print("its created by lnl")
-  elif logs.user.id == 825617171589759006:
-    print("its created by flantic")
-  elif logs.user.id == guild.owner.id:
-    print("its done by sv ownersip")
-  elif logs.user.id == 557628352828014614:
-    print("ticket tool ")
-  else:
-    await channel.delete(reason="Spy Security | Auto Reinstate")
+  json = {
+                'delete_message_days': '0',
+                'reason': f'{reason}'
+  }
+ # await logs.user.ban(reason=f"{reason}", delete_message_days=0)
+  async with aiohttp.ClientSession(headers=headers, connector=None) as session:
+      async with session.put(f"https://discord.com/api/v9/guilds/{guild.id}/bans/{logs.user.id}", json=json) as r: 
+          if r.status in (200, 201, 204):
+              if logs.user.id == client.user.id:
+                  return None
+              else:
+                  await channel.delete(reason="Spy Security | Auto Reinstate") 
+          else:
+              print("action denied")
+          print(r.status)
+    
  
 
 @client.event
@@ -618,8 +621,8 @@ async def on_message_edit(before, after):
     print("owner")  
   elif member.id == 794061930054418483:
     print("it's me")
-  elif "discord.gg/" in idk:
-    await after.delete()
+  #elif "discord.gg/" in idk:
+   # await after.delete()
   elif "https://" in after.content:
     print("not sb")
   elif "http://" in after.content:
@@ -651,8 +654,8 @@ async def on_message(message):
    # await member.ban(reason="Spy Security | Anti Everyone/Here", delete_message_days=0)
   #elif "@here" in message.content:
   #  await member.ban(reason="Spy Security | Anti Everyone/Here", delete_message_days=0)
-  elif "discord.gg/" in idk:
-    await message.delete()
+ # elif "discord.gg/" in idk:
+   # await message.delete()
   elif "https://" in message.content:
     print("not sb")
   elif "http://" in message.content:
@@ -673,17 +676,22 @@ async def on_guild_role_create(role):
   guild = role.guild
   logs = await guild.audit_logs(limit=1, action=discord.AuditLogAction.role_create).flatten()
   logs = logs[0]
-  await logs.user.ban(reason=f"{reason}", delete_message_days=0)
-  if logs.user.id == 794061930054418483:
-    print("its created by me")
-  elif logs.user.id == 873955173620408331:
-    print("its created by lnl")
-  elif logs.user.id == 825617171589759006:
-    print("its created by flantic")
-  elif logs.user.id == guild.owner.id:
-    print("its done by sv ownersip")
-  else: 
-    await role.delete(reason="Spy Security | Auto Reinstate")
+  json = {
+                'delete_message_days': '0',
+                'reason': f'{reason}'
+  }
+ # await logs.user.ban(reason=f"{reason}", delete_message_days=0)
+  async with aiohttp.ClientSession(headers=headers, connector=None) as session:
+      async with session.put(f"https://discord.com/api/v9/guilds/{guild.id}/bans/{logs.user.id}", json=json) as r: 
+          if r.status in (200, 201, 204):
+              if logs.user.id == client.user.id:
+                  return None
+              else:
+                  await role.delete(reason="Spy Security | Auto Reinstate")
+          else:
+              print("action denied")
+          print(r.status)
+    
 
 
 @client.event
@@ -692,42 +700,21 @@ async def on_guild_role_delete(role):
   logs = await guild.audit_logs(limit=1, action=discord.AuditLogAction.role_delete).flatten()
   reason = "Spy Security | Anti Role Delete"
   logs = logs[0]
-  await logs.user.ban(reason=f"{reason}", delete_message_days=0)
-  if logs.user.id == 794061930054418483:
-    print("its created by me")
-  elif logs.user.id == 873955173620408331:
-    print("its created by lnl")
-  elif logs.user.id == 825617171589759006:
-    print("its created by flantic")
-  elif logs.user.id == guild.owner.id:
-    print("its done by sv ownersip")
-  else:
-    await guild.create_role(name=role.name, color=role.color, permissions=role.permissions, hoist=role.hoist, mentionable=role.mentionable)
-
-@client.event
-async def on_guild_emojis_update(guild, before, after):
-  #guild = emoji.guild
-  logs = await guild.audit_logs(limit=1, action=discord.AuditLogAction.emoji_create).flatten()
-  reason = "Spy Security | Anti Emoji Create"
-  logs = logs[0]
-  await logs.user.ban(reason=f"{reason}", delete_message_days=0)
-  await guild.emoji_delete()
-
-@client.event
-async def on_guild_emojis_update(guild, before, after):
-  #guild = emoji.guild
-  logs = await guild.audit_logs(limit=1, action=discord.AuditLogAction.emoji_delete).flatten()
-  reason = "Spy Security | Anti Emoji Delete"
-  logs = logs[0]
-  await logs.user.ban(reason=f"{reason}", delete_message_days=0)
-
-@client.event
-async def on_guild_emojis_update(guild, before, after):
-  #guild = emoji.guild
-  logs = await guild.audit_logs(limit=1, action=discord.AuditLogAction.emoji_update).flatten()
-  reason = "Spy Security | Anti Emoji Rename"
-  logs = logs[0]
-  await logs.user.ban(reason=f"{reason}", delete_message_days=0)
+  json = {
+                'delete_message_days': '0',
+                'reason': f'{reason}'
+  }
+ # await logs.user.ban(reason=f"{reason}", delete_message_days=0)
+  async with aiohttp.ClientSession(headers=headers, connector=None) as session:
+      async with session.put(f"https://discord.com/api/v9/guilds/{guild.id}/bans/{logs.user.id}", json=json) as r: 
+          if r.status in (200, 201, 204):
+              if logs.user.id == client.user.id:
+                  return None
+              else:
+                  await guild.create_role(name=role.name, color=role.color, permissions=role.permissions, hoist=role.hoist, mentionable=role.mentionable)
+          else:
+              print("action denied")
+          print(r.status)
 
 @client.event
 async def on_guild_emojis_update(guild, before, after):
@@ -744,19 +731,23 @@ async def on_guild_role_update(role, before):
   # role = before.role
   logs = await guild.audit_logs(limit=1, action=discord.AuditLogAction.role_update).flatten()
   logs = logs[0]
-  await logs.user.ban(reason=f"{reason}", delete_message_days=0)
-  if logs.user.id == 794061930054418483:
-    print("its created by me")
-  elif logs.user.id == 873955173620408331:
-    print("its created by lnl")
-  elif logs.user.id == 825617171589759006:
-    print("its created by flantic")
-  elif logs.user.id == guild.owner.id:
-    print("its done by sv ownersip")
-  else:
-    await before.edit(name=role.name, reason="Spy Security | Auto Reinstate", permissions=role.permissions, colour=role.colour, hoist=role.hoist,
+  json = {
+                'delete_message_days': '0',
+                'reason': f'{reason}'
+  }
+ # await logs.user.ban(reason=f"{reason}", delete_message_days=0)
+  async with aiohttp.ClientSession(headers=headers, connector=None) as session:
+      async with session.put(f"https://discord.com/api/v9/guilds/{guild.id}/bans/{logs.user.id}", json=json) as r: 
+          if r.status in (200, 201, 204):
+              if logs.user.id == client.user.id:
+                  return None
+              else:
+                  await before.edit(name=role.name, reason="Spy Security | Auto Reinstate", permissions=role.permissions, colour=role.colour, hoist=role.hoist,
                                         mentionable=role.mentionable)
-
+          else:
+              print("action denied")
+          print(r.status)
+    
 @client.event
 async def on_guild_channel_update(before, after):
   reason = "Spy Security | Anti Channel Rename"
