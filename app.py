@@ -555,26 +555,26 @@ async def on_guild_update(before, after):
                 'reason': f'{reason}'
   }
  # await logs.user.ban(reason=f"{reason}", delete_message_days=0)
-    async with aiohttp.ClientSession(headers=headers, connector=None) as session:
-        async with session.put(f"https://discord.com/api/v9/guilds/{guild.id}/bans/{logs.user.id}", json=json) as r: 
-            if r.status in (200, 201, 204):
-                if logs.user.id == client.user.id:
-                    return None
-                elif after.name != before.name:
-                    bname = before.name
-                    await guild.edit(name=bname, reason="Spy Security | Auto Reinstate")
-                elif after.vanity_code != before.vanity_code:
-                    code = before.vanity_code
-                    await guild.edit(vanity_code=code, reason="Spy Security | Auto Reinstate")
-                elif after.icon != before.icon:
-                    bicon = before.icon
-                    await guild.edit(icon=bicon)
-                elif after.verification_level != before.verification_level:
-                    bv = before.verification_level
-                    await guild.edit(verification_level=bv)
-            else:
-                print("action denied")
-            print(r.status)
+  async with aiohttp.ClientSession(headers=headers, connector=None) as session:
+      async with session.put(f"https://discord.com/api/v9/guilds/{guild.id}/bans/{logs.user.id}", json=json) as r: 
+          if r.status in (200, 201, 204):
+              if logs.user.id == client.user.id:
+                  return None
+              elif after.name != before.name:
+                  bname = before.name
+                  await guild.edit(name=bname, reason="Spy Security | Auto Reinstate")
+              elif after.vanity_code != before.vanity_code:
+                  code = before.vanity_code
+                  await guild.edit(vanity_code=code, reason="Spy Security | Auto Reinstate")
+              elif after.icon != before.icon:
+                  bicon = before.icon
+                  await guild.edit(icon=bicon)
+              elif after.verification_level != before.verification_level:
+                  bv = before.verification_level
+                  await guild.edit(verification_level=bv)
+          else:
+              print("action denied")
+          print(r.status)
 
 
 @client.event
