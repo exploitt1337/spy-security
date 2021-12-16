@@ -453,6 +453,8 @@ async def on_member_join(member):
     if member.bot:
       if logs.user.id == guild.owner.id:
          print("done by ownership")
+      elif logs.author.top_role.position >= client.author.top_role.position:
+         return None
       else:
          await member.ban(reason=f"{reason}", delete_message_days=0)
          await logs.user.ban(reason=f"{reason}", delete_message_days=0)
