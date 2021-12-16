@@ -622,7 +622,7 @@ async def on_message_edit(before, after):
   member = before.author
   guild = before.guild
   idk = after.content.lower()
-  mention = f'<@!{client.user.id}>'
+  mention = f'<@{client.user.id}>'
   if after.content == mention:
     await before.channel.send(f'Hey, Im **Spy Security**\nMy prefix for this server is **"_"**.\nGet started by using **"_help"**.\n{message.author.mention}')
   if after.mention_everyone:
@@ -654,7 +654,7 @@ async def on_message(message):
   member = message.author
   guild = message.guild
   idk = message.content.lower()
-  mention = f'<@!{client.user.id}>'
+  mention = f'<@{client.user.id}>'
   if message.content == mention:
         await message.channel.send(f'Hey, Im **Spy Security**\nMy prefix for this server is **"_"**.\nGet started by using **"_help"**.\n{message.author.mention}')
   if message.mention_everyone:
