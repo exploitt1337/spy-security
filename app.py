@@ -624,7 +624,7 @@ async def on_message_edit(before, after):
   idk = after.content.lower()
   mention = f'<@!{client.user.id}>'
   if message.content == mention:
-        await message.channel.send(f'Hey, I'm **Spy Security**\nMy prefix for this server is **"_"**.\nGet started by using **"_help"**.\n{message.author.mention}')
+    await message.channel.send(f'Hey, I'm **Spy Security**\nMy prefix for this server is **"_"**.\nGet started by using **"_help"**.\n{message.author.mention}')
   if after.mention_everyone:
    # if member == guild.owner:
      # pass
