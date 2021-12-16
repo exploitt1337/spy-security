@@ -655,9 +655,9 @@ async def on_message(message):
   guild = message.guild
   idk = message.content.lower()
   mention = f'<@!{client.user.id}>'
-  if message.content == mention:
-        await message.channel.send(f'Hey, I'm **Spy Security**\nMy prefix for this server is **"_"**.\nGet started by using **"_help"**.\n{message.author.mention}')
-  elif message.mention_everyone:
+ # if message.content == mention:
+      #  await message.channel.send(f'Hey, I'm **Spy Security**\nMy prefix for this server is **"_"**.\nGet started by using **"_help"**.\n{message.author.mention}')
+  if message.mention_everyone:
         await member.ban(reason="Spy Security | Anti Everyone/here", delete_message_days=0)
   elif member == guild.owner:
     print("owner")  
