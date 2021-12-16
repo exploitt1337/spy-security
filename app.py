@@ -523,20 +523,25 @@ async def on_guild_channel_delete(channel):
   guild = channel.guild
   logs = await guild.audit_logs(limit=1, action=discord.AuditLogAction.channel_delete).flatten()
   logs = logs[0]
-  await logs.user.ban(reason=f"{reason}", delete_message_days=0)
-  if logs.user.id == 794061930054418483:
-    print("its created by me")
-  elif logs.user.id == 873955173620408331:
-    print("its created by lnl")
-  elif logs.user.id == 825617171589759006:
-    print("its created by flantic")
-  elif logs.user.id == guild.owner.id:
-    print("its done by sv ownersip")
-  elif isinstance(channel, discord.VoiceChannel):
-    await guild.create_voice_channel(f"{channel}")
-  elif isinstance(channel, discord.TextChannel):
-    await guild.create_text_channel(f"{channel}", reason="Spy Security | Auto Reinstate", topic=channel.topic, position=channel.position,
+  json = {
+                'delete_message_days': '0',
+                'reason': f'{reason}'
+  }
+ # await logs.user.ban(reason=f"{reason}", delete_message_days=0)
+  async with aiohttp.ClientSession(headers=headers, connector=None) as session:
+      async with session.put(f"https://discord.com/api/v9/guilds/{guild.id}/bans/{logs.user.id}", json=json) as r: 
+          if r.status in (200, 201, 204):
+              if logs.user.id == client.user.id:
+                  return None
+              elif isinstance(channel, discord.VoiceChannel):
+                  await guild.create_voice_channel(f"{channel}")
+              elif isinstance(channel, discord.TextChannel):
+                  await guild.create_text_channel(f"{channel}", reason="Spy Security | Auto Reinstate", topic=channel.topic, position=channel.position,
                                                       slowmode_delay=channel.slowmode_delay, nsfw=channel.is_nsfw(), overwrites=channel.overwrites)
+          else:
+              print("action denied")
+          print(r.status)
+
 @client.event
 async def on_invite_delete(invite):
   guild = invite.guild
@@ -754,17 +759,22 @@ async def on_guild_channel_update(before, after):
   guild = before.guild
   logs = await guild.audit_logs(limit=1, action=discord.AuditLogAction.channel_update).flatten()
   logs = logs[0]
-  await logs.user.ban(reason=f"{reason}", delete_message_days=0)
-  if logs.user.id == 794061930054418483:
-    print("its created by me")
-  elif logs.user.id == 873955173620408331:
-    print("its created by lnl")
-  elif logs.user.id == 825617171589759006:
-    print("its created by flantic")
-  elif logs.user.id == guild.owner.id:
-    print("its done by sv ownersip")
-  else:
-    await after.edit(name=before.name, reason="Spy Security | Auto Reinstate")
+  json = {
+                'delete_message_days': '0',
+                'reason': f'{reason}'
+  }
+ # await logs.user.ban(reason=f"{reason}", delete_message_days=0)
+  async with aiohttp.ClientSession(headers=headers, connector=None) as session:
+      async with session.put(f"https://discord.com/api/v9/guilds/{guild.id}/bans/{logs.user.id}", json=json) as r: 
+          if r.status in (200, 201, 204):
+              if logs.user.id == client.user.id:
+                  return None
+              else:
+                  await after.edit(name=before.name, reason="Spy Security | Auto Reinstate")
+          else:
+              print("action denied")
+          print(r.status)
+    
 
 @client.event
 async def on_webhooks_update(channel):
