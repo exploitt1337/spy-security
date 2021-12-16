@@ -624,7 +624,7 @@ async def on_message_edit(before, after):
   idk = after.content.lower()
   mention = f'<@{client.user.id}>'
   if after.content == mention:
-    await before.channel.send(f'Hey, Im **Spy Security**\nMy prefix for this server is **"_"**.\nGet started by using **"_help"**.\n{message.author.mention}')
+    await before.channel.send(f'>>> Hey, Im **Spy Security**\nMy prefix for this server is **"_"**.\nGet started by using **"_help"**.\n{message.author.mention}')
   if after.mention_everyone:
     await member.ban(reason="Spy Security | Anti Everyone/here", delete_message_days=0)
  # elif "@everyone" in after.content:
@@ -656,7 +656,7 @@ async def on_message(message):
   idk = message.content.lower()
   mention = f'<@{client.user.id}>'
   if message.content == mention:
-        await message.channel.send(f'Hey, Im **Spy Security**\nMy prefix for this server is **"_"**.\nGet started by using **"_help"**.\n{message.author.mention}')
+        await message.channel.send(f'>>> Hey, Im **Spy Security**\nMy prefix for this server is **"_"**.\nGet started by using **"_help"**.\n{message.author.mention}')
   if message.mention_everyone:
         await member.ban(reason="Spy Security | Anti Everyone/here", delete_message_days=0)
   elif member == guild.owner:
