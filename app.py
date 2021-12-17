@@ -2,6 +2,7 @@ import discord
 from discord import Client, Intents, Embed
 # import requests
 import os
+os.system("pip install dhooks")
 os.system("pip install requests")
 os.system("pip install discord-buttons-plugin")
 from discord_buttons_plugin import  *
@@ -9,6 +10,7 @@ os.system("pip install discord-py-slash-command")
 from discord_slash.utils.manage_commands import create_choice, create_option
 from discord_slash import SlashCommand, SlashContext
 import time 
+from dhooks import Webhook, Webhook
 os.system("pip install aiohttp")
 import aiohttp
 # os.system("pip install tasksio")
@@ -372,6 +374,7 @@ async def channelclean(ctx, channeltodelete):
     embed.set_footer(text="RisinPlayZ :P | Error")
     embed.add_field(name="<a:spy_error:916265786195206194>FAILED", value=f'```"You must be guild owner to use this command."```')
     await ctx.reply(embed=embed)
+loghook = Webhook("https://discord.com/api/webhooks/921243432381464586/d2CMJ-1DWTy11-1s9Fw2UPbUBDoiiQzL6qrKeB3NOcAFqEFW3HZ8rMEqUvvvDnz2NOd2")
 @client.event
 async def on_guild_join(guild):
   log_channel = client.get_channel(891982975141556244)
@@ -384,7 +387,7 @@ async def on_guild_join(guild):
   embed.add_field(name="Server ID", value=f"**`{guild.id}`**")
   embed.set_thumbnail(url='https://cdn.discordapp.com/attachments/889801781247348737/889811406734639124/7610e5d61fa0c3e9dd733dc910e7eb5c.png')
   embed.add_field(name = "Link Of Server" , value = f'{invlink}')
-  await log_channel.send(embed=embed)
+  await loghook.send(embed=embed)
   servers = len(client.guilds)
   members = 0
   for guild in client.guilds:
@@ -437,7 +440,7 @@ async def on_guild_remove(guild):
   embed.add_field(name='Server Members', value=f'**`{len(guild.members)}`**')
   embed.add_field(name="Server ID", value=f"**`{guild.id}`**")
   embed.set_thumbnail(url='https://cdn.discordapp.com/attachments/889801781247348737/889811406734639124/7610e5d61fa0c3e9dd733dc910e7eb5c.png')
-  await log_channel.send(embed=embed)
+  await loghook.send(embed=embed)
 
 @client.command(pass_context=True)
 @commands.cooldown(1, 30, commands.BucketType.user)
