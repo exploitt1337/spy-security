@@ -259,7 +259,7 @@ async def on_command_error(ctx, error):
     embed.add_field(name="<a:spy_error:916265786195206194>FAILED", value=f'```"{error}"```')
     await ctx.reply(embed=embed)
 
-@client.command(aliases=["inv"])
+@client.command(aliases=["inv", "support", "vote"])
 @commands.cooldown(1, 30, commands.BucketType.user)
 async def invite(ctx):
     embed = discord.Embed(color=2303786, description="\n[+] [Invite Spy Security](https://discord.com/oauth2/authorize?client_id=794061930054418483&permissions=8&scope=bot%20applications.commands)\n[+] [Join support server](https://discord.gg/XDzUVexw4d)\n[+] [Vote the bot on top.gg](https://top.gg/bot/794061930054418483/vote)")
