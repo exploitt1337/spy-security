@@ -218,7 +218,7 @@ async def stats(ctx):
     embed.add_field(name="__**<a:spy_crush:879375067132338246>Servers**__", value=f'{servers}')
     embed.add_field(name="__**<a:spy_crush:879375067132338246>Members**__", value=f'{members}')
     await ctx.reply(embed=embed)
-@client.command()
+@client.command(aliases=["settings"])
 @commands.cooldown(1, 30, commands.BucketType.user)
 async def features(ctx):
   embed = discord.Embed(color=2303786)
@@ -259,7 +259,7 @@ async def on_command_error(ctx, error):
     embed.add_field(name="<a:spy_error:916265786195206194>FAILED", value=f'```"{error}"```')
     await ctx.reply(embed=embed)
 
-@client.command()
+@client.command(aliases=["inv"])
 @commands.cooldown(1, 30, commands.BucketType.user)
 async def invite(ctx):
     embed = discord.Embed(color=2303786, description="\n[+] [Invite Spy Security](https://discord.com/oauth2/authorize?client_id=794061930054418483&permissions=8&scope=bot%20applications.commands)\n[+] [Join support server](https://discord.gg/XDzUVexw4d)\n[+] [Vote the bot on top.gg](https://top.gg/bot/794061930054418483/vote)")
