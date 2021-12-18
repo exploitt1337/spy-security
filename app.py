@@ -199,7 +199,33 @@ async def _invite(ctx:SlashContext):
 )
 async def _ping(ctx:SlashContext):
       await ctx.reply(f"**Latency is `{int(client.latency * 1000)}` ms**")
-      
+@slash.slash(
+    name="Channel Cleaner",
+    description="Deletes channel with similar names",
+    guild_ids=listofids
+)  
+async def channelclean(ctx:SlashContext, channeltodelete:SlashContext):
+  guild = ctx.guild
+  if ctx.author == guild.owner:
+    embed = discord.Embed(color=2303786)
+    embed.set_author(name="Spy Security")
+    embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/920656853791305748/921670809469214790/ei_1639813250707-removebg-preview.png")
+    embed.set_footer(text="RisinPlayZ :P | Channel Deleter")
+    embed.add_field(name="<a:spy_success:919998568041971782>SUCCESS", value=f'```"Successfully Deleted channel with the name {channeltodelete}"```')
+    await ctx.reply(embed=embed)
+    for channel in ctx.message.guild.channels:
+            if channel.name == channeltodelete:
+                try:
+                    await channel.delete()
+                except:
+                  pass    
+  else:
+    embed = discord.Embed(color=2303786)
+    embed.set_author(name="Spy Security")
+    embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/920656853791305748/921670809469214790/ei_1639813250707-removebg-preview.png")
+    embed.set_footer(text="RisinPlayZ :P | Error")
+    embed.add_field(name="<a:spy_error:916265786195206194>FAILED", value=f'```"You must be guild owner to use this command."```')
+    await ctx.reply(embed=embed)    
 @slash.slash(
     name="Stats",
     description="shows the bot stats",
