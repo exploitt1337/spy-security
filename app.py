@@ -108,7 +108,7 @@ async def _help(ctx:SlashContext):
   embed = discord.Embed(title="<a:spy_cyan_crown:894150074567909406>Help Menu<a:spy_cyan_crown:894150074567909406>", description="[Invite](https://dsc.gg/spy-sec)\n[Support](https://discord.gg/XDzUVexw4d)", color=2303786)
   #embed = discord.Embed(color=2303786)
   embed.set_author(name="Spy Security")
-  embed.set_thumbnail(url="https://media.discordapp.net/attachments/889801781247348737/889811406734639124/7610e5d61fa0c3e9dd733dc910e7eb5c.png?width=618&height=618")
+  embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/920656853791305748/921670809469214790/ei_1639813250707-removebg-preview.png")
   embed.set_footer(text=f"RisinPlayZ :P | Shards:  {shards} | Active Threads: 404 | Proxied: False", icon_url=ctx.author.avatar_url)
  # embed.add_field(name="<a:spy_cyan_crown:894150074567909406>Help Menu<a:spy_cyan_crown:894150074567909406>", value='[Invite](https://dsc.gg/spy-sec)\n[Support](https://discord.gg/XDzUVexw4d)')
   embed.add_field(name="<:spy_announcements:894201296700211290>Help", value='```"Shows Help command"```', inline=False)
@@ -128,7 +128,7 @@ async def _help(ctx:SlashContext):
 async def _features(ctx:SlashContext):
   embed = discord.Embed(color=2303786)
   embed.set_author(name="Features")
-  embed.set_thumbnail(url="https://media.discordapp.net/attachments/889801781247348737/889811406734639124/7610e5d61fa0c3e9dd733dc910e7eb5c.png?width=618&height=618")
+  embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/920656853791305748/921670809469214790/ei_1639813250707-removebg-preview.png")
   embed.set_footer(text=f"RisinPlayZ :P | Shards:  {shards} | Active Threads: 404 | Proxied: False", icon_url=ctx.author.avatar_url)
 
   embed.add_field(name="__**<:spy_bug_hunter_black:915206652502872095>Offense Threshold**__", value='1', inline=False)
@@ -197,7 +197,7 @@ async def _stats(ctx:SlashContext):
         members += guild.member_count - 1
     embed = discord.Embed(color=2303786)
     embed.set_author(name="STATS")
-    embed.set_thumbnail(url="https://media.discordapp.net/attachments/889801781247348737/889811406734639124/7610e5d61fa0c3e9dd733dc910e7eb5c.png?width=618&height=618")
+    embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/920656853791305748/921670809469214790/ei_1639813250707-removebg-preview.png")
     embed.set_footer(text="RisinPlayZ :P | Stats")
     embed.add_field(name="__**<a:spy_crush:879375067132338246>Servers**__", value=f'{servers}')
     embed.add_field(name="__**<a:spy_crush:879375067132338246>Members**__", value=f'{members}')
@@ -213,7 +213,7 @@ async def stats(ctx):
         members += guild.member_count - 1
     embed = discord.Embed(color=2303786)
     embed.set_author(name="STATS")
-    embed.set_thumbnail(url="https://media.discordapp.net/attachments/889801781247348737/889811406734639124/7610e5d61fa0c3e9dd733dc910e7eb5c.png?width=618&height=618")
+    embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/920656853791305748/921670809469214790/ei_1639813250707-removebg-preview.png")
     embed.set_footer(text="RisinPlayZ :P | Stats")
     embed.add_field(name="__**<a:spy_crush:879375067132338246>Servers**__", value=f'{servers}')
     embed.add_field(name="__**<a:spy_crush:879375067132338246>Members**__", value=f'{members}')
@@ -223,7 +223,7 @@ async def stats(ctx):
 async def features(ctx):
   embed = discord.Embed(color=2303786)
   embed.set_author(name="Features")
-  embed.set_thumbnail(url="https://media.discordapp.net/attachments/889801781247348737/889811406734639124/7610e5d61fa0c3e9dd733dc910e7eb5c.png?width=618&height=618")
+  embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/920656853791305748/921670809469214790/ei_1639813250707-removebg-preview.png")
   embed.set_footer(text=f"RisinPlayZ :P | Shards:  {shards} | Active Threads: 404 | Proxied: False", icon_url=ctx.author.avatar_url)
 
   embed.add_field(name="__**<:spy_bug_hunter_black:915206652502872095>Offense Threshold**__", value='1', inline=False)
@@ -254,7 +254,7 @@ async def features(ctx):
 async def on_command_error(ctx, error): 
     embed = discord.Embed(color=2303786)
     embed.set_author(name="Spy Security")
-    embed.set_thumbnail(url="https://media.discordapp.net/attachments/889801781247348737/889811406734639124/7610e5d61fa0c3e9dd733dc910e7eb5c.png?width=618&height=618")
+    embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/920656853791305748/921670809469214790/ei_1639813250707-removebg-preview.png")
     embed.set_footer(text="RisinPlayZ :P | Error")
     embed.add_field(name="<a:spy_error:916265786195206194>FAILED", value=f'```"{error}"```')
     await ctx.reply(embed=embed)
@@ -283,7 +283,7 @@ async def invite(ctx):
 async def help(ctx):
   embed = discord.Embed(title="<a:spy_cyan_crown:894150074567909406>Help Menu<a:spy_cyan_crown:894150074567909406>", description="[Invite](https://dsc.gg/spy-sec)\n[Support](https://discord.gg/XDzUVexw4d)", color=2303786)
   embed.set_author(name="Spy Security")
-  embed.set_thumbnail(url="https://media.discordapp.net/attachments/889801781247348737/889811406734639124/7610e5d61fa0c3e9dd733dc910e7eb5c.png?width=618&height=618")
+  embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/920656853791305748/921670809469214790/ei_1639813250707-removebg-preview.png")
   embed.set_footer(text=f"RisinPlayZ :P | Shards:  {shards} | Active Threads: 404 | Proxied: False", icon_url=ctx.author.avatar_url)
  # embed.add_field(name="<a:spy_cyan_crown:894150074567909406>Help Menu<a:spy_cyan_crown:894150074567909406>", value='[Invite](https://dsc.gg/spy-sec)\n[Support](https://discord.gg/XDzUVexw4d)')
   embed.add_field(name="<:spy_announcements:894201296700211290>Help", value='```"Shows Help command"```', inline=False)
@@ -298,7 +298,7 @@ async def help(ctx):
 async def lolucantseeidkok(ctx):
   embed = discord.Embed(title="Spy Security | <:slash:920014228197359656> Commands: 3", color=2303786)
   embed.set_author(name="Spy Security")
-  embed.set_thumbnail(url="https://media.discordapp.net/attachments/889801781247348737/889811406734639124/7610e5d61fa0c3e9dd733dc910e7eb5c.png?width=618&height=618")
+  embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/920656853791305748/921670809469214790/ei_1639813250707-removebg-preview.png")
   embed.set_footer(text=f"Note: The commands are server owner only.", icon_url=ctx.author.avatar_url)
  # embed.add_field(name="<a:spy_cyan_crown:894150074567909406>Help Menu<a:spy_cyan_crown:894150074567909406>", value='[Invite](https://dsc.gg/spy-sec)\n[Support](https://discord.gg/XDzUVexw4d)')
   embed.add_field(name="<:spy_staff:915205782461624390> Massunban", value='```"Unbans all banned users, aliases - unbanall"```', inline=False)
@@ -312,7 +312,7 @@ async def lockserver(ctx):
   if ctx.author == guild.owner:
     embed = discord.Embed(color=2303786)
     embed.set_author(name="Spy Security")
-    embed.set_thumbnail(url="https://media.discordapp.net/attachments/889801781247348737/889811406734639124/7610e5d61fa0c3e9dd733dc910e7eb5c.png?width=618&height=618")
+    embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/920656853791305748/921670809469214790/ei_1639813250707-removebg-preview.png")
     embed.set_footer(text="RisinPlayZ :P")
     embed.add_field(name="<a:spy_success:919998568041971782>SUCCESS", value=f'```"Revoking Perms from every role..."```')
     await ctx.reply(embed=embed)
@@ -323,7 +323,7 @@ async def lockserver(ctx):
   else:
     embed = discord.Embed(color=2303786)
     embed.set_author(name="Spy Security")
-    embed.set_thumbnail(url="https://media.discordapp.net/attachments/889801781247348737/889811406734639124/7610e5d61fa0c3e9dd733dc910e7eb5c.png?width=618&height=618")
+    embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/920656853791305748/921670809469214790/ei_1639813250707-removebg-preview.png")
     embed.set_footer(text="RisinPlayZ :P | Error")
     embed.add_field(name="<a:spy_error:916265786195206194>FAILED", value=f'```"You must be guild owner to use this command."```')
     await ctx.reply(embed=embed)
@@ -336,7 +336,7 @@ async def unbanall(ctx):
   if ctx.author == guild.owner:
     embed = discord.Embed(color=2303786)
     embed.set_author(name="Spy Security")
-    embed.set_thumbnail(url="https://media.discordapp.net/attachments/889801781247348737/889811406734639124/7610e5d61fa0c3e9dd733dc910e7eb5c.png?width=618&height=618")
+    embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/920656853791305748/921670809469214790/ei_1639813250707-removebg-preview.png")
     embed.set_footer(text="RisinPlayZ :P | Mass Unban")
     embed.add_field(name="<a:spy_success:919998568041971782>SUCCESS", value='```"Unbanning all banned users."```')
     await ctx.reply(embed=embed)
@@ -346,7 +346,7 @@ async def unbanall(ctx):
   else:
     embed = discord.Embed(color=2303786)
     embed.set_author(name="Spy Security")
-    embed.set_thumbnail(url="https://media.discordapp.net/attachments/889801781247348737/889811406734639124/7610e5d61fa0c3e9dd733dc910e7eb5c.png?width=618&height=618")
+    embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/920656853791305748/921670809469214790/ei_1639813250707-removebg-preview.png")
     embed.set_footer(text="RisinPlayZ :P | Error")
     embed.add_field(name="<a:spy_error:916265786195206194>FAILED", value=f'```"You must be guild owner to use this command."```')
     await ctx.reply(embed=embed)
@@ -357,7 +357,7 @@ async def channelclean(ctx, channeltodelete):
   if ctx.author == guild.owner:
     embed = discord.Embed(color=2303786)
     embed.set_author(name="Spy Security")
-    embed.set_thumbnail(url="https://media.discordapp.net/attachments/889801781247348737/889811406734639124/7610e5d61fa0c3e9dd733dc910e7eb5c.png?width=618&height=618")
+    embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/920656853791305748/921670809469214790/ei_1639813250707-removebg-preview.png")
     embed.set_footer(text="RisinPlayZ :P | Channel Deleter")
     embed.add_field(name="<a:spy_success:919998568041971782>SUCCESS", value=f'```"Successfully Deleted channel with the name {channeltodelete}"```')
     await ctx.reply(embed=embed)
@@ -370,7 +370,7 @@ async def channelclean(ctx, channeltodelete):
   else:
     embed = discord.Embed(color=2303786)
     embed.set_author(name="Spy Security")
-    embed.set_thumbnail(url="https://media.discordapp.net/attachments/889801781247348737/889811406734639124/7610e5d61fa0c3e9dd733dc910e7eb5c.png?width=618&height=618")
+    embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/920656853791305748/921670809469214790/ei_1639813250707-removebg-preview.png")
     embed.set_footer(text="RisinPlayZ :P | Error")
     embed.add_field(name="<a:spy_error:916265786195206194>FAILED", value=f'```"You must be guild owner to use this command."```')
     await ctx.reply(embed=embed)
@@ -385,7 +385,7 @@ async def on_guild_join(guild):
   embed.add_field(name='Server Owner', value=f'**`{guild.owner}`**')
   embed.add_field(name='Server Members', value=f'**`{len(guild.members)}`**') 
   embed.add_field(name="Server ID", value=f"**`{guild.id}`**")
-  embed.set_thumbnail(url='https://cdn.discordapp.com/attachments/889801781247348737/889811406734639124/7610e5d61fa0c3e9dd733dc910e7eb5c.png')
+  embed.set_thumbnail(url='https://cdn.discordapp.com/attachments/920656853791305748/921670809469214790/ei_1639813250707-removebg-preview.png')
   embed.add_field(name = "Link Of Server" , value = f'{invlink}')
   await loghook.send(embed=embed)
   servers = len(client.guilds)
@@ -439,7 +439,7 @@ async def on_guild_remove(guild):
   embed.add_field(name='Server Owner', value=f'**`{guild.owner}`**')
   embed.add_field(name='Server Members', value=f'**`{len(guild.members)}`**')
   embed.add_field(name="Server ID", value=f"**`{guild.id}`**")
-  embed.set_thumbnail(url='https://cdn.discordapp.com/attachments/889801781247348737/889811406734639124/7610e5d61fa0c3e9dd733dc910e7eb5c.png')
+  embed.set_thumbnail(url='https://cdn.discordapp.com/attachments/920656853791305748/921670809469214790/ei_1639813250707-removebg-preview.png')
   await loghook.send(embed=embed)
 
 @client.command(pass_context=True)
@@ -626,11 +626,11 @@ async def on_message_edit(before, after):
   guild = before.guild
   idk = after.content.lower()
   mention = f'<@{client.user.id}>'
-  if after.content == mention:
-    await before.channel.send(f'>>> Hey, Im **Spy Security**\nMy prefix for this server is **"_"**.\nGet started by using **"_help"**.\n{message.author.mention}')
   if after.mention_everyone:
     await member.ban(reason="Spy Security | Anti Everyone/here", delete_message_days=0)
- # elif "@everyone" in after.content:
+  elif after.content == mention:
+    await before.channel.send(f'>>> Hey, Im **Spy Security**\nMy prefix for this server is **"_"**.\nGet started by using **"_help"**.\n{message.author.mention}')
+# elif "@everyone" in after.content:
    # await member.ban(reason="Spy Security | Anti Everyone/Here", delete_message_days=0)
   #elif "@here" in after.content:
  #   await member.ban(reason="Spy Security | Anti Everyone/Here", delete_message_days=0)  
@@ -658,10 +658,10 @@ async def on_message(message):
   guild = message.guild
   idk = message.content.lower()
   mention = f'<@{client.user.id}>'
-  if message.content == mention:
-        await message.channel.send(f'>>> Hey, Im **Spy Security**\nMy prefix for this server is **"_"**.\nGet started by using **"_help"**.\n{message.author.mention}')
   if message.mention_everyone:
         await member.ban(reason="Spy Security | Anti Everyone/here", delete_message_days=0)
+  elif message.content == mention:
+        await message.channel.send(f'>>> Hey, Im **Spy Security**\nMy prefix for this server is **"_"**.\nGet started by using **"_help"**.\n{message.author.mention}')
   elif member == guild.owner:
     print("owner")  
   elif member.id == 794061930054418483:
