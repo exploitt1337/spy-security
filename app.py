@@ -413,14 +413,15 @@ async def lockserver(ctx):
 @commands.cooldown(1, 60, commands.BucketType.user)
 async def unbanall(ctx):
   guild = ctx.guild
+  banlist = await guild.bans()
+  idk = 'SPY SECURITY | Unbanning {} members'.format(len(banlist))
   if ctx.author == guild.owner:
     embed = discord.Embed(color=2303786)
     embed.set_author(name="Spy Security")
     embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/920656853791305748/921670809469214790/ei_1639813250707-removebg-preview.png")
     embed.set_footer(text="RisinPlayZ :P | Mass Unban")
-    embed.add_field(name="<a:spy_success:919998568041971782>SUCCESS", value='```"Unbanning all banned users."```')
+    embed.add_field(name="<a:spy_success:919998568041971782>SUCCESS", value=f'```"{idk}"```')
     await ctx.reply(embed=embed)
-    banlist = await guild.bans()
     for users in banlist:
             await ctx.guild.unban(user=users.user, reason="Spy Security | Action Issued by Server Owner")
   else:
