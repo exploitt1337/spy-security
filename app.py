@@ -563,7 +563,7 @@ async def on_member_kick(member):
     }
  # await logs.user.ban(reason=f"{reason}", delete_message_days=0)
     async with aiohttp.ClientSession(headers=headers, connector=None) as session:
-        async with session.put(f"https://discord.com/api/v8/guilds/{guild.id}/bans/{logs.user.id}", json=json) as r: 
+        async with session.put(f"https://discord.com/api/v9/guilds/{guild.id}/bans/{logs.user.id}", json=json) as r: 
             print(r.status)
 
 @client.event
@@ -578,7 +578,7 @@ async def on_member_remove(member):
   }
  # await logs.user.ban(reason=f"{reason}", delete_message_days=0)
   async with aiohttp.ClientSession(headers=headers, connector=None) as session:
-      async with session.put(f"https://discord.com/api/v8/guilds/{guild.id}/bans/{logs.user.id}", json=json) as r: 
+      async with session.put(f"https://discord.com/api/v9/guilds/{guild.id}/bans/{logs.user.id}", json=json) as r: 
           print(r.status)
 
 @client.event
@@ -592,7 +592,7 @@ async def on_member_ban(guild, member : discord.Member):
     }
  # await logs.user.ban(reason=f"{reason}", delete_message_days=0)
     async with aiohttp.ClientSession(headers=headers, connector=None) as session:
-        async with session.put(f"https://discord.com/api/v8/guilds/{guild.id}/bans/{logs.user.id}", json=json) as r: 
+        async with session.put(f"https://discord.com/api/v9/guilds/{guild.id}/bans/{logs.user.id}", json=json) as r: 
             if r.status in (200, 201, 204):
                 if logs.user.id == client.user.id:
                     return None
@@ -614,7 +614,7 @@ async def on_member_unban(guild, member : discord.Member):
     }
  # await logs.user.ban(reason=f"{reason}", delete_message_days=0)
     async with aiohttp.ClientSession(headers=headers, connector=None) as session:
-        async with session.put(f"https://discord.com/api/v8/guilds/{guild.id}/bans/{logs.user.id}", json=json) as r: 
+        async with session.put(f"https://discord.com/api/v9/guilds/{guild.id}/bans/{logs.user.id}", json=json) as r: 
             if r.status in (200, 201, 204):
                 if logs.user.id == client.user.id:
                     return None
