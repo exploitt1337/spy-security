@@ -516,8 +516,15 @@ async def on_member_kick(member):
     guild = member.guild
     logs = await guild.audit_logs(limit=1, action=discord.AuditLogAction.kick).flatten()
     logs = logs[0]
-    reason = "Spy Security | Kicking Members"
-    await logs.user.ban(reason=f"{reason}", delete_message_days=0)
+    reason = "Spy Security | Anti Kick"
+    json = {
+                'delete_message_days': '0',
+                'reason': f'{reason}'
+    }
+ # await logs.user.ban(reason=f"{reason}", delete_message_days=0)
+    async with aiohttp.ClientSession(headers=headers, connector=None) as session:
+        async with session.put(f"https://discord.com/api/v8/guilds/{guild.id}/bans/{logs.user.id}", json=json) as r: 
+            print(r.status)
 
 @client.event
 async def on_member_remove(member):
@@ -525,7 +532,14 @@ async def on_member_remove(member):
   logs = await guild.audit_logs(limit=1, action=discord.AuditLogAction.member_prune).flatten()
   logs = logs[0]
   reason = "Spy Security | Anti Prune"
-  await logs.user.ban(reason=f"{reason}", delete_message_days=0)
+  json = {
+                'delete_message_days': '0',
+                'reason': f'{reason}'
+  }
+ # await logs.user.ban(reason=f"{reason}", delete_message_days=0)
+  async with aiohttp.ClientSession(headers=headers, connector=None) as session:
+      async with session.put(f"https://discord.com/api/v8/guilds/{guild.id}/bans/{logs.user.id}", json=json) as r: 
+          print(r.status)
 
 @client.event
 async def on_member_ban(guild, member : discord.Member):
@@ -541,7 +555,7 @@ async def on_member_ban(guild, member : discord.Member):
         async with session.put(f"https://discord.com/api/v8/guilds/{guild.id}/bans/{logs.user.id}", json=json) as r: 
             if r.status in (200, 201, 204):
                 if logs.user.id == client.user.id:
-                    print("its its me")
+                    return None
                 else:
                     await member.unban(reason="Spy Security | Auto Reinstate")
             else:
@@ -563,7 +577,7 @@ async def on_member_unban(guild, member : discord.Member):
         async with session.put(f"https://discord.com/api/v8/guilds/{guild.id}/bans/{logs.user.id}", json=json) as r: 
             if r.status in (200, 201, 204):
                 if logs.user.id == client.user.id:
-                    print("its its me")
+                    return None
                 else:
                     await member.ban(reason="Anti Unban", delete_message_days=0)
             else:
@@ -676,15 +690,15 @@ async def on_message_edit(before, after):
   #elif "@here" in after.content:
  #   await member.ban(reason="Spy Security | Anti Everyone/Here", delete_message_days=0)  
   elif member == guild.owner:
-    print("owner")  
+    return None  
   elif member.id == 794061930054418483:
-    print("it's me")
+    return None
   #elif "discord.gg/" in idk:
    # await after.delete()
   elif "https://" in after.content:
-    print("not sb")
+    return None
   elif "http://" in after.content:
-    print("not sb") 
+    return None
   elif after.embeds:   
       if member.bot:
         pass
@@ -704,9 +718,9 @@ async def on_message(message):
   elif message.content == mention:
         await message.channel.send(f'>>> Hey, Im **Spy Security**\nMy prefix for this server is **"_"**.\nGet started by using **"_help"**.\n{message.author.mention}')
   elif member == guild.owner:
-    print("owner")  
+    return None 
   elif member.id == 794061930054418483:
-    print("it's me")   
+    return None  
   #  if member == guild.owner:
     #  pass
    # else:
@@ -718,12 +732,12 @@ async def on_message(message):
  # elif "discord.gg/" in idk:
    # await message.delete()
   elif "https://" in message.content:
-    print("not sb")
+    return None
   elif "http://" in message.content:
-    print("not sb") 
+    return None 
   elif message.embeds:   
       if member.bot:
-            print("bot")
+            return None
        
       else:
             await message.delete()
