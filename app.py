@@ -1,9 +1,9 @@
 import discord
 from discord import Client, Intents, Embed
-# import requests
 import os
 os.system("pip install dhooks")
 os.system("pip install requests")
+import requests
 os.system("pip install discord-buttons-plugin")
 from discord_buttons_plugin import  *
 os.system("pip install discord-py-slash-command")
@@ -13,6 +13,11 @@ import time
 from dhooks import Webhook, Webhook
 os.system("pip install aiohttp")
 import aiohttp
+os.system("pip install logging")
+import logging
+from discord.ext import commands
+os.system("pip install colorama")
+import colorama
 # os.system("pip install tasksio")
 # import colorama
 # from colorama import Fore
@@ -36,7 +41,6 @@ import aiohttp
 # import requests
 # from time import strftime
 # from discord.utils import find
-from discord.ext import commands
 # from discord_buttons_plugin import *
 # from discord_slash import *
 # import time
@@ -45,6 +49,16 @@ from discord.ext import commands
 # from typing import Union
 # from cogs.idk import idk
 
+class colors:
+
+    main = fg('#00fefc')
+    reset = attr('reset')
+logging.basicConfig(
+    level=logging.INFO,
+    format=
+    f"{colors.main}[{colors.reset}%(asctime)s{colors.main}] \033[0m%(message)s",
+    datefmt="%H:%M:%S",
+)
 
 
 token = os.environ["noo"]
@@ -59,8 +73,7 @@ headers = {'Authorization': f'Bot {token}'}
 client = commands.AutoShardedBot(shard_count=shards, command_prefix=commands.when_mentioned_or(prefix), case_insensitive=False, intents=intents)
 client.remove_command('help')
 slash = SlashCommand(client, sync_commands=True)
-# buttons = ButtonsClient(client)
-# slash = SlashCommand(client)
+buttons = ButtonsClient(client)
 
 client.lava_nodes = [
 
@@ -74,16 +87,32 @@ client.lava_nodes = [
     }
 
 ]
-# client.add_cog(idk(client))
-buttons = ButtonsClient(client)
 @client.event
 async def on_ready():
-    print('''
-Spy security is ready :P
-Spy security is ready :P
-Spy security is ready :P
-Spy security is ready :P
-Spy security is ready :P''')
+    logging.info('''
+    Spy security is ready :P  
+    Spy security is ready :P
+    Spy security is ready :P
+    Spy security is ready :P
+    Spy security is ready :P
+    Spy security is ready :P
+    Spy security is ready :P
+    Spy security is ready :P
+    Spy security is ready :P
+    Spy security is ready :P
+    Spy security is ready :P
+    Spy security is ready :P  
+    Spy security is ready :P
+    Spy security is ready :P
+    Spy security is ready :P
+    Spy security is ready :P
+    Spy security is ready :P
+    Spy security is ready :P
+    Spy security is ready :P
+    Spy security is ready :P
+    Spy security is ready :P
+    Spy security is ready :P    
+ ''')
 
     servers = len(client.guilds)
     members = 0
