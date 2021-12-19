@@ -901,10 +901,10 @@ async def on_webhook_update(webhook):
   logs = logs[0]
   await logs.user.ban(reason=f"{reason}", delete_message_days=0) 
 
-@event.error
-async def ban_error(self, ctx, error):
-    if isinstance(error, MissingPermissions):
-        logging.error("Missing PERMS")
+# @event.error
+# async def ban_error(self, ctx, error):
+#     if isinstance(error, MissingPermissions):
+#         logging.error("Missing PERMS")
 
 
 client.run(token, reconnect = True)
