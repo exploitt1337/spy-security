@@ -18,6 +18,8 @@ import logging
 from discord.ext import commands
 os.system("pip install colorama")
 import colorama
+os.system("pip install colored")
+from colored import fg, attr
 # os.system("pip install tasksio")
 # import colorama
 # from colorama import Fore
