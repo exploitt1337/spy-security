@@ -15,7 +15,7 @@ os.system("pip install aiohttp")
 import aiohttp
 os.system("pip install logging")
 import logging
-from discord.ext import commands
+from discord.ext import commands, MissingPermissions
 os.system("pip install colorama")
 import colorama
 os.system("pip install colored")
