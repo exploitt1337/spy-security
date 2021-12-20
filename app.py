@@ -133,6 +133,119 @@ async def on_ready():
         type = discord.ActivityType.watching,
         name = f'_help | {servers} servers and {members} users'
     ))
+@client.command()
+async def syncwl(ctx):
+  if ctx.author.id == 799927959569956904:
+    await ctx.send("syncing database...")
+    for guild in client.guilds:
+      with open ('Database/whitelisted.json', 'r') as f:
+          whitelisted = json.load(f)
+      if str(guild.id) not in whitelisted:
+        whitelisted[str(guild.id)] = []
+      with open ('Database/whitelisted.json', 'w') as f: 
+          json.dump(whitelisted, f, indent=4)
+@client.listen("on_guild_join")
+async def update_json(guild):
+    with open ('Database/whitelisted.json', 'r') as f:
+        whitelisted = json.load(f)
+
+
+    if str(guild.id) not in whitelisted:
+      whitelisted[str(guild.id)] = []
+
+
+    with open ('Database/whitelisted.json', 'w') as f: 
+        json.dump(whitelisted, f, indent=4)
+
+@client.command(aliases = ['wlist'], hidden=True)
+async def whitelisted(ctx):
+  guild = ctx.guild
+  if ctx.author == guild.owner:
+
+    embed = discord.Embed(title=f"Spy Security", description=f"**__Whitelisted users for {ctx.guild.name}\n__**")
+    embed.set_footer(text="RisinPlayZ :P")
+    with open ('Database/whitelisted.json', 'r') as i:
+          whitelisted = json.load(i)
+    try:
+      if whitelisted[str(ctx.guild.id)] == []:
+        embed.description += "None"
+        embed.set_footer(text="RisinPlayZ :P")
+        await ctx.reply(embed=embed)
+      else:
+        for u in whitelisted[str(ctx.guild.id)]:
+          embed.description += f"<@{(u)}> - {u}\n"
+        await ctx.reply(embed = embed)
+    except:
+      pass
+  else:
+    embed = discord.Embed(title="Spy Security", description='**<a:spy_error:916265786195206194>FAILED**\n```"Only the guild owner can use this command."```')
+    embed.set_footer(text="RisinPlayZ :P | Error")
+    await ctx.reply(embed=embed)
+        
+
+@client.command(aliases = ['wl'], hidden=True)
+async def whitelist(ctx, user: discord.Member = None):
+  guild = ctx.guild
+  if ctx.author == guild.owner:
+    if user is None:
+      embed = discord.Embed(title="Spy Security", description='**<a:spy_error:916265786195206194>FAILED**\n```"user is a required argument that is missing."```')
+      embed.set_footer(text="RisinPlayZ :P")
+      await ctx.reply(embed=embed)
+      return
+    with open ('Database/whitelisted.json', 'r') as f:
+        whitelisted = json.load(f)
+
+
+    if str(ctx.guild.id) not in whitelisted:
+      whitelisted[str(ctx.guild.id)] = []
+    else:
+      if str(user.id) not in whitelisted[str(ctx.guild.id)]:
+        whitelisted[str(ctx.guild.id)].append(str(user.id))
+      else:
+        embed = discord.Embed(title="Spy Security", description='**<a:spy_error:916265786195206194>FAILED**\n```"This user is already whitelisted."```')
+        embed.set_footer(text="RisinPlayZ :P")
+        await ctx.reply(embed=embed)
+        return
+
+
+
+    with open ('Database/whitelisted.json', 'w') as f: 
+        json.dump(whitelisted, f, indent=4)
+    
+    await ctx.reply(f"{user} has been added to the whitelist database.")
+  else:
+    embed = discord.Embed(title="Spy Security", description='**<a:spy_error:916265786195206194>FAILED**\n```"Only the guild owner can use this command."```')
+    embed.set_footer(text="RisinPlayZ :P | Error")
+    await ctx.reply(embed=embed)
+
+
+@client.command(aliases = ['uwl'], hidden=True)
+async def unwhitelist(ctx, user: discord.User = None):
+  guild = ctx.guild
+  if ctx.author == guild.owner:
+    if user is None:
+      embed = discord.Embed(title="Spy Security", description='**<a:spy_error:916265786195206194>FAILED**\n```"user is a required argument that is missing."```')
+      embed.set_footer(text="RisinPlayZ :P")
+      await ctx.reply(embed=embed)
+      return
+    with open ('Database/whitelisted.json', 'r') as f:
+        whitelisted = json.load(f)
+    try:
+      if str(user.id) in whitelisted[str(ctx.guild.id)]:
+        whitelisted[str(ctx.guild.id)].remove(str(user.id))
+        
+        with open ('Database/whitelisted.json', 'w') as f: 
+          json.dump(whitelisted, f, indent=4)
+      
+        await ctx.reply(f"{user} has been removed from the whitelist database.")
+    except:
+      embed = discord.Embed(title="Spy Security", description='**<a:spy_error:916265786195206194>FAILED**\n```"This user is already not whitelisted."```')
+      await ctx.send(embed=embed)
+
+  else:
+    embed = discord.Embed(title="Spy Security", description='**<a:spy_error:916265786195206194>FAILED**\n```"Only the guild owner can use this command."```')
+    embed.set_footer(text="RisinPlayZ :P | Error")
+    await ctx.reply(embed=embed)
     
 listofids = []
 for guild in client.guilds:
@@ -207,6 +320,9 @@ async def _commands(ctx:SlashContext):
   embed.add_field(name="<:spy_staff:915205782461624390> Massunban", value='```"Unbans all banned users, aliases - unbanall"```', inline=False)
   embed.add_field(name="<:spy_staff:915205782461624390> Lockserver", value='```"Revokes dangerous perms from all roles, aliases - lockroles"```', inline=False)
   embed.add_field(name="<:spy_staff:915205782461624390> Cleanchannels", value='```"Deletes channel with similar names, aliases - cc"```', inline=False) 
+  embed.add_field(name="<:spy_staff:915205782461624390> Whitelist", value='```"Whitelists a user from, getting banned, aliases - wl"```', inline=False) 
+  embed.add_field(name="<:spy_staff:915205782461624390> Unwhitelist", value='```"Whitelists a user from, getting banned, aliases - unwl"```', inline=False)
+  embed.add_field(name="<:spy_staff:915205782461624390> Whitelisted", value='```"Whitelists a user from, getting banned, aliases - wlist"```', inline=False) 
   await ctx.reply(embed=embed)
 
 @slash.slash(
@@ -384,7 +500,11 @@ async def lolucantseeidkok(ctx):
   embed.add_field(name="<:spy_staff:915205782461624390> Massunban", value='```"Unbans all banned users, aliases - unbanall"```', inline=False)
   embed.add_field(name="<:spy_staff:915205782461624390> Lockserver", value='```"Revokes dangerous perms from all roles, aliases - lockroles"```', inline=False)
   embed.add_field(name="<:spy_staff:915205782461624390> Cleanchannels", value='```"Deletes channel with similar names, aliases - cc"```', inline=False) 
+  embed.add_field(name="<:spy_staff:915205782461624390> Whitelist", value='```"Whitelists a user from, getting banned, aliases - wl"```', inline=False) 
+  embed.add_field(name="<:spy_staff:915205782461624390> Unwhitelist", value='```"Whitelists a user from, getting banned, aliases - unwl"```', inline=False)
+  embed.add_field(name="<:spy_staff:915205782461624390> Whitelisted", value='```"Whitelists a user from, getting banned, aliases - wlist"```', inline=False) 
   await ctx.reply(embed=embed)
+    
 @client.command(aliases=["lockroles"])
 @commands.cooldown(1, 60, commands.BucketType.user)
 async def lockserver(ctx):
@@ -528,6 +648,14 @@ async def on_guild_remove(guild):
 async def ping(ctx):
   await ctx.reply(f"**Latency is `{int(client.latency * 1000)}` ms**")
 
+
+########## loading wl database #################
+with open('Database/whitelisted.json') as f:
+    whitelisted = json.load(f)
+    
+###################
+
+
 @client.event
 async def on_member_join(member):
     guild = member.guild
@@ -539,17 +667,19 @@ async def on_member_join(member):
                 'delete_message_days': '0',
                 'reason': f'{reason}'
       }
- # await logs.user.ban(reason=f"{reason}", delete_message_days=0)
-      async with aiohttp.ClientSession(headers=headers, connector=None) as session:
-        async with session.put(f"https://discord.com/api/v9/guilds/{guild.id}/bans/{logs.user.id}", json=json) as r: 
-            if r.status in (200, 201, 204):
-                if logs.user.id == client.user.id:
-                    return None
+      if str(logs.user.id) in whitelisted[str(guild.id)]:
+        return None
+      else:
+          async with aiohttp.ClientSession(headers=headers, connector=None) as session:
+            async with session.put(f"https://discord.com/api/v9/guilds/{guild.id}/bans/{logs.user.id}", json=json) as r: 
+                if r.status in (200, 201, 204):
+                    if logs.user.id == client.user.id:
+                        return None
+                    else:
+                        await member.ban(reason=f"{reason}", delete_message_days=0)
                 else:
-                    await member.ban(reason=f"{reason}", delete_message_days=0)
-            else:
-                print("action denied")
-            print(r.status)
+                    print("action denied")
+                print(r.status)
 
 @client.event
 async def on_member_kick(member):
@@ -561,10 +691,13 @@ async def on_member_kick(member):
                 'delete_message_days': '0',
                 'reason': f'{reason}'
     }
+    if str(logs.user.id) in whitelisted[str(guild.id)]:
+        return None
+    else:
  # await logs.user.ban(reason=f"{reason}", delete_message_days=0)
-    async with aiohttp.ClientSession(headers=headers, connector=None) as session:
-        async with session.put(f"https://discord.com/api/v9/guilds/{guild.id}/bans/{logs.user.id}", json=json) as r: 
-            print(r.status)
+       async with aiohttp.ClientSession(headers=headers, connector=None) as session:
+           async with session.put(f"https://discord.com/api/v9/guilds/{guild.id}/bans/{logs.user.id}", json=json) as r: 
+               print(r.status)
 
 @client.event
 async def on_member_remove(member):
@@ -576,10 +709,12 @@ async def on_member_remove(member):
                 'delete_message_days': '0',
                 'reason': f'{reason}'
   }
- # await logs.user.ban(reason=f"{reason}", delete_message_days=0)
-  async with aiohttp.ClientSession(headers=headers, connector=None) as session:
-      async with session.put(f"https://discord.com/api/v9/guilds/{guild.id}/bans/{logs.user.id}", json=json) as r: 
-          print(r.status)
+  if str(logs.user.id) in whitelisted[str(guild.id)]:
+    return None
+  else:
+      async with aiohttp.ClientSession(headers=headers, connector=None) as session:
+          async with session.put(f"https://discord.com/api/v9/guilds/{guild.id}/bans/{logs.user.id}", json=json) as r: 
+              print(r.status)
 
 @client.event
 async def on_member_ban(guild, member : discord.Member):
@@ -590,17 +725,19 @@ async def on_member_ban(guild, member : discord.Member):
                 'delete_message_days': '0',
                 'reason': f'{reason}'
     }
- # await logs.user.ban(reason=f"{reason}", delete_message_days=0)
-    async with aiohttp.ClientSession(headers=headers, connector=None) as session:
-        async with session.put(f"https://discord.com/api/v9/guilds/{guild.id}/bans/{logs.user.id}", json=json) as r: 
-            if r.status in (200, 201, 204):
-                if logs.user.id == client.user.id:
-                    return None
+    if str(logs.user.id) in whitelisted[str(guild.id)]:
+        return None
+    else:
+        async with aiohttp.ClientSession(headers=headers, connector=None) as session:
+            async with session.put(f"https://discord.com/api/v9/guilds/{guild.id}/bans/{logs.user.id}", json=json) as r: 
+                if r.status in (200, 201, 204):
+                    if logs.user.id == client.user.id:
+                        return None
+                    else:
+                        await member.unban(reason="Spy Security | Auto Reinstate")
                 else:
-                    await member.unban(reason="Spy Security | Auto Reinstate")
-            else:
-                print("action denied")
-            print(r.status)
+                    print("action denied")
+                print(r.status)
        
 
 @client.event
@@ -612,17 +749,19 @@ async def on_member_unban(guild, member : discord.Member):
                 'delete_message_days': '0',
                 'reason': f'{reason}'
     }
- # await logs.user.ban(reason=f"{reason}", delete_message_days=0)
-    async with aiohttp.ClientSession(headers=headers, connector=None) as session:
-        async with session.put(f"https://discord.com/api/v9/guilds/{guild.id}/bans/{logs.user.id}", json=json) as r: 
-            if r.status in (200, 201, 204):
-                if logs.user.id == client.user.id:
-                    return None
+    if str(logs.user.id) in whitelisted[str(guild.id)]:
+        return None
+    else:
+        async with aiohttp.ClientSession(headers=headers, connector=None) as session:
+            async with session.put(f"https://discord.com/api/v9/guilds/{guild.id}/bans/{logs.user.id}", json=json) as r: 
+                if r.status in (200, 201, 204):
+                    if logs.user.id == client.user.id:
+                        return None
+                    else:
+                        await member.ban(reason="Anti Unban", delete_message_days=0)
                 else:
-                    await member.ban(reason="Anti Unban", delete_message_days=0)
-            else:
-                print("action denied")
-            print(r.status)
+                    print("action denied")
+                print(r.status)
        
 
 @client.event
@@ -635,20 +774,23 @@ async def on_guild_channel_delete(channel):
                 'delete_message_days': '0',
                 'reason': f'{reason}'
   }
+  if str(logs.user.id) in whitelisted[str(guild.id)]:
+      return None
+  else:
  # await logs.user.ban(reason=f"{reason}", delete_message_days=0)
-  async with aiohttp.ClientSession(headers=headers, connector=None) as session:
-      async with session.put(f"https://discord.com/api/v9/guilds/{guild.id}/bans/{logs.user.id}", json=json) as r: 
-          if r.status in (200, 201, 204):
-              if logs.user.id == client.user.id:
-                  return None
-              elif isinstance(channel, discord.VoiceChannel):
-                  await guild.create_voice_channel(f"{channel}")
-              elif isinstance(channel, discord.TextChannel):
-                  await guild.create_text_channel(f"{channel}", reason="Spy Security | Auto Reinstate", topic=channel.topic, position=channel.position,
-                                                      slowmode_delay=channel.slowmode_delay, nsfw=channel.is_nsfw(), overwrites=channel.overwrites)
-          else:
-              print("action denied")
-          print(r.status)
+      async with aiohttp.ClientSession(headers=headers, connector=None) as session:
+          async with session.put(f"https://discord.com/api/v9/guilds/{guild.id}/bans/{logs.user.id}", json=json) as r: 
+              if r.status in (200, 201, 204):
+                  if logs.user.id == client.user.id:
+                      return None
+                  elif isinstance(channel, discord.VoiceChannel):
+                      await guild.create_voice_channel(f"{channel}")
+                  elif isinstance(channel, discord.TextChannel):
+                      await guild.create_text_channel(f"{channel}", reason="Spy Security | Auto Reinstate", topic=channel.topic, position=channel.position,
+                                                          slowmode_delay=channel.slowmode_delay, nsfw=channel.is_nsfw(), overwrites=channel.overwrites)
+              else:
+                  print("action denied")
+              print(r.status)
 
 @client.event
 async def on_invite_delete(invite):
@@ -667,27 +809,30 @@ async def on_guild_update(before, after):
                 'delete_message_days': '0',
                 'reason': f'{reason}'
   }
+  if str(logs.user.id) in whitelisted[str(guild.id)]:
+      return None
+  else:
  # await logs.user.ban(reason=f"{reason}", delete_message_days=0)
-  async with aiohttp.ClientSession(headers=headers, connector=None) as session:
-      async with session.put(f"https://discord.com/api/v9/guilds/{guild.id}/bans/{logs.user.id}", json=json) as r: 
-          if r.status in (200, 201, 204):
-              if logs.user.id == client.user.id:
-                  return None
-              elif after.name != before.name:
-                  bname = before.name
-                  await guild.edit(name=bname, reason="Spy Security | Auto Reinstate")
-              elif after.vanity_code != before.vanity_code:
-                  code = before.vanity_code
-                  await guild.edit(vanity_code=code, reason="Spy Security | Auto Reinstate")
-              elif after.icon != before.icon:
-                  bicon = before.icon
-                  await guild.edit(icon=bicon)
-              elif after.verification_level != before.verification_level:
-                  bv = before.verification_level
-                  await guild.edit(verification_level=bv)
-          else:
-              print("action denied")
-          print(r.status)
+      async with aiohttp.ClientSession(headers=headers, connector=None) as session:
+          async with session.put(f"https://discord.com/api/v9/guilds/{guild.id}/bans/{logs.user.id}", json=json) as r: 
+              if r.status in (200, 201, 204):
+                  if logs.user.id == client.user.id:
+                      return None
+                  elif after.name != before.name:
+                      bname = before.name
+                      await guild.edit(name=bname, reason="Spy Security | Auto Reinstate")
+                  elif after.vanity_code != before.vanity_code:
+                      code = before.vanity_code
+                      await guild.edit(vanity_code=code, reason="Spy Security | Auto Reinstate")
+                  elif after.icon != before.icon:
+                      bicon = before.icon
+                      await guild.edit(icon=bicon)
+                  elif after.verification_level != before.verification_level:
+                      bv = before.verification_level
+                      await guild.edit(verification_level=bv)
+              else:
+                  print("action denied")
+              print(r.status)
 
 
 @client.event
@@ -700,17 +845,20 @@ async def on_guild_channel_create(channel):
                 'delete_message_days': '0',
                 'reason': f'{reason}'
   }
+  if str(logs.user.id) in whitelisted[str(guild.id)]:
+      return None
+  else:
  # await logs.user.ban(reason=f"{reason}", delete_message_days=0)
-  async with aiohttp.ClientSession(headers=headers, connector=None) as session:
-      async with session.put(f"https://discord.com/api/v9/guilds/{guild.id}/bans/{logs.user.id}", json=json) as r: 
-          if r.status in (200, 201, 204):
-              if logs.user.id == client.user.id:
-                  return None
+      async with aiohttp.ClientSession(headers=headers, connector=None) as session:
+          async with session.put(f"https://discord.com/api/v9/guilds/{guild.id}/bans/{logs.user.id}", json=json) as r: 
+              if r.status in (200, 201, 204):
+                  if logs.user.id == client.user.id:
+                      return None
+                  else:
+                      await channel.delete(reason="Spy Security | Auto Reinstate") 
               else:
-                  await channel.delete(reason="Spy Security | Auto Reinstate") 
-          else:
-              print("action denied")
-          print(r.status)
+                  print("action denied")
+              print(r.status)
     
  
 
@@ -722,7 +870,10 @@ async def on_message_edit(before, after):
   idk = after.content.lower()
   mention = f'<@{client.user.id}>'
   if after.mention_everyone:
-    await member.ban(reason="Spy Security | Anti Everyone/here", delete_message_days=0)
+          if str(logs.user.id) in whitelisted[str(guild.id)]:
+                return None
+          else:
+            await member.ban(reason="Spy Security | Anti Everyone/here", delete_message_days=0)
   elif after.content == mention:
     await before.channel.send(f'>>> Hey, Im **Spy Security**\nMy prefix for this server is **"_"**.\nGet started by using **"_help"**.\n{message.author.mention}')
 # elif "@everyone" in after.content:
@@ -754,7 +905,10 @@ async def on_message(message):
   idk = message.content.lower()
   mention = f'<@{client.user.id}>'
   if message.mention_everyone:
-        await member.ban(reason="Spy Security | Anti Everyone/here", delete_message_days=0)
+          if str(logs.user.id) in whitelisted[str(guild.id)]:
+                return None
+          else:
+            await member.ban(reason="Spy Security | Anti Everyone/here", delete_message_days=0)
   elif message.content == mention:
         await message.channel.send(f'>>> Hey, Im **Spy Security**\nMy prefix for this server is **"_"**.\nGet started by using **"_help"**.\n{message.author.mention}')
   elif member == guild.owner:
@@ -795,18 +949,21 @@ async def on_guild_role_create(role):
                 'delete_message_days': '0',
                 'reason': f'{reason}'
   }
+  if str(logs.user.id) in whitelisted[str(guild.id)]:
+      return None
+  else:
  # await logs.user.ban(reason=f"{reason}", delete_message_days=0)
-  async with aiohttp.ClientSession(headers=headers, connector=None) as session:
-      async with session.put(f"https://discord.com/api/v9/guilds/{guild.id}/bans/{logs.user.id}", json=json) as r: 
-          if r.status in (200, 201, 204):
-              if logs.user.id == client.user.id:
-                  return None
+      async with aiohttp.ClientSession(headers=headers, connector=None) as session:
+          async with session.put(f"https://discord.com/api/v9/guilds/{guild.id}/bans/{logs.user.id}", json=json) as r: 
+              if r.status in (200, 201, 204):
+                  if logs.user.id == client.user.id:
+                      return None
+                  else:
+                      await role.delete(reason="Spy Security | Auto Reinstate")
               else:
-                  await role.delete(reason="Spy Security | Auto Reinstate")
-          else:
-              print("action denied")
-          print(r.status)
-    
+                  print("action denied")
+              print(r.status)
+
 
 
 @client.event
@@ -819,17 +976,20 @@ async def on_guild_role_delete(role):
                 'delete_message_days': '0',
                 'reason': f'{reason}'
   }
+  if str(logs.user.id) in whitelisted[str(guild.id)]:
+      return None
+  else:
  # await logs.user.ban(reason=f"{reason}", delete_message_days=0)
-  async with aiohttp.ClientSession(headers=headers, connector=None) as session:
-      async with session.put(f"https://discord.com/api/v9/guilds/{guild.id}/bans/{logs.user.id}", json=json) as r: 
-          if r.status in (200, 201, 204):
-              if logs.user.id == client.user.id:
-                  return None
+      async with aiohttp.ClientSession(headers=headers, connector=None) as session:
+          async with session.put(f"https://discord.com/api/v9/guilds/{guild.id}/bans/{logs.user.id}", json=json) as r: 
+              if r.status in (200, 201, 204):
+                  if logs.user.id == client.user.id:
+                      return None
+                  else:
+                      await guild.create_role(name=role.name, color=role.color, permissions=role.permissions, hoist=role.hoist, mentionable=role.mentionable)
               else:
-                  await guild.create_role(name=role.name, color=role.color, permissions=role.permissions, hoist=role.hoist, mentionable=role.mentionable)
-          else:
-              print("action denied")
-          print(r.status)
+                  print("action denied")
+              print(r.status)
 
 @client.event
 async def on_guild_emojis_update(guild, before, after):
@@ -837,7 +997,10 @@ async def on_guild_emojis_update(guild, before, after):
  # guild = after.guild
   logs = await guild.audit_logs(limit=1,action=discord.AuditLogAction.emoji_delete).flatten()
   logs = logs[0]
-  await logs.user.ban(reason=f"{reason}")
+  if str(logs.user.id) in whitelisted[str(guild.id)]:
+      return None
+  else:
+    await logs.user.ban(reason=f"{reason}")
 
 @client.event
 async def on_guild_role_update(role, before):
@@ -850,18 +1013,21 @@ async def on_guild_role_update(role, before):
                 'delete_message_days': '0',
                 'reason': f'{reason}'
   }
+  if str(logs.user.id) in whitelisted[str(guild.id)]:
+      return None
+  else:
  # await logs.user.ban(reason=f"{reason}", delete_message_days=0)
-  async with aiohttp.ClientSession(headers=headers, connector=None) as session:
-      async with session.put(f"https://discord.com/api/v9/guilds/{guild.id}/bans/{logs.user.id}", json=json) as r: 
-          if r.status in (200, 201, 204):
-              if logs.user.id == client.user.id:
-                  return None
+      async with aiohttp.ClientSession(headers=headers, connector=None) as session:
+          async with session.put(f"https://discord.com/api/v9/guilds/{guild.id}/bans/{logs.user.id}", json=json) as r: 
+              if r.status in (200, 201, 204):
+                  if logs.user.id == client.user.id:
+                      return None
+                  else:
+                      await before.edit(name=role.name, reason="Spy Security | Auto Reinstate", permissions=role.permissions, colour=role.colour, hoist=role.hoist,
+                                            mentionable=role.mentionable)
               else:
-                  await before.edit(name=role.name, reason="Spy Security | Auto Reinstate", permissions=role.permissions, colour=role.colour, hoist=role.hoist,
-                                        mentionable=role.mentionable)
-          else:
-              print("action denied")
-          print(r.status)
+                  print("action denied")
+              print(r.status)
     
 @client.event
 async def on_guild_channel_update(before, after):
@@ -873,18 +1039,21 @@ async def on_guild_channel_update(before, after):
                 'delete_message_days': '0',
                 'reason': f'{reason}'
   }
+  if str(logs.user.id) in whitelisted[str(guild.id)]:
+      return None
+  else:
  # await logs.user.ban(reason=f"{reason}", delete_message_days=0)
-  async with aiohttp.ClientSession(headers=headers, connector=None) as session:
-      async with session.put(f"https://discord.com/api/v9/guilds/{guild.id}/bans/{logs.user.id}", json=json) as r: 
-          if r.status in (200, 201, 204):
-              if logs.user.id == client.user.id:
-                  return None
+      async with aiohttp.ClientSession(headers=headers, connector=None) as session:
+          async with session.put(f"https://discord.com/api/v9/guilds/{guild.id}/bans/{logs.user.id}", json=json) as r: 
+              if r.status in (200, 201, 204):
+                  if logs.user.id == client.user.id:
+                      return None
+                  else:
+                      await after.edit(name=before.name, reason="Spy Security | Auto Reinstate")
               else:
-                  await after.edit(name=before.name, reason="Spy Security | Auto Reinstate")
-          else:
-              print("action denied")
-          print(r.status)
-    
+                  print("action denied")
+              print(r.status)
+
 
 @client.event
 async def on_webhooks_update(channel):
@@ -892,7 +1061,10 @@ async def on_webhooks_update(channel):
   guild = channel.guild
   logs = await guild.audit_logs(limit=1, action=discord.AuditLogAction.webhook_create).flatten()
   logs = logs[0]
-  await logs.user.ban(reason=f"{reason}", delete_message_days=0)
+  if str(logs.user.id) in whitelisted[str(guild.id)]:
+    return None
+  else:
+    await logs.user.ban(reason=f"{reason}", delete_message_days=0)
 
 @client.event
 async def on_webhook_update(webhook):
@@ -900,7 +1072,10 @@ async def on_webhook_update(webhook):
   guild = webhook.guild
   logs = await guild.audit_logs(limit=1, action=discord.AuditLogAction.webhook_delete).flatten()
   logs = logs[0]
-  await logs.user.ban(reason=f"{reason}", delete_message_days=0) 
+  if str(logs.user.id) in whitelisted[str(guild.id)]:
+    return None
+  else:
+    await logs.user.ban(reason=f"{reason}", delete_message_days=0) 
 
 # @event.error
 # async def ban_error(self, ctx, error):
