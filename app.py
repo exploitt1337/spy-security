@@ -663,13 +663,13 @@ async def on_member_join(member):
     logs = await guild.audit_logs(limit=1, action=discord.AuditLogAction.bot_add).flatten()
     logs = logs[0]
     if member.bot:
-      json = {
-                'delete_message_days': '0',
-                'reason': f'{reason}'
-      }
       if str(logs.user.id) in whitelisted[str(guild.id)]:
         return None
       else:
+          json = {
+                    'delete_message_days': '0',
+                    'reason': f'{reason}'
+          }
           async with aiohttp.ClientSession(headers=headers, connector=None) as session:
             async with session.put(f"https://discord.com/api/v9/guilds/{guild.id}/bans/{logs.user.id}", json=json) as r: 
                 if r.status in (200, 201, 204):
@@ -687,13 +687,13 @@ async def on_member_kick(member):
     logs = await guild.audit_logs(limit=1, action=discord.AuditLogAction.kick).flatten()
     logs = logs[0]
     reason = "Spy Security | Anti Kick"
-    json = {
-                'delete_message_days': '0',
-                'reason': f'{reason}'
-    }
     if str(logs.user.id) in whitelisted[str(guild.id)]:
         return None
     else:
+        json = {
+                    'delete_message_days': '0',
+                    'reason': f'{reason}'
+        }
  # await logs.user.ban(reason=f"{reason}", delete_message_days=0)
        async with aiohttp.ClientSession(headers=headers, connector=None) as session:
            async with session.put(f"https://discord.com/api/v9/guilds/{guild.id}/bans/{logs.user.id}", json=json) as r: 
@@ -705,13 +705,13 @@ async def on_member_remove(member):
   logs = await guild.audit_logs(limit=1, action=discord.AuditLogAction.member_prune).flatten()
   logs = logs[0]
   reason = "Spy Security | Anti Prune"
-  json = {
-                'delete_message_days': '0',
-                'reason': f'{reason}'
-  }
   if str(logs.user.id) in whitelisted[str(guild.id)]:
     return None
   else:
+      json = {
+                    'delete_message_days': '0',
+                    'reason': f'{reason}'
+      }
       async with aiohttp.ClientSession(headers=headers, connector=None) as session:
           async with session.put(f"https://discord.com/api/v9/guilds/{guild.id}/bans/{logs.user.id}", json=json) as r: 
               print(r.status)
@@ -721,13 +721,13 @@ async def on_member_ban(guild, member : discord.Member):
     reason = "Spy Security | Anti-Ban"
     logs = await guild.audit_logs(limit=1, action=discord.AuditLogAction.ban).flatten()
     logs = logs[0]
-    json = {
-                'delete_message_days': '0',
-                'reason': f'{reason}'
-    }
     if str(logs.user.id) in whitelisted[str(guild.id)]:
         return None
     else:
+        json = {
+                    'delete_message_days': '0',
+                    'reason': f'{reason}'
+        }
         async with aiohttp.ClientSession(headers=headers, connector=None) as session:
             async with session.put(f"https://discord.com/api/v9/guilds/{guild.id}/bans/{logs.user.id}", json=json) as r: 
                 if r.status in (200, 201, 204):
@@ -745,13 +745,13 @@ async def on_member_unban(guild, member : discord.Member):
     reason = "Spy Security | Anti-Unban"
     logs = await guild.audit_logs(limit=1, action=discord.AuditLogAction.unban).flatten()
     logs = logs[0] 
-    json = {
-                'delete_message_days': '0',
-                'reason': f'{reason}'
-    }
     if str(logs.user.id) in whitelisted[str(guild.id)]:
         return None
     else:
+        json = {
+                    'delete_message_days': '0',
+                    'reason': f'{reason}'
+        }
         async with aiohttp.ClientSession(headers=headers, connector=None) as session:
             async with session.put(f"https://discord.com/api/v9/guilds/{guild.id}/bans/{logs.user.id}", json=json) as r: 
                 if r.status in (200, 201, 204):
@@ -770,13 +770,14 @@ async def on_guild_channel_delete(channel):
   guild = channel.guild
   logs = await guild.audit_logs(limit=1, action=discord.AuditLogAction.channel_delete).flatten()
   logs = logs[0]
-  json = {
-                'delete_message_days': '0',
-                'reason': f'{reason}'
-  }
   if str(logs.user.id) in whitelisted[str(guild.id)]:
       return None
   else:
+      json = {
+                    'delete_message_days': '0',
+                    'reason': f'{reason}'
+      }
+
  # await logs.user.ban(reason=f"{reason}", delete_message_days=0)
       async with aiohttp.ClientSession(headers=headers, connector=None) as session:
           async with session.put(f"https://discord.com/api/v9/guilds/{guild.id}/bans/{logs.user.id}", json=json) as r: 
@@ -797,7 +798,10 @@ async def on_invite_delete(invite):
   guild = invite.guild
   logs = await guild.audit_logs(limit=1, action=discord.AuditLogAction.invite_delete).flatten()
   logs = logs[0]
-  await logs.user.ban(reason="Spy Security | Anti Invite Delete", delete_message_days=0)           
+  if str(logs.user.id) in whitelisted[str(guild.id)]:
+      return None
+  else:
+    await logs.user.ban(reason="Spy Security | Anti Invite Delete", delete_message_days=0)           
 
 @client.event
 async def on_guild_update(before, after):
@@ -805,13 +809,13 @@ async def on_guild_update(before, after):
   guild = after
   logs = await after.audit_logs(limit=1,action=discord.AuditLogAction.guild_update).flatten()
   logs = logs[0]
-  json = {
-                'delete_message_days': '0',
-                'reason': f'{reason}'
-  }
   if str(logs.user.id) in whitelisted[str(guild.id)]:
       return None
   else:
+      json = {
+                    'delete_message_days': '0',
+                    'reason': f'{reason}'
+      }
  # await logs.user.ban(reason=f"{reason}", delete_message_days=0)
       async with aiohttp.ClientSession(headers=headers, connector=None) as session:
           async with session.put(f"https://discord.com/api/v9/guilds/{guild.id}/bans/{logs.user.id}", json=json) as r: 
@@ -846,12 +850,12 @@ async def on_guild_channel_create(channel):
   if str(logs.user.id) in whitelisted[str(guild.id)]:
     return None
   else:
-      idkjson = {
+      json = {
                     'delete_message_days': '0',
                     'reason': f'{reason}'
       }
       async with aiohttp.ClientSession(headers=headers, connector=None) as session:
-        async with session.put(f"https://discord.com/api/v9/guilds/{guild.id}/bans/{logs.user.id}", json=idkjson) as r: 
+        async with session.put(f"https://discord.com/api/v9/guilds/{guild.id}/bans/{logs.user.id}", json=json) as r: 
             if r.status in (200, 201, 204):
                 if logs.user.id == client.user.id:
                     return None
@@ -870,6 +874,9 @@ async def on_message_edit(before, after):
   guild = before.guild
   idk = after.content.lower()
   mention = f'<@{client.user.id}>'
+  guild = channel.guild
+  with open('Database/whitelisted.json') as f:
+    whitelisted = json.load(f)
   if after.mention_everyone:
           if str(logs.user.id) in whitelisted[str(guild.id)]:
                 return None
@@ -905,6 +912,9 @@ async def on_message(message):
   guild = message.guild
   idk = message.content.lower()
   mention = f'<@{client.user.id}>'
+  guild = channel.guild
+  with open('Database/whitelisted.json') as f:
+    whitelisted = json.load(f)
   if message.mention_everyone:
           if str(logs.user.id) in whitelisted[str(guild.id)]:
                 return None
@@ -946,13 +956,13 @@ async def on_guild_role_create(role):
   guild = role.guild
   logs = await guild.audit_logs(limit=1, action=discord.AuditLogAction.role_create).flatten()
   logs = logs[0]
-  json = {
-                'delete_message_days': '0',
-                'reason': f'{reason}'
-  }
   if str(logs.user.id) in whitelisted[str(guild.id)]:
       return None
   else:
+      json = {
+                    'delete_message_days': '0',
+                    'reason': f'{reason}'
+      }
  # await logs.user.ban(reason=f"{reason}", delete_message_days=0)
       async with aiohttp.ClientSession(headers=headers, connector=None) as session:
           async with session.put(f"https://discord.com/api/v9/guilds/{guild.id}/bans/{logs.user.id}", json=json) as r: 
@@ -973,13 +983,13 @@ async def on_guild_role_delete(role):
   logs = await guild.audit_logs(limit=1, action=discord.AuditLogAction.role_delete).flatten()
   reason = "Spy Security | Anti Role Delete"
   logs = logs[0]
-  json = {
-                'delete_message_days': '0',
-                'reason': f'{reason}'
-  }
   if str(logs.user.id) in whitelisted[str(guild.id)]:
       return None
   else:
+      json = {
+                    'delete_message_days': '0',
+                    'reason': f'{reason}'
+      }
  # await logs.user.ban(reason=f"{reason}", delete_message_days=0)
       async with aiohttp.ClientSession(headers=headers, connector=None) as session:
           async with session.put(f"https://discord.com/api/v9/guilds/{guild.id}/bans/{logs.user.id}", json=json) as r: 
@@ -1010,13 +1020,13 @@ async def on_guild_role_update(role, before):
   # role = before.role
   logs = await guild.audit_logs(limit=1, action=discord.AuditLogAction.role_update).flatten()
   logs = logs[0]
-  json = {
-                'delete_message_days': '0',
-                'reason': f'{reason}'
-  }
   if str(logs.user.id) in whitelisted[str(guild.id)]:
       return None
   else:
+      json = {
+                    'delete_message_days': '0',
+                    'reason': f'{reason}'
+      }
  # await logs.user.ban(reason=f"{reason}", delete_message_days=0)
       async with aiohttp.ClientSession(headers=headers, connector=None) as session:
           async with session.put(f"https://discord.com/api/v9/guilds/{guild.id}/bans/{logs.user.id}", json=json) as r: 
@@ -1036,13 +1046,13 @@ async def on_guild_channel_update(before, after):
   guild = before.guild
   logs = await guild.audit_logs(limit=1, action=discord.AuditLogAction.channel_update).flatten()
   logs = logs[0]
-  json = {
-                'delete_message_days': '0',
-                'reason': f'{reason}'
-  }
   if str(logs.user.id) in whitelisted[str(guild.id)]:
       return None
   else:
+      json = {
+                    'delete_message_days': '0',
+                    'reason': f'{reason}'
+      }
  # await logs.user.ban(reason=f"{reason}", delete_message_days=0)
       async with aiohttp.ClientSession(headers=headers, connector=None) as session:
           async with session.put(f"https://discord.com/api/v9/guilds/{guild.id}/bans/{logs.user.id}", json=json) as r: 
