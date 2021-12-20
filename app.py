@@ -847,20 +847,23 @@ async def on_guild_channel_create(channel):
                 'delete_message_days': '0',
                 'reason': f'{reason}'
   }
-  if str(logs.user.id) in whitelisted[str(guild.id)]:
-      return None
-  else:
- # await logs.user.ban(reason=f"{reason}", delete_message_days=0)
-      async with aiohttp.ClientSession(headers=headers, connector=None) as session:
-          async with session.put(f"https://discord.com/api/v9/guilds/{guild.id}/bans/{logs.user.id}", json=idkjson) as r: 
-              if r.status in (200, 201, 204):
-                  if logs.user.id == client.user.id:
-                      return None
+  try: 
+        
+      if str(logs.user.id) in whitelisted[str(guild.id)]:
+          return None
+      else:
+          async with aiohttp.ClientSession(headers=headers, connector=None) as session:
+              async with session.put(f"https://discord.com/api/v9/guilds/{guild.id}/bans/{logs.user.id}", json=idkjson) as r: 
+                  if r.status in (200, 201, 204):
+                      if logs.user.id == client.user.id:
+                          return None
+                      else:
+                          await channel.delete(reason="Spy Security | Auto Reinstate") 
                   else:
-                      await channel.delete(reason="Spy Security | Auto Reinstate") 
-              else:
-                  print("action denied")
-              print(r.status)
+                      print("action denied")
+                  print(r.status)
+    except:
+        pass
     
  
 
