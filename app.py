@@ -843,7 +843,7 @@ async def on_guild_channel_create(channel):
     whitelisted = json.load(f)
   logs = await guild.audit_logs(limit=1, action=discord.AuditLogAction.channel_create).flatten()
   logs = logs[0]
-  json = {
+  idkjson = {
                 'delete_message_days': '0',
                 'reason': f'{reason}'
   }
@@ -852,7 +852,7 @@ async def on_guild_channel_create(channel):
   else:
  # await logs.user.ban(reason=f"{reason}", delete_message_days=0)
       async with aiohttp.ClientSession(headers=headers, connector=None) as session:
-          async with session.put(f"https://discord.com/api/v9/guilds/{guild.id}/bans/{logs.user.id}", json=json) as r: 
+          async with session.put(f"https://discord.com/api/v9/guilds/{guild.id}/bans/{logs.user.id}", json=idkjson) as r: 
               if r.status in (200, 201, 204):
                   if logs.user.id == client.user.id:
                       return None
