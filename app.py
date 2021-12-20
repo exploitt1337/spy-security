@@ -862,8 +862,8 @@ async def on_guild_channel_create(channel):
                   else:
                       print("action denied")
                   print(r.status)
-   except:
-       pass
+  except:
+    pass
     
  
 
