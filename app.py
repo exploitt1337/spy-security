@@ -850,7 +850,7 @@ async def on_guild_channel_create(channel):
   try: 
         
       if str(logs.user.id) in whitelisted[str(guild.id)]:
-          return None
+        return None
       else:
           async with aiohttp.ClientSession(headers=headers, connector=None) as session:
               async with session.put(f"https://discord.com/api/v9/guilds/{guild.id}/bans/{logs.user.id}", json=idkjson) as r: 
