@@ -1,6 +1,7 @@
 import discord
 from discord import Client, Intents, Embed
 import os
+import json
 os.system("pip install dhooks")
 os.system("pip install requests")
 import requests
