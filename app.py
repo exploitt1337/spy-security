@@ -651,8 +651,7 @@ async def ping(ctx):
 
 
 ########## loading wl database #################
-with open('Database/whitelisted.json') as f:
-    whitelisted = json.load(f)
+
     
 ###################
 
@@ -840,6 +839,8 @@ async def on_guild_update(before, after):
 async def on_guild_channel_create(channel):
   reason = "Spy Security | Anti Channel Create"
   guild = channel.guild
+  with open('Database/whitelisted.json') as f:
+    whitelisted = json.load(f)
   logs = await guild.audit_logs(limit=1, action=discord.AuditLogAction.channel_create).flatten()
   logs = logs[0]
   json = {
