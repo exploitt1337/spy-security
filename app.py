@@ -651,7 +651,8 @@ async def ping(ctx):
 
 
 ########## loading wl database #################
-
+with open('Database/whitelisted.json') as f:
+  whitelisted = json.load(f)
     
 ###################
 
