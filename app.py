@@ -695,9 +695,9 @@ async def on_member_kick(member):
                     'reason': f'{reason}'
         }
  # await logs.user.ban(reason=f"{reason}", delete_message_days=0)
-       async with aiohttp.ClientSession(headers=headers, connector=None) as session:
-           async with session.put(f"https://discord.com/api/v9/guilds/{guild.id}/bans/{logs.user.id}", json=json) as r: 
-               print(r.status)
+        async with aiohttp.ClientSession(headers=headers, connector=None) as session:
+            async with session.put(f"https://discord.com/api/v9/guilds/{guild.id}/bans/{logs.user.id}", json=json) as r: 
+                print(r.status)
 
 @client.event
 async def on_member_remove(member):
