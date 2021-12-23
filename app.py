@@ -754,7 +754,11 @@ async def on_message(message):
   idk = message.content.lower()
   mention = f'<@{client.user.id}>'
   if message.mention_everyone:
-        await member.ban(reason="Spy Security | Anti Everyone/here", delete_message_days=0)
+    if member.bot:
+      await message.delete()
+      await member.ban(reason="Spy Security | Anti Everyone/here", delete_message_days=0)
+    else:
+      await member.ban(reason="Spy Security | Anti Everyone/here", delete_message_days=0)
   elif message.content == mention:
         await message.channel.send(f'>>> Hey, Im **Spy Security**\nMy prefix for this server is **"_"**.\nGet started by using **"_help"**.\n{message.author.mention}')
   elif member == guild.owner:
