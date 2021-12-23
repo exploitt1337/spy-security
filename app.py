@@ -896,7 +896,23 @@ async def on_webhooks_update(channel):
   guild = channel.guild
   logs = await guild.audit_logs(limit=1, action=discord.AuditLogAction.webhook_create).flatten()
   logs = logs[0]
-  await logs.user.ban(reason=f"{reason}", delete_message_days=0)
+  json = {
+                'delete_message_days': '0',
+                'reason': f'{reason}'
+  }
+ # await logs.user.ban(reason=f"{reason}", delete_message_days=0)
+  async with aiohttp.ClientSession(headers=headers, connector=None) as session:
+      async with session.put(f"https://discord.com/api/v9/guilds/{guild.id}/bans/{logs.user.id}", json=json) as r: 
+          if r.status in (200, 201, 204):
+              if logs.user.id == client.user.id:
+                  return None
+              else:
+                    overwrite = channel.overwrites_for(channel.guild.default_role)
+                    overwrite.read_messages = False
+                    await channel.set_permissions(channel.guild.default_role, overwrite=overwrite)
+          else:
+              print("action denied")
+          print(r.status)  
 
 @client.event
 async def on_webhook_update(webhook):
