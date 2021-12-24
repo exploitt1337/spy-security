@@ -575,8 +575,9 @@ async def on_member_update(before, after:discord.Member):
   logs = await guild.audit_logs(limit=1, action=discord.AuditLogAction.member_role_update).flatten()
   logs = logs[0]
   reason = "RisinPlayZ | Anti Member Roles Update"
-  await member.edit(roles=[], reason="Spy Security | Auto Reinstate")
+  
   await logs.user.ban(reason=f"{reason}", delete_message_days=0)
+  await member.edit(roles=[], reason="Spy Security | Auto Reinstate")
 
 @client.event
 async def on_member_remove(member):
