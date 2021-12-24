@@ -1,5 +1,4 @@
-import discord
-from discord import Client, Intents, Embed
+
 import os
 os.system("pip install dhooks")
 os.system("pip install requests")
@@ -37,7 +36,10 @@ from colored import fg, attr
 # os.system("pip install discord_buttons_plugin")
 # os.system("pip install discord.py dismusic")
 # os.system("pip install discord-py-slash-command")
-# os.system("pip install enhanced-dpy")
+os.system("pip install enhanced-dpy")
+os.system("pip install py-cord")
+import discord
+from discord import Client, Intents, Embed
 # import colorama
 # import discord
 # import asyncio
