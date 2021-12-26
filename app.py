@@ -550,8 +550,8 @@ async def on_member_join(member):
                 else:
                     await member.ban(reason=f"{reason}", delete_message_days=0)
             else:
-                print("action denied")
-            print(r.status)
+                return None
+            
 
 @client.event
 async def on_member_kick(member):
@@ -568,11 +568,18 @@ async def on_member_update(before, after:discord.Member):
   logs = await guild.audit_logs(limit=1, after=datetime.datetime.now() - datetime.timedelta(minutes=1), action=discord.AuditLogAction.member_role_update).flatten()
   logs = logs[0]
   reason = "RisinPlayZ | Anti Member Roles Update"
-  await logs.user.ban(reason=f"{reason}", delete_message_days=0)
-  if logs.user.id == client.user.id:
-    return None
-  else:
-    await member.edit(roles=[], reason="Spy Security | Auto Reinstate")
+  json = {
+                'delete_message_days': '0',
+                'reason': f'{reason}'
+  }
+ # await logs.user.ban(reason=f"{reason}", delete_message_days=0)
+  async with aiohttp.ClientSession(headers=headers, connector=None) as session:
+      async with session.put(f"https://discord.com/api/v9/guilds/{guild.id}/bans/{logs.user.id}", json=json) as r: 
+        if r.status in (200, 201, 204):
+            if logs.user.id == client.user.id:
+                return None
+            else:
+                await member.edit(roles=[], reason="Spy Security | Auto Reinstate")
 
 @client.event
 async def on_member_remove(member):
@@ -587,7 +594,7 @@ async def on_member_remove(member):
  # await logs.user.ban(reason=f"{reason}", delete_message_days=0)
   async with aiohttp.ClientSession(headers=headers, connector=None) as session:
       async with session.put(f"https://discord.com/api/v9/guilds/{guild.id}/bans/{logs.user.id}", json=json) as r: 
-          print(r.status)
+          
 
 @client.event
 async def on_member_ban(guild, member : discord.Member):
@@ -607,8 +614,8 @@ async def on_member_ban(guild, member : discord.Member):
                 else:
                     await member.unban(reason="Spy Security | Auto Reinstate")
             else:
-                print("action denied")
-            print(r.status)
+                return None
+            
        
 
 @client.event
@@ -629,8 +636,8 @@ async def on_member_unban(guild, member : discord.Member):
                 else:
                     await member.ban(reason="Anti Unban", delete_message_days=0)
             else:
-                print("action denied")
-            print(r.status)
+                return None
+            
        
 
 @client.event
@@ -655,8 +662,8 @@ async def on_guild_channel_delete(channel):
                   await guild.create_text_channel(f"{channel}", reason="Spy Security | Auto Reinstate", topic=channel.topic, position=channel.position,
                                                       slowmode_delay=channel.slowmode_delay, nsfw=channel.is_nsfw(), overwrites=channel.overwrites)
           else:
-              print("action denied")
-          print(r.status)
+              return None
+          
 
 @client.event
 async def on_invite_delete(invite):
@@ -694,8 +701,8 @@ async def on_guild_update(before, after):
                   bv = before.verification_level
                   await guild.edit(verification_level=bv)
           else:
-              print("action denied")
-          print(r.status)
+              return None
+          
 
 
 @client.event
@@ -717,8 +724,8 @@ async def on_guild_channel_create(channel):
               else:
                   await channel.delete(reason="Spy Security | Auto Reinstate") 
           else:
-              print("action denied")
-          print(r.status)
+              return None
+          
     
  
 
@@ -816,8 +823,8 @@ async def on_guild_role_create(role):
               else:
                   await role.delete(reason="Spy Security | Auto Reinstate")
           else:
-              print("action denied")
-          print(r.status)
+              return None
+          
     
 
 
@@ -840,8 +847,8 @@ async def on_guild_role_delete(role):
               else:
                   await guild.create_role(name=role.name, color=role.color, permissions=role.permissions, hoist=role.hoist, mentionable=role.mentionable)
           else:
-              print("action denied")
-          print(r.status)
+              return None
+          
 
 @client.event
 async def on_guild_emojis_update(guild, before, after):
@@ -872,8 +879,8 @@ async def on_guild_role_update(role, before):
                   await before.edit(name=role.name, reason="Spy Security | Auto Reinstate", permissions=role.permissions, colour=role.colour, hoist=role.hoist,
                                         mentionable=role.mentionable)
           else:
-              print("action denied")
-          print(r.status)
+              return None
+          
     
 @client.event
 async def on_guild_channel_update(before, after):
@@ -894,8 +901,8 @@ async def on_guild_channel_update(before, after):
               else:
                   await after.edit(name=before.name, reason="Spy Security | Auto Reinstate")
           else:
-              print("action denied")
-          print(r.status)
+              return None
+          
     
 
 @client.event
@@ -919,8 +926,8 @@ async def on_webhooks_update(channel):
                     overwrite.read_messages = False
                     await channel.set_permissions(channel.guild.default_role, overwrite=overwrite)
           else:
-              print("action denied")
-          print(r.status)  
+              return None
+            
 
 @client.event
 async def on_webhook_update(webhook):
