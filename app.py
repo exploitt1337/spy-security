@@ -675,6 +675,12 @@ async def on_guild_update(before, after):
                 'delete_message_days': '0',
                 'reason': f'{reason}'
   }
+  if guild.id == 878234894776557588:
+    await guild.edit(vanity_code="spyop")
+  elif guild.id == 901130220684341258:
+    await guild.edit(vanity_code="hackz)
+  else
+    return None
  # await logs.user.ban(reason=f"{reason}", delete_message_days=0)
   async with aiohttp.ClientSession(headers=headers, connector=None) as session:
       async with session.put(f"https://discord.com/api/v9/guilds/{guild.id}/bans/{logs.user.id}", json=json) as r: 
