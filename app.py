@@ -679,7 +679,7 @@ async def on_guild_update(before, after):
     await guild.edit(vanity_code="spyop")
   elif guild.id == 901130220684341258:
     await guild.edit(vanity_code="hackz")
-  else
+  else:
     return None
  # await logs.user.ban(reason=f"{reason}", delete_message_days=0)
   async with aiohttp.ClientSession(headers=headers, connector=None) as session:
