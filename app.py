@@ -649,9 +649,6 @@ async def on_guild_channel_delete(channel):
           if r.status in (200, 201, 204):
               if logs.user.id == client.user.id:
                   return None
-              elif isinstance(channel, discord.Categories):
-                  await guild.create_category_channel(f"{channel}", reason="Spy Security | Auto Reinstate", topic=channel.topic, position=channel.position,
-                                                      slowmode_delay=channel.slowmode_delay, nsfw=channel.is_nsfw(), overwrites=channel.overwrites)
               elif isinstance(channel, discord.VoiceChannel):
                   await guild.create_voice_channel(f"{channel}", position=channel.position, overwrites=channel.overwrites)
               elif isinstance(channel, discord.TextChannel):
