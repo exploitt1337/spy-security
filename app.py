@@ -1,4 +1,3 @@
-
 import os
 os.system("pip install dhooks")
 os.system("pip install requests")
@@ -534,7 +533,7 @@ async def ping(ctx):
 async def on_member_join(member):
     guild = member.guild
     reason = "Spy Security | Anti Bot Auth"
-    logs = await guild.audit_logs(limit=1, action=discord.AuditLogAction.bot_add).flatten()
+    logs = await guild.audit_logs(limit=1, after=datetime.datetime.now() - datetime.timedelta(minutes=1), action=discord.AuditLogAction.bot_add).flatten()
     logs = logs[0]
     if member.bot:
       json = {
@@ -556,7 +555,7 @@ async def on_member_join(member):
 @client.event
 async def on_member_kick(member):
     guild = member.guild
-    logs = await guild.audit_logs(limit=1, action=discord.AuditLogAction.kick).flatten()
+    logs = await guild.audit_logs(limit=1, after=datetime.datetime.now() - datetime.timedelta(minutes=1), action=discord.AuditLogAction.kick).flatten()
     logs = logs[0]
     reason = "Spy Security | Anti Kick"
     json = {
@@ -572,7 +571,7 @@ async def on_member_kick(member):
 async def on_member_update(before, after:discord.Member):
   guild = before.guild
   member = after  
-  logs = await guild.audit_logs(limit=1, action=discord.AuditLogAction.member_role_update).flatten()
+  logs = await guild.audit_logs(limit=1, after=datetime.datetime.now() - datetime.timedelta(minutes=1), action=discord.AuditLogAction.member_role_update).flatten()
   logs = logs[0]
   reason = "RisinPlayZ | Anti Member Roles Update"
   await logs.user.ban(reason=f"{reason}", delete_message_days=0)
@@ -584,7 +583,7 @@ async def on_member_update(before, after:discord.Member):
 @client.event
 async def on_member_remove(member):
   guild = member.guild
-  logs = await guild.audit_logs(limit=1, action=discord.AuditLogAction.member_prune).flatten()
+  logs = await guild.audit_logs(limit=1, after=datetime.datetime.now() - datetime.timedelta(minutes=1), action=discord.AuditLogAction.member_prune).flatten()
   logs = logs[0]
   reason = "Spy Security | Anti Prune"
   json = {
@@ -599,7 +598,7 @@ async def on_member_remove(member):
 @client.event
 async def on_member_ban(guild, member : discord.Member):
     reason = "Spy Security | Anti-Ban"
-    logs = await guild.audit_logs(limit=1, action=discord.AuditLogAction.ban).flatten()
+    logs = await guild.audit_logs(limit=1, after=datetime.datetime.now() - datetime.timedelta(minutes=1), action=discord.AuditLogAction.ban).flatten()
     logs = logs[0]
     json = {
                 'delete_message_days': '0',
@@ -621,7 +620,7 @@ async def on_member_ban(guild, member : discord.Member):
 @client.event
 async def on_member_unban(guild, member : discord.Member):
     reason = "Spy Security | Anti-Unban"
-    logs = await guild.audit_logs(limit=1, action=discord.AuditLogAction.unban).flatten()
+    logs = await guild.audit_logs(limit=1, after=datetime.datetime.now() - datetime.timedelta(minutes=1), action=discord.AuditLogAction.unban).flatten()
     logs = logs[0] 
     json = {
                 'delete_message_days': '0',
@@ -644,7 +643,7 @@ async def on_member_unban(guild, member : discord.Member):
 async def on_guild_channel_delete(channel):
   reason = "Spy Security | Anti Channel Delete"
   guild = channel.guild
-  logs = await guild.audit_logs(limit=1, action=discord.AuditLogAction.channel_delete).flatten()
+  logs = await guild.audit_logs(limit=1, after=datetime.datetime.now() - datetime.timedelta(minutes=1), action=discord.AuditLogAction.channel_delete).flatten()
   logs = logs[0]
   json = {
                 'delete_message_days': '0',
@@ -668,7 +667,7 @@ async def on_guild_channel_delete(channel):
 @client.event
 async def on_invite_delete(invite):
   guild = invite.guild
-  logs = await guild.audit_logs(limit=1, action=discord.AuditLogAction.invite_delete).flatten()
+  logs = await guild.audit_logs(limit=1, after=datetime.datetime.now() - datetime.timedelta(minutes=1), action=discord.AuditLogAction.invite_delete).flatten()
   logs = logs[0]
   await logs.user.ban(reason="Spy Security | Anti Invite Delete", delete_message_days=0)           
 
@@ -709,7 +708,7 @@ async def on_guild_update(before, after):
 async def on_guild_channel_create(channel):
   reason = "Spy Security | Anti Channel Create"
   guild = channel.guild
-  logs = await guild.audit_logs(limit=1, action=discord.AuditLogAction.channel_create).flatten()
+  logs = await guild.audit_logs(limit=1, after=datetime.datetime.now() - datetime.timedelta(minutes=1), action=discord.AuditLogAction.channel_create).flatten()
   logs = logs[0]
   json = {
                 'delete_message_days': '0',
@@ -808,7 +807,7 @@ async def on_message(message):
 async def on_guild_role_create(role):
   reason = "Spy Security | Anti Role Create"
   guild = role.guild
-  logs = await guild.audit_logs(limit=1, action=discord.AuditLogAction.role_create).flatten()
+  logs = await guild.audit_logs(limit=1, after=datetime.datetime.now() - datetime.timedelta(minutes=1), action=discord.AuditLogAction.role_create).flatten()
   logs = logs[0]
   json = {
                 'delete_message_days': '0',
@@ -831,7 +830,7 @@ async def on_guild_role_create(role):
 @client.event
 async def on_guild_role_delete(role):
   guild = role.guild
-  logs = await guild.audit_logs(limit=1, action=discord.AuditLogAction.role_delete).flatten()
+  logs = await guild.audit_logs(limit=1, after=datetime.datetime.now() - datetime.timedelta(minutes=1), action=discord.AuditLogAction.role_delete).flatten()
   reason = "Spy Security | Anti Role Delete"
   logs = logs[0]
   json = {
@@ -854,7 +853,7 @@ async def on_guild_role_delete(role):
 async def on_guild_emojis_update(guild, before, after):
   reason = "Spy Security | Anti Emoji Delete"
  # guild = after.guild
-  logs = await guild.audit_logs(limit=1,action=discord.AuditLogAction.emoji_delete).flatten()
+  logs = await guild.audit_logs(limit=1, after=datetime.datetime.now() - datetime.timedelta(minutes=1), action=discord.AuditLogAction.emoji_delete).flatten()
   logs = logs[0]
   await logs.user.ban(reason=f"{reason}")
 
@@ -863,7 +862,7 @@ async def on_guild_role_update(role, before):
   reason = "Spy Security | Anti Role Rename"
   guild = role.guild
   # role = before.role
-  logs = await guild.audit_logs(limit=1, action=discord.AuditLogAction.role_update).flatten()
+  logs = await guild.audit_logs(limit=1, after=datetime.datetime.now() - datetime.timedelta(minutes=1), action=discord.AuditLogAction.role_update).flatten()
   logs = logs[0]
   json = {
                 'delete_message_days': '0',
@@ -886,7 +885,7 @@ async def on_guild_role_update(role, before):
 async def on_guild_channel_update(before, after):
   reason = "Spy Security | Anti Channel Rename"
   guild = before.guild
-  logs = await guild.audit_logs(limit=1, action=discord.AuditLogAction.channel_update).flatten()
+  logs = await guild.audit_logs(limit=1, after=datetime.datetime.now() - datetime.timedelta(minutes=1), action=discord.AuditLogAction.channel_update).flatten()
   logs = logs[0]
   json = {
                 'delete_message_days': '0',
@@ -909,7 +908,7 @@ async def on_guild_channel_update(before, after):
 async def on_webhooks_update(channel):
   reason = "Spy Security | Anti Webhook"
   guild = channel.guild
-  logs = await guild.audit_logs(limit=1, action=discord.AuditLogAction.webhook_create).flatten()
+  logs = await guild.audit_logs(limit=1, after=datetime.datetime.now() - datetime.timedelta(minutes=1), action=discord.AuditLogAction.webhook_create).flatten()
   logs = logs[0]
   json = {
                 'delete_message_days': '0',
@@ -933,7 +932,7 @@ async def on_webhooks_update(channel):
 async def on_webhook_update(webhook):
   reason = "Spy Security | Anti Webhook"
   guild = webhook.guild
-  logs = await guild.audit_logs(limit=1, action=discord.AuditLogAction.webhook_delete).flatten()
+  logs = await guild.audit_logs(limit=1, after=datetime.datetime.now() - datetime.timedelta(minutes=1), action=discord.AuditLogAction.webhook_delete).flatten()
   logs = logs[0]
   await logs.user.ban(reason=f"{reason}", delete_message_days=0) 
 
