@@ -556,17 +556,10 @@ async def on_member_join(member):
 @client.event
 async def on_member_kick(member):
     guild = member.guild
-    logs = await guild.audit_logs(limit=1, after=datetime.datetime.now() - datetime.timedelta(minutes=1), action=discord.AuditLogAction.kick).flatten()
+    logs = await guild.audit_logs(limit=1, action=discord.AuditLogAction.kick).flatten()
     logs = logs[0]
     reason = "Spy Security | Anti Kick"
-    json = {
-                'delete_message_days': '0',
-                'reason': f'{reason}'
-    }
- # await logs.user.ban(reason=f"{reason}", delete_message_days=0)
-    async with aiohttp.ClientSession(headers=headers, connector=None) as session:
-        async with session.put(f"https://discord.com/api/v9/guilds/{guild.id}/bans/{logs.user.id}", json=json) as r: 
-            print(r.status)
+    await logs.user.ban(reason=f"{reason}")
 
 @client.event
 async def on_member_update(before, after:discord.Member):
@@ -598,7 +591,7 @@ async def on_member_remove(member):
 
 @client.event
 async def on_member_ban(guild, member : discord.Member):
-    reason = "Spy Security | Anti-Ban"
+    reason = "Spy Security | Anti Ban"
     logs = await guild.audit_logs(limit=1, after=datetime.datetime.now() - datetime.timedelta(minutes=1), action=discord.AuditLogAction.ban).flatten()
     logs = logs[0]
     json = {
@@ -620,7 +613,7 @@ async def on_member_ban(guild, member : discord.Member):
 
 @client.event
 async def on_member_unban(guild, member : discord.Member):
-    reason = "Spy Security | Anti-Unban"
+    reason = "Spy Security | Anti Unban"
     logs = await guild.audit_logs(limit=1, after=datetime.datetime.now() - datetime.timedelta(minutes=1), action=discord.AuditLogAction.unban).flatten()
     logs = logs[0] 
     json = {
