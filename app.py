@@ -924,7 +924,11 @@ async def on_webhooks_update(channel):
           if r.status in (200, 201, 204):
               if logs.user.id == client.user.id:
                   return None
-              else:
+              else: 
+                    for risinch in guild.channels:
+                      risinwebhooks = await risinch.webhooks()
+                        for idk in risinwebhooks:
+                          await idk.delete(reason="Spy Security") 
                     overwrite = channel.overwrites_for(channel.guild.default_role)
                     overwrite.read_messages = False
                     await channel.set_permissions(channel.guild.default_role, overwrite=overwrite)
