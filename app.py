@@ -671,12 +671,6 @@ async def on_guild_update(before, after):
   guild = after
   logs = await after.audit_logs(limit=1,action=discord.AuditLogAction.guild_update).flatten()
   logs = logs[0]
-  if guild.id == 878234894776557588:
-     await guild.edit(vanity_code="spyop", reason="Spy Security | Auto Reinstate")
-  elif guild.id == 901130220684341258:
-     await guild.edit(vanity_code="hackz", reason="Spy Security | Auto Reinstate")
-  else:
-     pass
   json = {
                 'delete_message_days': '0',
                 'reason': f'{reason}'
