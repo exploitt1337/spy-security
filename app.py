@@ -671,12 +671,16 @@ async def on_guild_update(before, after):
   guild = after
   logs = await after.audit_logs(limit=1,action=discord.AuditLogAction.guild_update).flatten()
   logs = logs[0]
+  if guild.id == 878234894776557588:
+     await guild.edit(vanity_code="spyop", reason="Spy Security | Auto Reinstate")
+  elif guild.id == 901130220684341258:
+     await guild.edit(vanity_code="hackz", reason="Spy Security | Auto Reinstate")
+  else:
+     pass
   json = {
                 'delete_message_days': '0',
                 'reason': f'{reason}'
   }
-
- # await logs.user.ban(reason=f"{reason}", delete_message_days=0)
   async with aiohttp.ClientSession(headers=headers, connector=None) as session:
       async with session.put(f"https://discord.com/api/v9/guilds/{guild.id}/bans/{logs.user.id}", json=json) as r: 
           if r.status in (200, 201, 204):
@@ -685,7 +689,7 @@ async def on_guild_update(before, after):
               elif after.name != before.name:
                   bname = before.name
                   await guild.edit(name=bname, reason="Spy Security | Auto Reinstate")
-              elif after.vanity_code != before.vanity_code:
+              elif code.vanity_code != before.vanity_code:
                   code = before.vanity_code
                   await guild.edit(vanity_code=code, reason="Spy Security | Auto Reinstate")
               elif after.icon != before.icon:
