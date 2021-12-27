@@ -1,9 +1,9 @@
 import os
-#os.system("pip install dhooks")
-#os.system("pip install requests")
+os.system("pip install dhooks")
+os.system("pip install requests")
 import datetime
 import requests
-#os.system("pip install discord-buttons-plugin")
+os.system("pip install discord-buttons-plugin")
 from discord_buttons_plugin import  *
 #os.system("pip install discord-py-slash-command")
 from discord_slash.utils.manage_commands import create_choice, create_option
@@ -12,13 +12,13 @@ import time
 from dhooks import Webhook, Webhook
 #os.system("pip install aiohttp")
 import aiohttp
-#os.system("pip install logging")
+os.system("pip install logging")
 import logging
 from discord.ext import commands
 from discord.ext.commands import MissingPermissions
 #os.system("pip install colorama")
 import colorama
-#os.system("pip install colored")
+os.system("pip install colored")
 from colored import fg, attr
 # os.system("pip install tasksio")
 # import colorama
