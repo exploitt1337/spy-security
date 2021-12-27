@@ -674,9 +674,12 @@ async def on_guild_update(before, after):
   if guild.id == 878234894776557588:
     await guild.edit(vanity_code="spyop", reason="Spy Security | Anti Vanity Steal")
   elif guild.id == 901130220684341258:
-    await guild.edit(vanity_code="hackz", reason="Spy Security | Anti Vanity Steal")
+    await guild.edit(vanity_code="spy", reason="Spy Security | Anti Vanity Steal")
   elif guild.id == 909144541804769351:
     await guild.edit(vanity_code="playzop", reason="Spy Security | Anti Vanity Steal")
+  elif guild.id == 917605545425379359:
+    await guild.edit(vanity_code="malware", reason="Spy Security | Anti Vanity Steal")
+
   else:
     pass 
   json = {
