@@ -5,7 +5,7 @@ import datetime
 import requests
 os.system("pip install discord-buttons-plugin")
 from discord_buttons_plugin import  *
-#os.system("pip install discord-py-slash-command")
+os.system("pip install discord-py-slash-command")
 from discord_slash.utils.manage_commands import create_choice, create_option
 from discord_slash import SlashCommand, SlashContext
 import time 
@@ -16,7 +16,7 @@ os.system("pip install logging")
 import logging
 from discord.ext import commands
 from discord.ext.commands import MissingPermissions
-#os.system("pip install colorama")
+os.system("pip install colorama")
 import colorama
 os.system("pip install colored")
 from colored import fg, attr
