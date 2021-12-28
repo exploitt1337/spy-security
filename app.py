@@ -1,4 +1,4 @@
-™{=°`π€|÷~¶¢}©✓import os
+import os
 os.system("pip install dhooks")
 os.system("pip install requests")
 import datetime
