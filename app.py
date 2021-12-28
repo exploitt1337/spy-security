@@ -343,7 +343,7 @@ async def on_command_error(ctx, error):
     embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/920656853791305748/921670809469214790/ei_1639813250707-removebg-preview.png")
     embed.set_footer(text="RisinPlayZ :P | Error")
     embed.add_field(name="<a:spy_error:916265786195206194>FAILED", value=f'```"{error}"```')
-    await ctx.reply(embed=embed)
+    await ctx.reply(embed=embed, delete_after=4)
 
 @client.command(aliases=["inv", "support", "vote"])
 @commands.cooldown(1, 30, commands.BucketType.user)
@@ -416,7 +416,7 @@ async def lockserver(ctx):
     embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/920656853791305748/921670809469214790/ei_1639813250707-removebg-preview.png")
     embed.set_footer(text="RisinPlayZ :P | Error")
     embed.add_field(name="<a:spy_error:916265786195206194>FAILED", value=f'```"You must be guild owner to use this command."```')
-    await ctx.reply(embed=embed)
+    await ctx.reply(embed=embed, delete_after=4)
  
     
 @client.command(aliases=["massunban"])
@@ -440,7 +440,7 @@ async def unbanall(ctx):
     embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/920656853791305748/921670809469214790/ei_1639813250707-removebg-preview.png")
     embed.set_footer(text="RisinPlayZ :P | Error")
     embed.add_field(name="<a:spy_error:916265786195206194>FAILED", value=f'```"You must be guild owner to use this command."```')
-    await ctx.reply(embed=embed)
+    await ctx.reply(embed=embed, delete_after=4)
 
 @client.command(aliases=["cc"])
 async def channelclean(ctx, channeltodelete):
@@ -464,7 +464,7 @@ async def channelclean(ctx, channeltodelete):
     embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/920656853791305748/921670809469214790/ei_1639813250707-removebg-preview.png")
     embed.set_footer(text="RisinPlayZ :P | Error")
     embed.add_field(name="<a:spy_error:916265786195206194>FAILED", value=f'```"You must be guild owner to use this command."```')
-    await ctx.reply(embed=embed)
+    await ctx.reply(embed=embed, delete_after=4)
 @client.command()
 @commands.has_permissions(manage_channels=True)
 async def lock(ctx, channel : discord.TextChannel=None):
