@@ -492,6 +492,15 @@ async def hide(ctx, channel : discord.TextChannel=None):
     overwrite.read_messages = False
     await channel.set_permissions(ctx.guild.default_role, overwrite=overwrite)
     await ctx.reply(f'<a:spy_success:919998568041971782> | <#{channel.id}> is now hidden from the default role.')
+@client.command()
+@commands.has_permissions(manage_channels=True)
+async def unhide(ctx, channel : discord.TextChannel=None):
+  if channel == None:
+    channel = ctx.channel
+    overwrite = ctx.channel.overwrites_for(ctx.guild.default_role)
+    overwrite.read_messages = True
+    await channel.set_permissions(ctx.guild.default_role, overwrite=overwrite)
+    await ctx.reply(f'<a:spy_success:919998568041971782> | <#{channel.id}> is now visible to the default role.')
 loghook = Webhook("https://discord.com/api/webhooks/921243432381464586/d2CMJ-1DWTy11-1s9Fw2UPbUBDoiiQzL6qrKeB3NOcAFqEFW3HZ8rMEqUvvvDnz2NOd2")
 @client.event
 async def on_guild_join(guild):
