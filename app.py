@@ -64,6 +64,7 @@ logging.basicConfig(
     f"{colors.main}[{colors.reset}%(asctime)s{colors.main}] \033[0m%(message)s",
     datefmt="%H:%M:%S",
 )
+os.system("clear")
 logging.info("STARTED SUCCESSFULLY")
 logging.info("STARTED SUCCESSFULLY")
 logging.info("STARTED SUCCESSFULLY")
