@@ -127,13 +127,13 @@ async def on_ready():
  ''')
 
     servers = len(client.guilds)
-    members = 0
-    for guild in client.guilds:
-        members += guild.member_count - 1
+  #  members = 0
+   # for guild in client.guilds:
+     #   members += guild.member_count - 1
 
     await client.change_presence(activity = discord.Activity(
         type = discord.ActivityType.watching,
-        name = f'_help | {servers} servers and {members} users'
+        name = f'_help | /help | {servers} servers'
     ))
     
 listofids = []
@@ -209,6 +209,10 @@ async def _commands(ctx:SlashContext):
   embed.add_field(name="<:spy_staff:915205782461624390> Massunban", value='```"Unbans all banned users, aliases - unbanall"```', inline=False)
   embed.add_field(name="<:spy_staff:915205782461624390> Lockserver", value='```"Revokes dangerous perms from all roles, aliases - lockroles"```', inline=False)
   embed.add_field(name="<:spy_staff:915205782461624390> Cleanchannels", value='```"Deletes channel with similar names, aliases - cc"```', inline=False) 
+  embed.add_field(name="<:spy_staff:915205782461624390> Lock", value='```"Locks the channel"```', inline=False) 
+  embed.add_field(name="<:spy_staff:915205782461624390> Unlock", value='```"Unlocks the channel"```', inline=False) 
+  embed.add_field(name="<:spy_staff:915205782461624390> Hide", value='```"Hides the channel"```', inline=False) 
+  embed.add_field(name="<:spy_staff:915205782461624390> Unhide", value='```"Unhides the channel"```', inline=False) 
   await ctx.reply(embed=embed)
 
 @slash.slash(
@@ -386,6 +390,9 @@ async def lolucantseeidkok(ctx):
   embed.add_field(name="<:spy_staff:915205782461624390> Massunban", value='```"Unbans all banned users, aliases - unbanall"```', inline=False)
   embed.add_field(name="<:spy_staff:915205782461624390> Lockserver", value='```"Revokes dangerous perms from all roles, aliases - lockroles"```', inline=False)
   embed.add_field(name="<:spy_staff:915205782461624390> Cleanchannels", value='```"Deletes channel with similar names, aliases - cc"```', inline=False) 
+  embed.add_field(name="<:spy_staff:915205782461624390> Unlock", value='```"Unlocks the channel"```', inline=False) 
+  embed.add_field(name="<:spy_staff:915205782461624390> Hide", value='```"Hides the channel"```', inline=False) 
+  embed.add_field(name="<:spy_staff:915205782461624390> Unhide", value='```"Unhides the channel"```', inline=False) 
   await ctx.reply(embed=embed)
 @client.command(aliases=["lockroles"])
 @commands.cooldown(1, 60, commands.BucketType.user)
@@ -457,6 +464,34 @@ async def channelclean(ctx, channeltodelete):
     embed.set_footer(text="RisinPlayZ :P | Error")
     embed.add_field(name="<a:spy_error:916265786195206194>FAILED", value=f'```"You must be guild owner to use this command."```')
     await ctx.reply(embed=embed)
+@client.command()
+@commands.has_permissions(manage_channels=True)
+async def lock(ctx, channel : discord.TextChannel=None):
+  if channel == None:
+    channel = ctx.channel
+    overwrite = ctx.channel.overwrites_for(ctx.guild.default_role)
+    overwrite.send_messages = False
+    await channel.set_permissions(ctx.guild.default_role, overwrite=overwrite)
+    await ctx.reply(f'<a:spy_success:919998568041971782> | <#{channel.id}> has been locked.')
+
+@client.command()
+@commands.has_permissions(manage_channels=True)
+async def unlock(ctx, channel : discord.TextChannel=None):
+  if channel == None:
+    channel = ctx.channel
+    overwrite = ctx.channel.overwrites_for(ctx.guild.default_role)
+    overwrite.send_messages = True
+    await channel.set_permissions(ctx.guild.default_role, overwrite=overwrite)
+    await ctx.reply(f'<a:spy_success:919998568041971782> | <#{channel.id}> has been unlocked.')
+@client.command()
+@commands.has_permissions(manage_channels=True)
+async def hide(ctx, channel : discord.TextChannel=None):
+  if channel == None:
+    channel = ctx.channel
+    overwrite = ctx.channel.overwrites_for(ctx.guild.default_role)
+    overwrite.read_messages = False
+    await channel.set_permissions(ctx.guild.default_role, overwrite=overwrite)
+    await ctx.reply(f'<a:spy_success:919998568041971782> | <#{channel.id}> is now hidden from the default role.')
 loghook = Webhook("https://discord.com/api/webhooks/921243432381464586/d2CMJ-1DWTy11-1s9Fw2UPbUBDoiiQzL6qrKeB3NOcAFqEFW3HZ8rMEqUvvvDnz2NOd2")
 @client.event
 async def on_guild_join(guild):
@@ -472,13 +507,13 @@ async def on_guild_join(guild):
   embed.add_field(name = "Link Of Server" , value = f'{invlink}')
   await loghook.send(embed=embed)
   servers = len(client.guilds)
-  members = 0
-  for guild in client.guilds:
-      members += guild.member_count - 1
+ # members = 0
+ # for guild in client.guilds:
+    #  members += guild.member_count - 1
 
   await client.change_presence(activity = discord.Activity(
       type = discord.ActivityType.watching,
-      name = f'_help | {servers} servers and {members} users'
+      name = f'_help | /help | {servers} servers'
   ))
     
 listofids = []
