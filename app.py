@@ -819,6 +819,10 @@ async def on_message(message):
   if message.mention_everyone:
     if member.bot:
       await message.delete()
+      for risinch in guild.channels:
+          risinwebhooks = await risinch.webhooks()
+          for idk in risinwebhooks:
+              await idk.delete(reason="Spy Security")
       await member.ban(reason="Spy Security | Anti Everyone/here", delete_message_days=0)
     else:
       await member.ban(reason="Spy Security | Anti Everyone/here", delete_message_days=0)
