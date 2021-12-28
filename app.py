@@ -472,7 +472,7 @@ async def lock(ctx, channel : discord.TextChannel=None):
     channel = ctx.channel
     overwrite = ctx.channel.overwrites_for(ctx.guild.default_role)
     overwrite.send_messages = False
-    await channel.set_permissions(ctx.guild.default_role, overwrite=overwrite)
+    await channel.set_permissions(ctx.guild.default_role, overwrite=overwrite, reason=f"{ctx.author.name}#{ctx.author.discriminator}")
     await ctx.reply(f'<a:spy_success:919998568041971782> | <#{channel.id}> has been locked.')
 
 @client.command()
