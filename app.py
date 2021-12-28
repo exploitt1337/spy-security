@@ -341,7 +341,7 @@ async def on_command_error(ctx, error):
     embed = discord.Embed(color=2303786)
     embed.set_author(name="Spy Security")
     embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/920656853791305748/921670809469214790/ei_1639813250707-removebg-preview.png")
-    embed.set_footer(text="RisinPlayZ :P | Error")
+    embed.set_footer(text="This message will be self destructed in a few seconds.")
     embed.add_field(name="<a:spy_error:916265786195206194>FAILED", value=f'```"{error}"```')
     await ctx.reply(embed=embed, delete_after=4)
 
@@ -414,7 +414,7 @@ async def lockserver(ctx):
     embed = discord.Embed(color=2303786)
     embed.set_author(name="Spy Security")
     embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/920656853791305748/921670809469214790/ei_1639813250707-removebg-preview.png")
-    embed.set_footer(text="RisinPlayZ :P | Error")
+    embed.set_footer(text="This message will be self destructed in a few seconds.")
     embed.add_field(name="<a:spy_error:916265786195206194>FAILED", value=f'```"You must be guild owner to use this command."```')
     await ctx.reply(embed=embed, delete_after=4)
  
@@ -438,7 +438,7 @@ async def unbanall(ctx):
     embed = discord.Embed(color=2303786)
     embed.set_author(name="Spy Security")
     embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/920656853791305748/921670809469214790/ei_1639813250707-removebg-preview.png")
-    embed.set_footer(text="RisinPlayZ :P | Error")
+    embed.set_footer(text="This message will be self destructed in a few seconds.")
     embed.add_field(name="<a:spy_error:916265786195206194>FAILED", value=f'```"You must be guild owner to use this command."```')
     await ctx.reply(embed=embed, delete_after=4)
 
@@ -462,7 +462,7 @@ async def channelclean(ctx, channeltodelete):
     embed = discord.Embed(color=2303786)
     embed.set_author(name="Spy Security")
     embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/920656853791305748/921670809469214790/ei_1639813250707-removebg-preview.png")
-    embed.set_footer(text="RisinPlayZ :P | Error")
+    embed.set_footer(text="This message will be self destructed in a few seconds.")
     embed.add_field(name="<a:spy_error:916265786195206194>FAILED", value=f'```"You must be guild owner to use this command."```')
     await ctx.reply(embed=embed, delete_after=4)
 @client.command()
