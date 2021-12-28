@@ -390,6 +390,7 @@ async def lolucantseeidkok(ctx):
   embed.add_field(name="<:spy_staff:915205782461624390> Massunban", value='```"Unbans all banned users, aliases - unbanall"```', inline=False)
   embed.add_field(name="<:spy_staff:915205782461624390> Lockserver", value='```"Revokes dangerous perms from all roles, aliases - lockroles"```', inline=False)
   embed.add_field(name="<:spy_staff:915205782461624390> Cleanchannels", value='```"Deletes channel with similar names, aliases - cc"```', inline=False) 
+  embed.add_field(name="<:spy_staff:915205782461624390> Lock", value='```"Locks the channel"```', inline=False) 
   embed.add_field(name="<:spy_staff:915205782461624390> Unlock", value='```"Unlocks the channel"```', inline=False) 
   embed.add_field(name="<:spy_staff:915205782461624390> Hide", value='```"Hides the channel"```', inline=False) 
   embed.add_field(name="<:spy_staff:915205782461624390> Unhide", value='```"Unhides the channel"```', inline=False) 
